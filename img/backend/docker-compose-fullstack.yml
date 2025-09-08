@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  # Frontend Service
+  img-gen-frontend:
+    build: 
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: img-gen-frontend
+    expose:
+      - "80"  # Internal port only - accessed via nginx proxy
+    depends_on:
+      img-gen-backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - img-gen-network
+
+  # Backend Services  
+  img-gen-backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: img-gen-backend
+    expose:
+      - "8088"  # Gemini AI Service - internal only
+      - "10086"  # File Storage Service - internal only
+    environment:
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+      - GEMINI_API_KEY=AIzaSyCvoUAFneih00J16qNTFSPUX_9RORFfsww
+    volumes:
+      - backend_data:/app/upload
+      - backend_generated:/app/generated
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "sh", "-c", "curl -f http://localhost:10086/list && curl -f http://localhost:8088/list_generated"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - img-gen-network
+
+  # Nginx Reverse Proxy (Main entry point - All traffic goes through here)
+  nginx:
+    image: nginx:alpine
+    container_name: img-gen-proxy
+    ports:
+      - "80:80"    # Main access point - http://your_server
+      - "3000:80"  # Alternative port for compatibility
+      - "443:443"  # HTTPS (if needed)
+    volumes:
+      - ./nginx-proxy-fixed.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl  # SSL certificates (if using HTTPS)
+    depends_on:
+      img-gen-frontend:
+        condition: service_started
+      img-gen-backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - img-gen-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health", "||", "exit", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  backend_data:
+    driver: local
+  backend_generated:
+    driver: local
+
+networks:
+  img-gen-network:
+    driver: bridge
