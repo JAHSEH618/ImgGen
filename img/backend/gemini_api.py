@@ -28,11 +28,7 @@ GENERATED_FOLDER = os.path.join(SCRIPT_DIR, 'generated')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(GENERATED_FOLDER, exist_ok=True)
 
-# Gemini API key - 从环境变量获取
-API_KEY = os.environ.get('GEMINI_API_KEY')
-if not API_KEY:
-    raise ValueError("GEMINI_API_KEY environment variable is required. Please set it before starting the service.")
-    
+# Gemini API configuration - Client will automatically get API key from GEMINI_API_KEY environment variable
 MODEL_NAME = "gemini-2.5-flash-image-preview"
 
 SUPPORTED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
@@ -82,7 +78,16 @@ class SessionManager:
     def add_file_to_session(self, session_id, filename):
         """Add a generated file to a session"""
         with self.lock:
-            session_data = self.update_session(session_id)
+            # Update session directly without calling update_session to avoid double locking
+            if session_id not in self.sessions:
+                self.sessions[session_id] = {
+                    'files': set(),
+                    'last_activity': datetime.datetime.now()
+                }
+            else:
+                self.sessions[session_id]['last_activity'] = datetime.datetime.now()
+            
+            session_data = self.sessions[session_id]
             session_data['files'].add(filename)
             print(f"Added generated file {filename} to session {session_id}")
     
@@ -252,14 +257,23 @@ def save_binary_file(file_name, data, output_dir, session_id):
 
 def generate_images_batch(image_paths, prompt, session_id):
     """Generate images for multiple input images using Gemini API"""
-    client = genai.Client(api_key=API_KEY)
+
+    # Create client with API key from environment variable
+    client = genai.Client(
+        api_key=os.environ.get("GEMINI_API_KEY"),
+    )
     
     # Validate all images first
     for image_path in image_paths:
         validate_image(image_path)
     
-    # Prepare content parts - one prompt + multiple images
-    content_parts = [prompt]  # Start with the text prompt
+    # Prepare content parts using the new types.Content structure
+    content_parts = []
+    
+    # Add text prompt first
+    content_parts.append(
+        types.Part.from_text(text=prompt)
+    )
     
     # Add all images to the same request
     for image_path in image_paths:
@@ -269,6 +283,7 @@ def generate_images_batch(image_paths, prompt, session_id):
         with open(image_path, 'rb') as f:
             image_bytes = f.read()
         
+        # Use types.Part.from_bytes for image data
         content_parts.append(
             types.Part.from_bytes(
                 data=image_bytes, 
@@ -276,41 +291,80 @@ def generate_images_batch(image_paths, prompt, session_id):
             )
         )
     
+    # Create content with proper structure
+    contents = [
+        types.Content(
+            role="user",
+            parts=content_parts,
+        ),
+    ]
+    
+    # Configure generation to support both image and text responses
+    generate_content_config = types.GenerateContentConfig(
+        response_modalities=[
+            "IMAGE",
+            "TEXT",
+        ],
+    )
+    
     try:
-        # Make single API call with all images
-        response = client.models.generate_content(
-            model=MODEL_NAME,
-            contents=content_parts
-        )
-        
-        print("Generated content:")
-        print(response.text)
+        print(f"Making API call to {MODEL_NAME} with {len(image_paths)} images...")
         
         generated_files = []
+        text_response = ""
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        file_index = 0
         
-        # Save any generated images
-        if hasattr(response, 'candidates') and response.candidates:
-            candidate = response.candidates[0]
-            if hasattr(candidate, 'content') and candidate.content:
-                if hasattr(candidate.content, 'parts') and candidate.content.parts:
-                    for i, part in enumerate(candidate.content.parts):
-                        if hasattr(part, 'inline_data') and part.inline_data:
-                            file_extension = mimetypes.guess_extension(part.inline_data.mime_type) or ".jpg"
-                            output_filename = f"generated_{timestamp}_{i}{file_extension}"
-                            saved_path = save_binary_file(output_filename, part.inline_data.data, GENERATED_FOLDER, session_id)
-                            if saved_path:
-                                generated_files.append(saved_path)
+        # Use streaming generation to handle both text and image responses
+        for chunk in client.models.generate_content_stream(
+            model=MODEL_NAME,
+            contents=contents,
+            config=generate_content_config,
+        ):
+            if (
+                chunk.candidates is None
+                or chunk.candidates[0].content is None
+                or chunk.candidates[0].content.parts is None
+            ):
+                continue
+                
+            # Check for generated images
+            if (
+                chunk.candidates[0].content.parts[0].inline_data and 
+                chunk.candidates[0].content.parts[0].inline_data.data
+            ):
+                inline_data = chunk.candidates[0].content.parts[0].inline_data
+                data_buffer = inline_data.data
+                file_extension = mimetypes.guess_extension(inline_data.mime_type) or ".jpg"
+                output_filename = f"generated_{timestamp}_{file_index}{file_extension}"
+                
+                saved_path = save_binary_file(output_filename, data_buffer, GENERATED_FOLDER, session_id)
+                if saved_path:
+                    generated_files.append(saved_path)
+                    print(f"Saved generated image: {saved_path}")
+                file_index += 1
+            else:
+                # Collect text response
+                if hasattr(chunk, 'text') and chunk.text:
+                    text_response += chunk.text
+                    print(f"Text response chunk: {chunk.text}")
+        
+        print("API call completed successfully!")
+        print(f"Generated {len(generated_files)} images")
+        print(f"Text response: {text_response}")
         
         return {
             'success': True,
-            'text_response': response.text,
+            'text_response': text_response,
             'generated_files': generated_files,
             'processed_images': len(image_paths)
         }
         
     except Exception as e:
         print(f"Error during content generation: {e}")
+        print(f"Exception type: {type(e).__name__}")
+        import traceback
+        traceback.print_exc()
         return {
             'success': False,
             'error': str(e),
@@ -498,6 +552,50 @@ def list_generated_images():
     except Exception as e:
         return jsonify({'error': f'Failed to list images: {str(e)}'}), 500
 
+@app.route('/test_api', methods=['GET'])
+def test_gemini_api():
+    """Test endpoint to verify Gemini API connectivity"""
+    try:
+        print("Testing Gemini API connection...")
+        
+        # Create client with API key from environment variable
+        client = genai.Client(
+            api_key=os.environ.get("GEMINI_API_KEY"),
+        )
+        
+        # Create content with proper structure
+        contents = [
+            types.Content(
+                role="user",
+                parts=[
+                    types.Part.from_text(text="Explain how AI works in a few words")
+                ],
+            ),
+        ]
+        
+        # Simple text generation test using new structure
+        response = client.models.generate_content(
+            model=MODEL_NAME, 
+            contents=contents
+        )
+        
+        return jsonify({
+            'success': True,
+            'message': 'Gemini API connection successful',
+            'response': response.text,
+            'model': MODEL_NAME
+        }), 200
+        
+    except Exception as e:
+        print(f"Gemini API test failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            'success': False,
+            'error': f'Gemini API test failed: {str(e)}',
+            'model': MODEL_NAME
+        }), 500
+
 @app.errorhandler(413)
 def too_large(e):
     return jsonify({'error': 'Files too large. Maximum total size is 50MB'}), 413
@@ -509,6 +607,35 @@ if __name__ == '__main__':
     
     print(f"Upload directory: {UPLOAD_FOLDER}")
     print(f"Generated directory: {GENERATED_FOLDER}")
+    
+    # Test Gemini API connection at startup
+    print("\n🔍 Testing Gemini API connection...")
+    try:
+        # Create client with API key from environment variable
+        test_client = genai.Client(
+            api_key=os.environ.get("GEMINI_API_KEY"),
+        )
+        
+        # Create content with proper structure for testing
+        test_contents = [
+            types.Content(
+                role="user",
+                parts=[
+                    types.Part.from_text(text="Hello")
+                ],
+            ),
+        ]
+        
+        test_response = test_client.models.generate_content(
+            model=MODEL_NAME,
+            contents=test_contents
+        )
+        print("✅ Gemini API connection successful!")
+        print(f"✅ Model: {MODEL_NAME}")
+        print(f"✅ Test response: {test_response.text}")
+    except Exception as e:
+        print(f"❌ Gemini API connection failed: {e}")
+        print("⚠️  AI generation will not work until API connection is fixed")
     
     # Check if running in production mode
     if os.environ.get('FLASK_ENV') == 'production':

@@ -77,7 +77,16 @@ class SessionManager:
     def add_file_to_session(self, session_id, filename):
         """Add a file to a session"""
         with self.lock:
-            session_data = self.update_session(session_id)
+            # Update session directly without calling update_session to avoid double locking
+            if session_id not in self.sessions:
+                self.sessions[session_id] = {
+                    'files': set(),
+                    'last_activity': datetime.now()
+                }
+            else:
+                self.sessions[session_id]['last_activity'] = datetime.now()
+            
+            session_data = self.sessions[session_id]
             session_data['files'].add(filename)
             print(f"Added file {filename} to session {session_id}")
     

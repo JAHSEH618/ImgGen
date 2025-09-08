@@ -6,8 +6,8 @@ import os
 bind = "0.0.0.0:10086"
 backlog = 2048
 
-# Worker processes
-workers = multiprocessing.cpu_count() * 2 + 1
+# Worker processes - Using single worker to avoid session lock issues
+workers = 1
 worker_class = "sync"
 worker_connections = 1000
 timeout = 60  # File upload timeout

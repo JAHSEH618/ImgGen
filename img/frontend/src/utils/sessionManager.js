@@ -86,10 +86,10 @@ class SessionManager {
         this.heartbeatInterval = null
       }
       
-      // Send cleanup requests to both services
+      // Send cleanup requests to both services using new API URLs
       const promises = [
-        axios.post(`${API_URLS.fileHeartbeat.replace('/heartbeat', '')}/cleanup/${this.sessionId}`),
-        axios.post(`${API_URLS.aiHeartbeat.replace('/heartbeat', '')}/cleanup/${this.sessionId}`)
+        axios.post(API_URLS.fileCleanup(this.sessionId)),
+        axios.post(API_URLS.aiCleanup(this.sessionId))
       ]
       
       await Promise.allSettled(promises)
