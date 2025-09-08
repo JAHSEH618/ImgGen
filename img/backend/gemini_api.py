@@ -274,16 +274,10 @@ def make_api_request_with_retry(client, model, contents, max_retries=3):
         try:
             print(f"API call attempt {attempt + 1}/{max_retries}...")
             
-            # Configure request with extended timeout for container environments
-            request_config = {
-                "timeout": 300.0,  # 5 minutes timeout for API calls in containers
-            }
-            
-            # Make API call
+            # Make API call (timeout configuration not supported in request_options)
             response = client.models.generate_content(
                 model=model,
-                contents=contents,
-                request_options=request_config
+                contents=contents
             )
             
             print(f"API call successful on attempt {attempt + 1}")
@@ -299,6 +293,66 @@ def make_api_request_with_retry(client, model, contents, max_retries=3):
             else:
                 print("All API call attempts failed")
                 raise e
+
+def generate_text_to_image(prompt, session_id):
+    """Generate images from text prompt using Gemini API"""
+    # Create client with timeout configuration for container environment
+    client = create_optimized_gemini_client()
+    
+    try:
+        print(f"Making text-to-image API call with prompt: {prompt[:100]}...")
+        
+        # Make API call using gemini-2.5-flash-image-preview for text-to-image generation
+        response = make_api_request_with_retry(
+            client=client,
+            model=MODEL_NAME,
+            contents=[prompt],
+            max_retries=3
+        )
+        
+        print("Text-to-image API call completed successfully!")
+        
+        generated_files = []
+        text_response = ""
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        file_index = 0
+        
+        # Process response parts
+        if response.candidates and response.candidates[0].content:
+            for part in response.candidates[0].content.parts:
+                if part.text is not None:
+                    text_response += part.text
+                    print(f"Text response: {part.text}")
+                elif part.inline_data is not None:
+                    # Save generated image
+                    file_extension = mimetypes.guess_extension(part.inline_data.mime_type) or ".jpg"
+                    output_filename = f"text_generated_{timestamp}_{file_index}{file_extension}"
+                    
+                    saved_path = save_binary_file(output_filename, part.inline_data.data, GENERATED_FOLDER, session_id)
+                    if saved_path:
+                        generated_files.append(saved_path)
+                        print(f"Saved text-to-image: {saved_path}")
+                    file_index += 1
+        
+        print(f"Generated {len(generated_files)} images from text prompt")
+        
+        return {
+            'success': True,
+            'text_response': text_response,
+            'generated_files': generated_files,
+            'generated_count': len(generated_files)
+        }
+        
+    except Exception as e:
+        print(f"Error during text-to-image generation: {e}")
+        print(f"Exception type: {type(e).__name__}")
+        import traceback
+        traceback.print_exc()
+        return {
+            'success': False,
+            'error': str(e),
+            'generated_count': 0
+        }
 
 def generate_images_batch(image_paths, prompt, session_id):
     """Generate images for multiple input images using Gemini API"""
@@ -400,65 +454,83 @@ def generate_images():
         # Update session activity
         ai_session_manager.update_session(session_id)
         
-        # Check if files were uploaded
-        if 'images' not in request.files:
-            return jsonify({'error': 'No images uploaded'}), 400
-        
-        files = request.files.getlist('images')
         prompt = request.form.get('prompt', '').strip()
-        
-        if not files or all(file.filename == '' for file in files):
-            return jsonify({'error': 'No images selected'}), 400
-            
         if not prompt:
             return jsonify({'error': 'Prompt is required'}), 400
         
-        # Save uploaded files with session tracking
+        # Check if files were uploaded (optional for text-to-image)
+        files = []
+        if 'images' in request.files:
+            files = request.files.getlist('images')
+            files = [f for f in files if f.filename != '']
+        
+        # Save uploaded files with session tracking (if any)
         saved_files = []
-        for file in files:
-            if file.filename == '':
-                continue
+        if files:
+            for file in files:
+                if file.filename == '':
+                    continue
+                    
+                # Check file extension
+                ext = os.path.splitext(file.filename)[1].lower().lstrip('.')
+                if ext not in SUPPORTED_EXTENSIONS:
+                    return jsonify({'error': f'Unsupported file type: {file.filename}'}), 400
                 
-            # Check file extension
-            ext = os.path.splitext(file.filename)[1].lower().lstrip('.')
-            if ext not in SUPPORTED_EXTENSIONS:
-                return jsonify({'error': f'Unsupported file type: {file.filename}'}), 400
-            
-            # Save file
-            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f"upload_{session_id}_{timestamp}_{len(saved_files)}_{file.filename}"
-            filepath = os.path.join(UPLOAD_FOLDER, filename)
-            file.save(filepath)
-            saved_files.append(filepath)
-            
-            # Track file for session cleanup
-            with session_lock:
-                if session_id not in session_files:
-                    session_files[session_id] = []
-                session_files[session_id].append(filepath)
+                # Save file
+                timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                filename = f"upload_{session_id}_{timestamp}_{len(saved_files)}_{file.filename}"
+                filepath = os.path.join(UPLOAD_FOLDER, filename)
+                file.save(filepath)
+                saved_files.append(filepath)
+                
+                # Track file for session cleanup
+                with session_lock:
+                    if session_id not in session_files:
+                        session_files[session_id] = []
+                    session_files[session_id].append(filepath)
         
-        if not saved_files:
-            return jsonify({'error': 'No valid images uploaded'}), 400
+        print(f"Processing prompt: {prompt[:100]}... with {len(saved_files)} images")
         
-        print(f"Processing {len(saved_files)} images with prompt: {prompt[:100]}...")
-        
-        # Generate images using Gemini API
-        result = generate_images_batch(saved_files, prompt, session_id)
+        # Generate images using Gemini API (supports both text-to-image and image editing)
+        if saved_files:
+            # Image editing with uploaded images
+            result = generate_images_batch(saved_files, prompt, session_id)
+        else:
+            # Pure text-to-image generation
+            result = generate_text_to_image(prompt, session_id)
         
         if result['success']:
-            return jsonify({
-                'success': True,
-                'message': f'Successfully processed {result["processed_images"]} images',
-                'text_response': result['text_response'],
-                'generated_files': [os.path.basename(f) for f in result['generated_files']],
-                'processed_count': result['processed_images'],
-                'session_id': session_id  # Return session ID for potential cleanup
-            }), 200
+            if saved_files:
+                # Image editing response
+                return jsonify({
+                    'success': True,
+                    'message': f'Successfully processed {result["processed_images"]} images',
+                    'text_response': result['text_response'],
+                    'generated_files': [os.path.basename(f) for f in result['generated_files']],
+                    'processed_count': result['processed_images'],
+                    'generation_type': 'image-editing',
+                    'session_id': session_id
+                }), 200
+            else:
+                # Text-to-image response
+                return jsonify({
+                    'success': True,
+                    'message': f'Successfully generated {result["generated_count"]} images from text',
+                    'text_response': result['text_response'],
+                    'generated_files': [os.path.basename(f) for f in result['generated_files']],
+                    'generated_count': result['generated_count'],
+                    'generation_type': 'text-to-image',
+                    'session_id': session_id
+                }), 200
         else:
+            generation_type = 'image-editing' if saved_files else 'text-to-image'
+            processed_count = result.get('processed_images', 0) if saved_files else result.get('generated_count', 0)
+            
             return jsonify({
                 'success': False,
                 'error': result['error'],
-                'processed_count': result['processed_images']
+                'processed_count': processed_count,
+                'generation_type': generation_type
             }), 500
             
     except Exception as e:
