@@ -14,6 +14,9 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from google import genai
 from google.genai import types
+import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend integration
@@ -255,25 +258,62 @@ def save_binary_file(file_name, data, output_dir, session_id):
         print(f"Error saving generated file {file_name}: {e}")
         return None
 
+def create_optimized_gemini_client():
+    """Create Gemini client optimized for container environments"""
+    try:
+        # Create client with default configuration (transport parameter not supported)
+        client = genai.Client()
+        return client
+    except Exception as e:
+        print(f"Error creating Gemini client: {e}")
+        raise
+
+def make_api_request_with_retry(client, model, contents, max_retries=3):
+    """Make API request with retry mechanism for container environments"""
+    for attempt in range(max_retries):
+        try:
+            print(f"API call attempt {attempt + 1}/{max_retries}...")
+            
+            # Configure request with extended timeout for container environments
+            request_config = {
+                "timeout": 300.0,  # 5 minutes timeout for API calls in containers
+            }
+            
+            # Make API call
+            response = client.models.generate_content(
+                model=model,
+                contents=contents,
+                request_options=request_config
+            )
+            
+            print(f"API call successful on attempt {attempt + 1}")
+            return response
+            
+        except Exception as e:
+            print(f"API call attempt {attempt + 1} failed: {e}")
+            if attempt < max_retries - 1:
+                # Exponential backoff
+                wait_time = (2 ** attempt) * 5  # 5, 10, 20 seconds
+                print(f"Retrying in {wait_time} seconds...")
+                time.sleep(wait_time)
+            else:
+                print("All API call attempts failed")
+                raise e
+
 def generate_images_batch(image_paths, prompt, session_id):
     """Generate images for multiple input images using Gemini API"""
-
-    # Create client with API key from environment variable
-    client = genai.Client(
-        api_key=os.environ.get("GEMINI_API_KEY"),
-    )
+    # Create client with timeout configuration for container environment
+    client = create_optimized_gemini_client()
     
     # Validate all images first
     for image_path in image_paths:
         validate_image(image_path)
     
-    # Prepare content parts using the new types.Content structure
+    # Prepare content parts - text prompt + multiple images
     content_parts = []
     
     # Add text prompt first
-    content_parts.append(
-        types.Part.from_text(text=prompt)
-    )
+    content_parts.append(prompt)
     
     # Add all images to the same request
     for image_path in image_paths:
@@ -291,65 +331,41 @@ def generate_images_batch(image_paths, prompt, session_id):
             )
         )
     
-    # Create content with proper structure
-    contents = [
-        types.Content(
-            role="user",
-            parts=content_parts,
-        ),
-    ]
-    
-    # Configure generation to support both image and text responses
-    generate_content_config = types.GenerateContentConfig(
-        response_modalities=[
-            "IMAGE",
-            "TEXT",
-        ],
-    )
-    
     try:
         print(f"Making API call to {MODEL_NAME} with {len(image_paths)} images...")
+        
+        # Make API call using retry mechanism for container reliability
+        response = make_api_request_with_retry(
+            client=client,
+            model=MODEL_NAME,
+            contents=content_parts,
+            max_retries=3
+        )
+        
+        print("API call completed successfully!")
         
         generated_files = []
         text_response = ""
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         file_index = 0
         
-        # Use streaming generation to handle both text and image responses
-        for chunk in client.models.generate_content_stream(
-            model=MODEL_NAME,
-            contents=contents,
-            config=generate_content_config,
-        ):
-            if (
-                chunk.candidates is None
-                or chunk.candidates[0].content is None
-                or chunk.candidates[0].content.parts is None
-            ):
-                continue
-                
-            # Check for generated images
-            if (
-                chunk.candidates[0].content.parts[0].inline_data and 
-                chunk.candidates[0].content.parts[0].inline_data.data
-            ):
-                inline_data = chunk.candidates[0].content.parts[0].inline_data
-                data_buffer = inline_data.data
-                file_extension = mimetypes.guess_extension(inline_data.mime_type) or ".jpg"
-                output_filename = f"generated_{timestamp}_{file_index}{file_extension}"
-                
-                saved_path = save_binary_file(output_filename, data_buffer, GENERATED_FOLDER, session_id)
-                if saved_path:
-                    generated_files.append(saved_path)
-                    print(f"Saved generated image: {saved_path}")
-                file_index += 1
-            else:
-                # Collect text response
-                if hasattr(chunk, 'text') and chunk.text:
-                    text_response += chunk.text
-                    print(f"Text response chunk: {chunk.text}")
+        # Process response parts as shown in official documentation
+        if response.candidates and response.candidates[0].content:
+            for part in response.candidates[0].content.parts:
+                if part.text is not None:
+                    text_response += part.text
+                    print(f"Text response: {part.text}")
+                elif part.inline_data is not None:
+                    # Save generated image
+                    file_extension = mimetypes.guess_extension(part.inline_data.mime_type) or ".jpg"
+                    output_filename = f"generated_{timestamp}_{file_index}{file_extension}"
+                    
+                    saved_path = save_binary_file(output_filename, part.inline_data.data, GENERATED_FOLDER, session_id)
+                    if saved_path:
+                        generated_files.append(saved_path)
+                        print(f"Saved generated image: {saved_path}")
+                    file_index += 1
         
-        print("API call completed successfully!")
         print(f"Generated {len(generated_files)} images")
         print(f"Text response: {text_response}")
         
@@ -558,25 +574,15 @@ def test_gemini_api():
     try:
         print("Testing Gemini API connection...")
         
-        # Create client with API key from environment variable
-        client = genai.Client(
-            api_key=os.environ.get("GEMINI_API_KEY"),
-        )
+        # Create client with timeout configuration for container environment
+        client = create_optimized_gemini_client()
         
-        # Create content with proper structure
-        contents = [
-            types.Content(
-                role="user",
-                parts=[
-                    types.Part.from_text(text="Explain how AI works in a few words")
-                ],
-            ),
-        ]
-        
-        # Simple text generation test using new structure
-        response = client.models.generate_content(
-            model=MODEL_NAME, 
-            contents=contents
+        # Test API call with retry mechanism
+        response = make_api_request_with_retry(
+            client=client,
+            model=MODEL_NAME,
+            contents=["Explain how AI works in a few words"],
+            max_retries=2  # Fewer retries for test endpoint
         )
         
         return jsonify({
@@ -611,24 +617,15 @@ if __name__ == '__main__':
     # Test Gemini API connection at startup
     print("\n🔍 Testing Gemini API connection...")
     try:
-        # Create client with API key from environment variable
-        test_client = genai.Client(
-            api_key=os.environ.get("GEMINI_API_KEY"),
-        )
+        # Create client with timeout configuration for container environment
+        test_client = create_optimized_gemini_client()
         
-        # Create content with proper structure for testing
-        test_contents = [
-            types.Content(
-                role="user",
-                parts=[
-                    types.Part.from_text(text="Hello")
-                ],
-            ),
-        ]
-        
-        test_response = test_client.models.generate_content(
+        # Test API call with retry mechanism for startup
+        test_response = make_api_request_with_retry(
+            client=test_client,
             model=MODEL_NAME,
-            contents=test_contents
+            contents=["Hello"],
+            max_retries=2
         )
         print("✅ Gemini API connection successful!")
         print(f"✅ Model: {MODEL_NAME}")
