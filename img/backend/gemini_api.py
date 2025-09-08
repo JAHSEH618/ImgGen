@@ -261,54 +261,23 @@ def save_binary_file(file_name, data, output_dir, session_id):
 
 def get_api_key():
     """获取Gemini API密钥"""
-    # 首先尝试环境变量
-    api_key = os.getenv('GEMINI_API_KEY')
-    if api_key:
-        return api_key
+    # Use hardcoded API key from your working reference
+    api_key = "AIzaSyCvoUAFneih00J16qNTFSPUX_9RORFfsww"
     
-    # 尝试从.env文件读取
-    env_files = [
-        os.path.join(SCRIPT_DIR, '.env'),
-        os.path.join(SCRIPT_DIR, '..', '..', '.env'),
-        '.env'
-    ]
+    # Also try environment variables as fallback
+    env_key = os.getenv('GEMINI_API_KEY')
+    if env_key:
+        return env_key
     
-    for env_file in env_files:
-        if os.path.exists(env_file):
-            try:
-                with open(env_file, 'r') as f:
-                    for line in f:
-                        if line.startswith('GEMINI_API_KEY='):
-                            api_key = line.split('=', 1)[1].strip().strip('"\'')
-                            if api_key:
-                                print(f"Loaded GEMINI_API_KEY from {env_file}")
-                                return api_key
-            except Exception as e:
-                print(f"Error reading {env_file}: {e}")
-    
-    print("ERROR: GEMINI_API_KEY not found in environment variables or .env files")
-    return None
+    return api_key
 
 def create_optimized_gemini_client():
-    """Create Gemini client optimized for container environments with timeout handling"""
+    """Create Gemini client using the same approach as working reference"""
     try:
-        # 获取API密钥
         api_key = get_api_key()
         if not api_key:
             raise ValueError("GEMINI_API_KEY is required")
         
-        # Set timeout environment variables for HTTP requests
-        import os
-        os.environ['HTTPX_TIMEOUT'] = '120'
-        os.environ['REQUESTS_TIMEOUT'] = '120'
-        
-        # Clear proxy environment variables to avoid network issues
-        for proxy_var in ['http_proxy', 'https_proxy', 'HTTP_PROXY', 'HTTPS_PROXY']:
-            if proxy_var in os.environ:
-                print(f"Clearing proxy variable: {proxy_var}")
-                del os.environ[proxy_var]
-        
-        # 创建客户端
         client = genai.Client(api_key=api_key)
         print("Created Gemini client successfully")
         
@@ -317,44 +286,13 @@ def create_optimized_gemini_client():
         print(f"Error creating Gemini client: {e}")
         raise
 
-class TimeoutError(Exception):
-    pass
-
-def timeout_handler(signum, frame):
-    raise TimeoutError("API call timed out")
-
-def call_with_timeout(func, timeout_seconds, *args, **kwargs):
-    """Execute function with timeout using threading"""
-    result = [None]
-    exception = [None]
-    
-    def target():
-        try:
-            result[0] = func(*args, **kwargs)
-        except Exception as e:
-            exception[0] = e
-    
-    thread = threading.Thread(target=target)
-    thread.daemon = True
-    thread.start()
-    thread.join(timeout_seconds)
-    
-    if thread.is_alive():
-        # Force cleanup - thread can't be killed but we can return with timeout
-        raise TimeoutError(f"Function call timed out after {timeout_seconds} seconds")
-    
-    if exception[0]:
-        raise exception[0]
-    
-    return result[0]
 
 def make_api_request_with_retry(client, model, contents, max_retries=3):
-    """Make API request with retry mechanism for container environments"""
+    """Make API request with simple retry mechanism"""
     for attempt in range(max_retries):
         try:
             print(f"API call attempt {attempt + 1}/{max_retries}...")
             
-            # Make API call (timeout configuration not supported in request_options)
             response = client.models.generate_content(
                 model=model,
                 contents=contents
@@ -366,8 +304,7 @@ def make_api_request_with_retry(client, model, contents, max_retries=3):
         except Exception as e:
             print(f"API call attempt {attempt + 1} failed: {e}")
             if attempt < max_retries - 1:
-                # Exponential backoff
-                wait_time = (2 ** attempt) * 5  # 5, 10, 20 seconds
+                wait_time = (2 ** attempt) * 2  # 2, 4, 8 seconds
                 print(f"Retrying in {wait_time} seconds...")
                 time.sleep(wait_time)
             else:
@@ -375,103 +312,51 @@ def make_api_request_with_retry(client, model, contents, max_retries=3):
                 raise e
 
 def generate_text_to_image(prompt, session_id):
-    """Generate images from text prompt using Gemini API with streaming and timeout handling"""
-    # Create client with timeout configuration for container environment
+    """Generate images from text prompt using Gemini API - simplified version"""
     client = create_optimized_gemini_client()
     
     try:
         print(f"Making text-to-image API call with prompt: {prompt[:100]}...")
         
-        # Prepare content for streaming
-        contents = [
-            types.Content(
-                role="user",
-                parts=[
-                    types.Part.from_text(text=prompt),
-                ],
-            ),
-        ]
-        
-        generate_content_config = types.GenerateContentConfig(
-            response_modalities=[
-                "IMAGE",
-                "TEXT",
-            ],
+        # Use the same simple format as working reference
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=[prompt]
         )
         
+        print("Generated content:")
+        print(response.text)
+        
         generated_files = []
-        text_response = ""
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        file_index = 0
+        text_response = response.text
         
-        print("Starting streaming API call...")
-        start_time = time.time()
-        chunk_count = 0
-        
-        # Use streaming approach with timeout handling
-        def streaming_call():
-            chunks_received = 0
-            for chunk in client.models.generate_content_stream(
-                model=MODEL_NAME,
-                contents=contents,
-                config=generate_content_config,
-            ):
-                chunks_received += 1
-                elapsed_time = time.time() - start_time
-                print(f"Received chunk {chunks_received} after {elapsed_time:.1f}s")
-                
-                # Check for timeout (5 minutes max)
-                if elapsed_time > 300:
-                    raise TimeoutError("Streaming timeout exceeded 5 minutes")
-                
-                if (
-                    chunk.candidates is None
-                    or chunk.candidates[0].content is None
-                    or chunk.candidates[0].content.parts is None
-                ):
-                    continue
+        # Save any generated images
+        if hasattr(response, 'candidates') and response.candidates:
+            candidate = response.candidates[0]
+            if hasattr(candidate, 'content') and candidate.content:
+                if hasattr(candidate.content, 'parts') and candidate.content.parts:
+                    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
                     
-                for part in chunk.candidates[0].content.parts:
-                    if part.inline_data and part.inline_data.data:
-                        # Save generated image
-                        file_extension = mimetypes.guess_extension(part.inline_data.mime_type) or ".jpg"
-                        output_filename = f"text_generated_{timestamp}_{file_index}{file_extension}"
-                        
-                        saved_path = save_binary_file(output_filename, part.inline_data.data, GENERATED_FOLDER, session_id)
-                        if saved_path:
-                            generated_files.append(saved_path)
-                            print(f"Saved text-to-image: {saved_path}")
-                        file_index += 1
-                    elif part.text:
-                        text_response += part.text
-                        print(f"Text response: {part.text}")
-                        
-            return chunks_received
-        
-        try:
-            # Execute streaming with 5-minute timeout
-            chunk_count = call_with_timeout(streaming_call, 300)
-        except Exception as stream_error:
-            elapsed_time = time.time() - start_time
-            print(f"Streaming error after {elapsed_time:.1f}s: {stream_error}")
-            raise
-        
-        total_time = time.time() - start_time
-        print(f"Streaming completed in {total_time:.1f}s with {chunk_count} chunks")
-        print(f"Generated {len(generated_files)} images from text prompt")
+                    for i, part in enumerate(candidate.content.parts):
+                        if hasattr(part, 'inline_data') and part.inline_data:
+                            file_extension = mimetypes.guess_extension(part.inline_data.mime_type) or ".jpg"
+                            output_filename = f"text_generated_{timestamp}_{i}{file_extension}"
+                            saved_path = save_binary_file(output_filename, part.inline_data.data, GENERATED_FOLDER, session_id)
+                            if saved_path:
+                                generated_files.append(saved_path)
+                                print(f"Saved text-to-image: {saved_path}")
         
         return {
             'success': True,
             'text_response': text_response,
             'generated_files': generated_files,
             'generated_count': len(generated_files),
-            'processing_time': total_time,
-            'chunks_received': chunk_count
+            'processing_time': 0,
+            'chunks_received': 0
         }
         
     except Exception as e:
         print(f"Error during text-to-image generation: {e}")
-        print(f"Exception type: {type(e).__name__}")
         import traceback
         traceback.print_exc()
         return {
@@ -481,129 +366,71 @@ def generate_text_to_image(prompt, session_id):
         }
 
 def generate_images_batch(image_paths, prompt, session_id):
-    """Generate images for multiple input images using Gemini API with streaming"""
-    # Create client with timeout configuration for container environment
+    """Generate images for multiple input images using Gemini API - simplified version"""
     client = create_optimized_gemini_client()
     
     # Validate all images first
     for image_path in image_paths:
         validate_image(image_path)
     
-    # Prepare content parts - text prompt + multiple images
-    content_parts = []
+    generated_files = []
+    text_response = ""
     
-    # Add text prompt first
-    content_parts.append(types.Part.from_text(text=prompt))
-    
-    # Add all images to the same request
     for image_path in image_paths:
-        mime_type = get_mime_type(image_path)
-        print(f"Adding image: {os.path.basename(image_path)} (MIME: {mime_type})")
-        
-        with open(image_path, 'rb') as f:
-            image_bytes = f.read()
-        
-        # Use types.Part.from_bytes for image data
-        content_parts.append(
-            types.Part.from_bytes(
-                data=image_bytes, 
-                mime_type=mime_type
-            )
-        )
-    
-    try:
-        print(f"Making API call to {MODEL_NAME} with {len(image_paths)} images...")
-        
-        # Prepare content for streaming
-        contents = [
-            types.Content(
-                role="user",
-                parts=content_parts,
-            ),
-        ]
-        
-        generate_content_config = types.GenerateContentConfig(
-            response_modalities=[
-                "IMAGE",
-                "TEXT",
-            ],
-        )
-        
-        generated_files = []
-        text_response = ""
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        file_index = 0
-        
-        print("Starting streaming API call...")
-        start_time = time.time()
-        chunk_count = 0
-        
-        # Use streaming approach with timeout handling
         try:
-            for chunk in client.models.generate_content_stream(
+            # Get correct MIME type
+            mime_type = get_mime_type(image_path)
+            print(f"Processing image: {os.path.basename(image_path)} (MIME: {mime_type})")
+            
+            # Read image bytes
+            with open(image_path, 'rb') as f:
+                image_bytes = f.read()
+            
+            # Use the correct API format from working reference
+            response = client.models.generate_content(
                 model=MODEL_NAME,
-                contents=contents,
-                config=generate_content_config,
-            ):
-                chunk_count += 1
-                elapsed_time = time.time() - start_time
-                print(f"Received chunk {chunk_count} after {elapsed_time:.1f}s")
-                
-                # Check for timeout (5 minutes max)
-                if elapsed_time > 300:
-                    raise TimeoutError("Streaming timeout exceeded 5 minutes")
-                
-                if (
-                    chunk.candidates is None
-                    or chunk.candidates[0].content is None
-                    or chunk.candidates[0].content.parts is None
-                ):
-                    continue
-                    
-                for part in chunk.candidates[0].content.parts:
-                    if part.inline_data and part.inline_data.data:
-                        # Save generated image
-                        file_extension = mimetypes.guess_extension(part.inline_data.mime_type) or ".jpg"
-                        output_filename = f"generated_{timestamp}_{file_index}{file_extension}"
+                contents=[
+                    prompt,
+                    types.Part.from_bytes(
+                        data=image_bytes, 
+                        mime_type=mime_type
+                    )
+                ]
+            )
+            
+            print("Generated content:")
+            print(response.text)
+            text_response += response.text + "\n"
+            
+            # Save any generated images
+            if hasattr(response, 'candidates') and response.candidates:
+                candidate = response.candidates[0]
+                if hasattr(candidate, 'content') and candidate.content:
+                    if hasattr(candidate.content, 'parts') and candidate.content.parts:
+                        base_name = os.path.splitext(os.path.basename(image_path))[0]
+                        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
                         
-                        saved_path = save_binary_file(output_filename, part.inline_data.data, GENERATED_FOLDER, session_id)
-                        if saved_path:
-                            generated_files.append(saved_path)
-                            print(f"Saved generated image: {saved_path}")
-                        file_index += 1
-                    elif part.text:
-                        text_response += part.text
-                        print(f"Text response: {part.text}")
-        
-        except Exception as stream_error:
-            elapsed_time = time.time() - start_time
-            print(f"Streaming error after {elapsed_time:.1f}s, {chunk_count} chunks: {stream_error}")
-            raise
-        
-        total_time = time.time() - start_time
-        print(f"Streaming completed in {total_time:.1f}s with {chunk_count} chunks")
-        print(f"Generated {len(generated_files)} images")
-        print(f"Text response: {text_response}")
-        
-        return {
-            'success': True,
-            'text_response': text_response,
-            'generated_files': generated_files,
-            'processed_images': len(image_paths),
-            'processing_time': total_time,
-            'chunks_received': chunk_count
-        }
-        
-    except Exception as e:
-        print(f"Error during content generation: {e}")
-        print(f"Exception type: {type(e).__name__}")
-        import traceback
-        traceback.print_exc()
-        return {
-            'success': False,
-            'error': str(e),
-            'processed_images': 0
-        }
+                        for i, part in enumerate(candidate.content.parts):
+                            if hasattr(part, 'inline_data') and part.inline_data:
+                                file_extension = mimetypes.guess_extension(part.inline_data.mime_type) or ".jpg"
+                                output_filename = f"{base_name}_{timestamp}_variant_{i}{file_extension}"
+                                saved_path = save_binary_file(output_filename, part.inline_data.data, GENERATED_FOLDER, session_id)
+                                if saved_path:
+                                    generated_files.append(saved_path)
+                                    print(f"Saved generated image: {saved_path}")
+                        
+        except Exception as e:
+            print(f"Error processing {image_path}: {e}")
+            continue
+    
+    return {
+        'success': True,
+        'text_response': text_response.strip(),
+        'generated_files': generated_files,
+        'processed_images': len(image_paths),
+        'processing_time': 0,
+        'chunks_received': 0
+    }
 
 
 
@@ -810,15 +637,12 @@ def test_gemini_api():
     try:
         print("Testing Gemini API connection...")
         
-        # Create client with timeout configuration for container environment
         client = create_optimized_gemini_client()
         
-        # Test API call with retry mechanism
-        response = make_api_request_with_retry(
-            client=client,
+        # Simple test API call using working format
+        response = client.models.generate_content(
             model=MODEL_NAME,
-            contents=["Explain how AI works in a few words"],
-            max_retries=2  # Fewer retries for test endpoint
+            contents=["Hello, explain AI in a few words"]
         )
         
         return jsonify({
@@ -853,15 +677,12 @@ if __name__ == '__main__':
     # Test Gemini API connection at startup
     print("\n🔍 Testing Gemini API connection...")
     try:
-        # Create client with timeout configuration for container environment
         test_client = create_optimized_gemini_client()
         
-        # Test API call with retry mechanism for startup
-        test_response = make_api_request_with_retry(
-            client=test_client,
+        # Simple test API call using working format
+        test_response = test_client.models.generate_content(
             model=MODEL_NAME,
-            contents=["Hello"],
-            max_retries=2
+            contents=["Hello"]
         )
         print("✅ Gemini API connection successful!")
         print(f"✅ Model: {MODEL_NAME}")
