@@ -193,7 +193,7 @@ if __name__ == "__main__":
         input_file,
         "output_ffmpeg.mp3",
         bitrate="320k",
-        sample_rate=48000  # 高采样率
+        sample_rate=24000  # 高采样率
     )
 
     # 批量转换示例

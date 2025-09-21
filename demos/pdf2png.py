@@ -262,4 +262,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         main()
     else:
-        pdf_to_long_png('/Users/okonma/Downloads/MPC钱包与多签钱包对比.pdf', '/Users/okonma/Downloads/MPC钱包与多签钱包对比.png', dpi=400)
+        pdf_to_long_png('/Users/okonma/Downloads/数字身份.pdf', '/Users/okonma/Downloads/数字身份.png', dpi=400)
