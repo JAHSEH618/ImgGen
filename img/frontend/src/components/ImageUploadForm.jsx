@@ -18,12 +18,93 @@ const ImageUploadForm = () => {
   const [processing, setProcessing] = useState(false)
   const [uploadStatus, setUploadStatus] = useState(null)
   const [toast, setToast] = useState({ isVisible: false, message: '', type: '' })
+  const [previewModal, setPreviewModal] = useState({ isOpen: false, image: null })
+  const [generationCounter, setGenerationCounter] = useState(0) // Add counter to force re-renders
 
   const showToast = (message, type) => {
     setToast({ isVisible: true, message, type })
     setTimeout(() => {
       setToast({ isVisible: false, message: '', type: '' })
     }, 4000)
+  }
+
+  const openImagePreview = (imageObj) => {
+    setPreviewModal({ isOpen: true, image: imageObj })
+  }
+
+  const closeImagePreview = () => {
+    setPreviewModal({ isOpen: false, image: null })
+  }
+
+  // Keyboard navigation for modal
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (previewModal.isOpen && e.key === 'Escape') {
+        closeImagePreview()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyPress)
+    return () => document.removeEventListener('keydown', handleKeyPress)
+  }, [previewModal.isOpen])
+
+  // Debug: Monitor generated images changes
+  useEffect(() => {
+    console.log('Generated images state changed:', generatedImages.length, generatedImages)
+  }, [generatedImages])
+
+  const downloadSingleImage = async (imageObj) => {
+    try {
+      const response = await fetch(imageObj.downloadUrl, {
+        headers: sessionManager.getHeaders()
+      })
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = imageObj.filename
+      document.body.appendChild(a)
+      a.click()
+      window.URL.revokeObjectURL(url)
+      document.body.removeChild(a)
+      showToast('Image downloaded successfully', 'success')
+    } catch (error) {
+      console.error('Download failed:', error)
+      showToast('Download failed', 'error')
+    }
+  }
+
+  const downloadAllImages = async (images) => {
+    if (images.length === 0) return
+
+    showToast(`Starting download of ${images.length} images...`, 'info')
+
+    try {
+      for (let i = 0; i < images.length; i++) {
+        const imageObj = images[i]
+        const response = await fetch(imageObj.downloadUrl, {
+          headers: sessionManager.getHeaders()
+        })
+        const blob = await response.blob()
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `${i + 1}_${imageObj.filename}`
+        document.body.appendChild(a)
+        a.click()
+        window.URL.revokeObjectURL(url)
+        document.body.removeChild(a)
+
+        // Small delay between downloads to prevent browser blocking
+        if (i < images.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, 500))
+        }
+      }
+      showToast(`Successfully downloaded ${images.length} images`, 'success')
+    } catch (error) {
+      console.error('Batch download failed:', error)
+      showToast('Some downloads failed', 'error')
+    }
   }
 
   const handleModeSwitch = (newMode) => {
@@ -186,7 +267,7 @@ const ImageUploadForm = () => {
 
     setProcessing(true)
     setUploadStatus(null)
-    setGeneratedImages([])
+    // Don't clear existing generated images - append new ones instead
 
     try {
       const formData = new FormData()
@@ -215,15 +296,41 @@ const ImageUploadForm = () => {
           type: 'success',
           message: `Successfully processed ${response.data.processed_count} image(s)! ${response.data.text_response}`
         })
-        
+
+        console.log('Generation response:', response.data) // Debug log
+
         if (response.data.generated_files && response.data.generated_files.length > 0) {
           // Transform filenames to full objects with URLs
-          const generatedImageObjects = response.data.generated_files.map(filename => ({
+          const baseTimestamp = Date.now()
+          const generatedImageObjects = response.data.generated_files.map((filename, idx) => ({
+            id: `${baseTimestamp}-${Math.random().toString(36).substr(2, 9)}-${idx}-${generationCounter}`, // More unique ID with counter
             filename: filename,
             url: API_URLS.aiImage(filename),
             downloadUrl: API_URLS.aiDownload(filename)
           }))
-          setGeneratedImages(generatedImageObjects)
+
+          console.log('New generated images:', generatedImageObjects) // Debug log
+
+          // Append new images to existing ones instead of replacing
+          setGeneratedImages(prev => {
+            console.log('Previous images:', prev) // Debug log
+            const combined = [...prev, ...generatedImageObjects]
+            console.log('Combined images:', combined) // Debug log
+            console.log('Total images after combination:', combined.length) // Debug log
+
+            // Check for duplicate IDs
+            const ids = combined.map(img => img.id)
+            const uniqueIds = new Set(ids)
+            if (ids.length !== uniqueIds.size) {
+              console.warn('Warning: Duplicate IDs detected!', ids)
+            }
+
+            // Force re-render by creating a completely new array
+            return combined.slice()
+          })
+
+          // Increment generation counter to ensure unique IDs next time
+          setGenerationCounter(prev => prev + 1)
         }
       } else {
         setUploadStatus({
@@ -280,22 +387,42 @@ const ImageUploadForm = () => {
             {/* Uploaded Images - Show in upload mode after successful upload */}
             {mode === 'upload' && uploadedImages.length > 0 && (
               <div className="uploaded-section">
-                <h3 className="uploaded-title">Successfully Uploaded ({uploadedImages.length})</h3>
+                <div className="uploaded-header">
+                  <h3 className="uploaded-title">Successfully Uploaded ({uploadedImages.length})</h3>
+                  <button
+                    type="button"
+                    className="download-all-btn"
+                    onClick={() => downloadAllImages(uploadedImages)}
+                    title="Download all uploaded images"
+                  >
+                    <Download size={16} />
+                    Download All
+                  </button>
+                </div>
                 <div className="uploaded-grid">
                   {uploadedImages.map((imageObj, index) => (
                     <div key={index} className="uploaded-item">
                       <div className="uploaded-image-container">
-                        <img 
-                          src={imageObj.url} 
+                        <img
+                          src={imageObj.url}
                           alt={`Uploaded ${imageObj.filename}`}
                           className="uploaded-image"
                           loading="lazy"
+                          onClick={() => openImagePreview(imageObj)}
                         />
                         <div className="uploaded-image-overlay">
                           <button
                             type="button"
+                            className="preview-btn"
+                            onClick={() => openImagePreview(imageObj)}
+                            title="Preview image"
+                          >
+                            <ImageIcon size={16} />
+                          </button>
+                          <button
+                            type="button"
                             className="download-btn"
-                            onClick={() => window.open(imageObj.downloadUrl, '_blank')}
+                            onClick={() => downloadSingleImage(imageObj)}
                             title="Download image"
                           >
                             <Download size={16} />
@@ -456,22 +583,57 @@ Examples:
             {/* Generated Images - Only show in generate mode */}
             {mode === 'generate' && generatedImages.length > 0 && (
               <div className="generated-section">
-                <h3 className="generated-title">Generated Images ({generatedImages.length})</h3>
-                <div className="generated-grid">
-                  {generatedImages.map((imageObj, index) => (
-                    <div key={index} className="generated-item">
+                {/* Debug info - remove in production */}
+                {console.log('Rendering generated images, count:', generatedImages.length)}
+                {console.log('Generated images array:', generatedImages)}
+
+                <div className="generated-header">
+                  <h3 className="generated-title">Generated Images ({generatedImages.length})</h3>
+                  <div className="generated-header-actions">
+                    <button
+                      type="button"
+                      className="clear-all-btn"
+                      onClick={() => setGeneratedImages([])}
+                      title="Clear all generated images"
+                    >
+                      <X size={16} />
+                      Clear All
+                    </button>
+                    <button
+                      type="button"
+                      className="download-all-btn"
+                      onClick={() => downloadAllImages(generatedImages)}
+                      title="Download all generated images"
+                    >
+                      <Download size={16} />
+                      Download All
+                    </button>
+                  </div>
+                </div>
+                <div className="generated-grid" key={`generated-grid-${generationCounter}`}>
+                  {generatedImages.map((imageObj) => (
+                    <div key={imageObj.id} className="generated-item">
                       <div className="generated-image-container">
-                        <img 
-                          src={imageObj.url} 
+                        <img
+                          src={imageObj.url}
                           alt={`Generated ${imageObj.filename}`}
                           className="generated-image"
                           loading="lazy"
+                          onClick={() => openImagePreview(imageObj)}
                         />
                         <div className="generated-image-overlay">
                           <button
                             type="button"
+                            className="preview-btn"
+                            onClick={() => openImagePreview(imageObj)}
+                            title="Preview image"
+                          >
+                            <ImageIcon size={16} />
+                          </button>
+                          <button
+                            type="button"
                             className="download-btn"
-                            onClick={() => window.open(imageObj.downloadUrl, '_blank')}
+                            onClick={() => downloadSingleImage(imageObj)}
                             title="Download image"
                           >
                             <Download size={16} />
@@ -525,6 +687,43 @@ Examples:
         isVisible={toast.isVisible}
         onClose={() => setToast({ isVisible: false, message: '', type: '' })}
       />
+
+      {/* Image Preview Modal */}
+      {previewModal.isOpen && previewModal.image && (
+        <div className="modal-overlay" onClick={closeImagePreview}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>{previewModal.image.originalName || previewModal.image.filename}</h3>
+              <button
+                className="modal-close-btn"
+                onClick={closeImagePreview}
+                title="Close preview"
+              >
+                <X size={24} />
+              </button>
+            </div>
+            <div className="modal-body">
+              <img
+                src={previewModal.image.url}
+                alt={previewModal.image.filename}
+                className="modal-image"
+              />
+            </div>
+            <div className="modal-footer">
+              <button
+                className="modal-download-btn"
+                onClick={() => {
+                  downloadSingleImage(previewModal.image)
+                  closeImagePreview()
+                }}
+              >
+                <Download size={16} />
+                Download Image
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }

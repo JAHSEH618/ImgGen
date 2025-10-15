@@ -335,7 +335,7 @@ def generate_text_to_image(prompt, session_id):
             candidate = response.candidates[0]
             if hasattr(candidate, 'content') and candidate.content:
                 if hasattr(candidate.content, 'parts') and candidate.content.parts:
-                    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")  # Full microsecond precision
                     
                     for i, part in enumerate(candidate.content.parts):
                         if hasattr(part, 'inline_data') and part.inline_data:
@@ -408,7 +408,7 @@ def generate_images_batch(image_paths, prompt, session_id):
                 if hasattr(candidate, 'content') and candidate.content:
                     if hasattr(candidate.content, 'parts') and candidate.content.parts:
                         base_name = os.path.splitext(os.path.basename(image_path))[0]
-                        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")  # Full microsecond precision
                         
                         for i, part in enumerate(candidate.content.parts):
                             if hasattr(part, 'inline_data') and part.inline_data:
@@ -468,7 +468,7 @@ def generate_images():
                     return jsonify({'error': f'Unsupported file type: {file.filename}'}), 400
                 
                 # Save file
-                timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")  # Full microsecond precision
                 filename = f"upload_{session_id}_{timestamp}_{len(saved_files)}_{file.filename}"
                 filepath = os.path.join(UPLOAD_FOLDER, filename)
                 file.save(filepath)
