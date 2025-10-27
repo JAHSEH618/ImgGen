@@ -1,0 +1,2463 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//AI Learning Plan//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:e9d34800-e8cf-4f07-9259-a092bb9f1985@ai-learning-plan.org
+SUMMARY:[W1] 掌握 FastAPI 基础
+DESCRIPTION:【第W1周: 环境脚手架与结构化输出】\n\n📚 学习内容:\n📺 [B站最详细的 FastAPI 框架快速学习 (P1-P10)](https://www.bilibili.com/video/BV1Kq8seSEUs/)\n\n🛠️ 实践任务:\n安装 Python, FastAPI, Uvicorn；跑通第一个 "Hello World" API。\n\n📅 日期: 2025-10-20 星期一
+CATEGORIES:W1,AI学习,编程,工作日晚间
+DTSTART:20251020T210000
+DTEND:20251020T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W1] 掌握 FastAPI 基础
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a525f405-1324-446d-a104-2586176dac5e@ai-learning-plan.org
+SUMMARY:[W1] 理解路径参数与请求体
+DESCRIPTION:【第W1周: 环境脚手架与结构化输出】\n\n📚 学习内容:\n📺 [B站最详细的 FastAPI 框架快速学习 (P11-P20)](https://www.bilibili.com/video/BV1Kq8seSEUs/)\n\n🛠️ 实践任务:\n编写几个不同方法（GET/POST）和带参数的 API 接口。\n\n📅 日期: 2025-10-21 星期二
+CATEGORIES:W1,AI学习,编程,工作日晚间
+DTSTART:20251021T210000
+DTEND:20251021T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W1] 理解路径参数与请求体
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:8a259d39-8987-4f39-9f35-417879c1e2ea@ai-learning-plan.org
+SUMMARY:[W1] 学习 Pydantic 与 JSON Schema
+DESCRIPTION:【第W1周: 环境脚手架与结构化输出】\n\n📚 学习内容:\n📺 [Pydantic V2 完整教程 (P1-P5)](https://www.bilibili.com/video/BV1vh4y1U7zV/)\n\n🛠️ 实践任务:\n用 Pydantic 定义用户模型，理解它如何自动生成 JSON Schema。\n\n📅 日期: 2025-10-22 星期三
+CATEGORIES:W1,AI学习,编程,工作日晚间
+DTSTART:20251022T210000
+DTEND:20251022T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W1] 学习 Pydantic 与 JSON Schema
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9208569c-4b98-4fda-9286-9a708d4ae686@ai-learning-plan.org
+SUMMARY:[W1] 掌握 OpenAI 结构化输出
+DESCRIPTION:【第W1周: 环境脚手架与结构化输出】\n\n📚 学习内容:\n📺 [OpenAI 结构化输出实战](https://www.bilibili.com/video/BV1sN4y1g7YG/)\n\n🛠️ 实践任务:\n调用 OpenAI API，并使用 Pydantic 模型接收结构化的 JSON 输出。\n\n📅 日期: 2025-10-23 星期四
+CATEGORIES:W1,AI学习,编程,工作日晚间
+DTSTART:20251023T210000
+DTEND:20251023T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W1] 掌握 OpenAI 结构化输出
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b6f4d45a-16b5-4eca-b774-ac4738bcc962@ai-learning-plan.org
+SUMMARY:[W1] 搭建 Vite 前端环境
+DESCRIPTION:【第W1周: 环境脚手架与结构化输出】\n\n📚 学习内容:\n📺 [Vite 从入门到精通 (P1-P6)](https://www.bilibili.com/video/BV1GN4y1M7P5/)\n\n🛠️ 实践任务:\n初始化 Vite + Vue/React 项目，跑通前端 Hello World。\n\n📅 日期: 2025-10-24 星期五
+CATEGORIES:W1,AI学习,编程,工作日晚间
+DTSTART:20251024T210000
+DTEND:20251024T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W1] 搭建 Vite 前端环境
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:5d5df3ad-7d74-499e-826b-3a6d60a35bd0@ai-learning-plan.org
+SUMMARY:[W1] 项目冲刺：SchemaPlay v0
+DESCRIPTION:【第W1周: 环境脚手架与结构化输出】\n\n📚 学习内容:\n📺 **实战教程**: [FastAPI + Vue 前后端分离项目实战](https://www.bilibili.com/video/BV18S4y137i1/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 设计后端 API 架构，实现一个接受文本、返回结构化 JSON 的接口。<br>**下午 (14:00-17:00)**: 搭建前端页面，包含一个输入框、一个提交按钮和 JSON 显示区域。\n\n📅 日期: 2025-10-25 星期六
+CATEGORIES:W1,AI学习,编程,周末学习
+DTSTART:20251025T090000
+DTEND:20251025T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W1] 项目冲刺：SchemaPlay v0
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:97743c77-fc76-4d52-b815-a1cfbc109fb1@ai-learning-plan.org
+SUMMARY:[W1] 项目冲刺：联调与优化
+DESCRIPTION:【第W1周: 环境脚手架与结构化输出】\n\n📚 学习内容:\n📄 **实战教程**: [如何优雅地调用国内外大模型 API](https://zhuanlan.zhihu.com/p/672833393)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 完成前后端联调，实现 OpenAI/Claude/Qwen 模型热切换逻辑。<br>**下午 (14:00-17:00)**: 编写 README，部署到本地，确保 Schema 校验通过率和 P95 性能达标。\n\n📅 日期: 2025-10-26 星期日
+CATEGORIES:W1,AI学习,编程,周末学习
+DTSTART:20251026T090000
+DTEND:20251026T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W1] 项目冲刺：联调与优化
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:afa06afc-14db-470b-b5ef-3d1e9d6c09cb@ai-learning-plan.org
+SUMMARY:[W2] 理解 Function Calling
+DESCRIPTION:【第W2周: 函数调用深化与评估体系】\n\n📚 学习内容:\n📺 [大模型函数调用完整讲解](https://www.bilibili.com/video/BV1Ph4y1J7Rq/)\n\n🛠️ 实践任务:\n定义一个简单的工具（如获取天气），并用 OpenAI Function Calling 调用。\n\n📅 日期: 2025-10-27 星期一
+CATEGORIES:W2,AI学习,编程,工作日晚间
+DTSTART:20251027T210000
+DTEND:20251027T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W2] 理解 Function Calling
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:7b57b391-04aa-4b74-bf53-fdf87d85d1e0@ai-learning-plan.org
+SUMMARY:[W2] 学习多工具与并行调用
+DESCRIPTION:【第W2周: 函数调用深化与评估体系】\n\n📚 学习内容:\n📺 [多工具调用与并行执行](https://www.bilibili.com/video/BV1sZ421z73V/)\n\n🛠️ 实践任务:\n定义 2-3 个不同工具，让模型根据用户意图决定调用哪个或哪些。\n\n📅 日期: 2025-10-28 星期二
+CATEGORIES:W2,AI学习,编程,工作日晚间
+DTSTART:20251028T210000
+DTEND:20251028T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W2] 学习多工具与并行调用
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:0af9ba20-200e-419b-9399-14b5dfd4a70e@ai-learning-plan.org
+SUMMARY:[W2] 学习流式输出与异步
+DESCRIPTION:【第W2周: 函数调用深化与评估体系】\n\n📚 学习内容:\n📺 [FastAPI WebSocket 流式输出](https://www.bilibili.com/video/BV1hM4y1a7rH/)\n\n🛠️ 实践任务:\n改造 W1 的 API，使其能够以流式方式返回数据。\n\n📅 日期: 2025-10-29 星期三
+CATEGORIES:W2,AI学习,编程,工作日晚间
+DTSTART:20251029T210000
+DTEND:20251029T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W2] 学习流式输出与异步
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4f153863-5638-466c-8d5e-903dcefebafa@ai-learning-plan.org
+SUMMARY:[W2] 学习 LLM 评估基础
+DESCRIPTION:【第W2周: 函数调用深化与评估体系】\n\n📚 学习内容:\n📺 [LLM 应用评估框架深度解析](https://www.bilibili.com/video/BV1Hx4y1k71z/)\n\n🛠️ 实践任务:\n了解评估的核心思想：为什么要评估？评估什么？怎么评估？\n\n📅 日期: 2025-10-30 星期四
+CATEGORIES:W2,AI学习,编程,工作日晚间
+DTSTART:20251030T210000
+DTEND:20251030T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W2] 学习 LLM 评估基础
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:855a607a-394c-4b8e-92fd-51de3fa0a6eb@ai-learning-plan.org
+SUMMARY:[W2] 提示工程进阶
+DESCRIPTION:【第W2周: 函数调用深化与评估体系】\n\n📚 学习内容:\n🎓 [吴恩达 Prompt Engineering 课程（中文字幕）](https://www.bilibili.com/video/BV1Co4y137aA/)\n\n🛠️ 实践任务:\n针对 Function Calling 场景，优化你的指令，提高工具调用准确率。\n\n📅 日期: 2025-10-31 星期五
+CATEGORIES:W2,AI学习,编程,工作日晚间
+DTSTART:20251031T210000
+DTEND:20251031T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W2] 提示工程进阶
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4691ceb5-9382-4a9b-8ebb-ec3539d60f58@ai-learning-plan.org
+SUMMARY:[W2] 项目冲刺：SchemaPlay v1
+DESCRIPTION:【第W2周: 函数调用深化与评估体系】\n\n📚 学习内容:\n📺 **实战教程**: [Python Tenacity 库实现优雅的重试](https://www.bilibili.com/video/BV1fN4y137M9/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 设计并实现工具箱，集成日历查询、网络爬虫、KV 缓存三个工具。<br>**下午 (14:00-17:00)**: 为工具调用增加超时和失败重试逻辑 (tenacity)。\n\n📅 日期: 2025-11-01 星期六
+CATEGORIES:W2,AI学习,编程,周末学习
+DTSTART:20251101T090000
+DTEND:20251101T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W2] 项目冲刺：SchemaPlay v1
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c1c8d29e-fb68-439c-b002-b4348eeefe2f@ai-learning-plan.org
+SUMMARY:[W2] 项目冲刺：测试与部署
+DESCRIPTION:【第W2周: 函数调用深化与评估体系】\n\n📚 学习内容:\n📺 **实战教程**: [Locust 性能测试入门到实战](https://www.bilibili.com/video/BV1Yx4y1C77t/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 编写简单的测试用例，模拟工具调用失败、超时等场景。<br>**下午 (14:00-17:00)**: 编写 locust 脚本进行本地并发测试，确保 30rps 稳定，并更新项目文档。\n\n📅 日期: 2025-11-02 星期日
+CATEGORIES:W2,AI学习,编程,周末学习
+DTSTART:20251102T090000
+DTEND:20251102T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W2] 项目冲刺：测试与部署
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:afc0d1ee-2bee-4fc0-b203-fdcf69e2f346@ai-learning-plan.org
+SUMMARY:[W3] RAG 核心理论
+DESCRIPTION:【第W3周: RAG 基础搭建】\n\n📚 学习内容:\n🎓 [吴恩达 RAG 专项课程（中文）(P1-P2)](https://www.bilibili.com/video/BV1TJ4zemETf/)\n\n🛠️ 实践任务:\n理解什么是 RAG，以及它解决的核心问题（幻觉、知识更新）。\n\n📅 日期: 2025-11-03 星期一
+CATEGORIES:W3,AI学习,编程,工作日晚间
+DTSTART:20251103T210000
+DTEND:20251103T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W3] RAG 核心理论
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9c4db923-c5d7-499c-9c85-69eb5d85189b@ai-learning-plan.org
+SUMMARY:[W3] LangChain RAG 入门
+DESCRIPTION:【第W3周: RAG 基础搭建】\n\n📚 学习内容:\n📺 [LangChain 最全中文教程 (RAG部分)](https://www.bilibili.com/video/BV1Nh4y1c77H/)\n\n🛠️ 实践任务:\n学习 LangChain 的核心组件：`DocumentLoader`, `TextSplitter`, `Embedding`, `VectorStore`, `Retriever`。\n\n📅 日期: 2025-11-04 星期二
+CATEGORIES:W3,AI学习,编程,工作日晚间
+DTSTART:20251104T210000
+DTEND:20251104T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W3] LangChain RAG 入门
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:472aa5bc-a039-4454-ad26-d1db272a6f7c@ai-learning-plan.org
+SUMMARY:[W3] 学习向量数据库 Milvus
+DESCRIPTION:【第W3周: RAG 基础搭建】\n\n📚 学习内容:\n📺 [Milvus 快速上手教程](https://www.bilibili.com/video/BV1u8411Y7i2/)\n\n🛠️ 实践任务:\n使用 Docker 启动 Milvus，并学习其基本概念（Collection, Partition, Index）。\n\n📅 日期: 2025-11-05 星期三
+CATEGORIES:W3,AI学习,编程,工作日晚间
+DTSTART:20251105T210000
+DTEND:20251105T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W3] 学习向量数据库 Milvus
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d9d38d41-454d-4611-988b-d477df21166e@ai-learning-plan.org
+SUMMARY:[W3] 学习 RAGAS 评估指标
+DESCRIPTION:【第W3周: RAG 基础搭建】\n\n📚 学习内容:\n📺 [RAGAS 指标详解与实战](https://www.bilibili.com/video/BV1sN4y197Cc/)\n\n🛠️ 实践任务:\n理解 `Context Precision`, `Answer Relevance`, `Faithfulness` 等核心指标的含义。\n\n📅 日期: 2025-11-06 星期四
+CATEGORIES:W3,AI学习,编程,工作日晚间
+DTSTART:20251106T210000
+DTEND:20251106T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W3] 学习 RAGAS 评估指标
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:62fe7b27-0a45-4209-9959-fcb84bd17416@ai-learning-plan.org
+SUMMARY:[W3] LangChain Expression Language (LCEL)
+DESCRIPTION:【第W3周: RAG 基础搭建】\n\n📚 学习内容:\n📄 [LCEL 官方文档](https://python.langchain.com/docs/expression_language/)\n\n🛠️ 实践任务:\n学习如何使用 LCEL（管道符 `\n\n📅 日期: 2025-11-07 星期五
+CATEGORIES:W3,AI学习,编程,工作日晚间
+DTSTART:20251107T210000
+DTEND:20251107T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W3] LangChain Expression Language (LCEL)
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b582125b-b1a5-4e3c-9d6c-244862cc35bd@ai-learning-plan.org
+SUMMARY:[W3] 项目冲刺：AtlasRAG v0
+DESCRIPTION:【第W3周: RAG 基础搭建】\n\n📚 学习内容:\n📺 **实战教程**: [30分钟用 LangChain+Milvus 手搓一个 RAG 应用](https://www.bilibili.com/video/BV1aj421D7jE/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 实现文档加载、切分、向量化并存入 Milvus 的完整流程。<br>**下午 (14:00-17:00)**: 构建检索链和问答链，并用 FastAPI 封装成 API。\n\n📅 日期: 2025-11-08 星期六
+CATEGORIES:W3,AI学习,编程,周末学习
+DTSTART:20251108T090000
+DTEND:20251108T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W3] 项目冲刺：AtlasRAG v0
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:7a6fec0e-7daa-46a6-b344-4e8fabdc32cd@ai-learning-plan.org
+SUMMARY:[W3] 项目冲刺：前端与测试
+DESCRIPTION:【第W3周: RAG 基础搭建】\n\n📚 学习内容:\n📄 **实战教程**: [Ragas 官方文档 - Your First Evaluation](https://docs.ragas.io/en/latest/getstarted/evaluation.html)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 搭建一个简易的前端页面，可以上传文档、输入问题、查看回答。<br>**下午 (14:00-17:00)**: 准备 10-20 个问答对，使用 RAGAS 进行初步评估，确保指标达标。\n\n📅 日期: 2025-11-09 星期日
+CATEGORIES:W3,AI学习,编程,周末学习
+DTSTART:20251109T090000
+DTEND:20251109T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W3] 项目冲刺：前端与测试
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:61485fdf-d71c-4192-8b6d-f2400f5139c1@ai-learning-plan.org
+SUMMARY:[W4] 学习高级 RAG 理论
+DESCRIPTION:【第W4周: 高级检索技术】\n\n📚 学习内容:\n🎓 [吴恩达高级 RAG 课程（中文）](https://www.bilibili.com/video/BV1j2421A799/)\n\n🛠️ 实践任务:\n了解基础 RAG 的局限，以及 Multi-Query, Reranking 等改进思路。\n\n📅 日期: 2025-11-10 星期一
+CATEGORIES:W4,AI学习,编程,工作日晚间
+DTSTART:20251110T210000
+DTEND:20251110T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W4] 学习高级 RAG 理论
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4df66f4e-4263-4f01-933e-10c901698fa1@ai-learning-plan.org
+SUMMARY:[W4] 学习 Hybrid Search
+DESCRIPTION:【第W4周: 高级检索技术】\n\n📚 学习内容:\n📺 [混合检索原理与实践](https://www.bilibili.com/video/BV1Qj421c7wZ/)\n\n🛠️ 实践任务:\n理解关键词检索（如 BM25）和向量检索的优缺点，以及如何结合。\n\n📅 日期: 2025-11-11 星期二
+CATEGORIES:W4,AI学习,编程,工作日晚间
+DTSTART:20251111T210000
+DTEND:20251111T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W4] 学习 Hybrid Search
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:915b39f0-3c64-414c-bb4e-c2dbc8e4d74e@ai-learning-plan.org
+SUMMARY:[W4] 学习 Rerank 重排序
+DESCRIPTION:【第W4周: 高级检索技术】\n\n📚 学习内容:\n📺 [BGE-Reranker 中文重排模型实战](https://www.bilibili.com/video/BV1hN4y1k7oP/)\n\n🛠️ 实践任务:\n理解 Rerank 的作用（召回->精排），并学习如何使用开源 Rerank 模型。\n\n📅 日期: 2025-11-12 星期三
+CATEGORIES:W4,AI学习,编程,工作日晚间
+DTSTART:20251112T210000
+DTEND:20251112T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W4] 学习 Rerank 重排序
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9d6eda63-6442-479b-a9f8-951b3c3e0daf@ai-learning-plan.org
+SUMMARY:[W4] 长上下文处理策略
+DESCRIPTION:【第W4周: 高级检索技术】\n\n📚 学习内容:\n📺 [Qwen-Long 长文本模型解读](https://www.bilibili.com/video/BV1CH4y1B7zm/)\n\n🛠️ 实践任务:\n了解长上下文模型如何处理文档，以及与 RAG 的关系。\n\n📅 日期: 2025-11-13 星期四
+CATEGORIES:W4,AI学习,编程,工作日晚间
+DTSTART:20251113T210000
+DTEND:20251113T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W4] 长上下文处理策略
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:68cf6e70-b993-4f2c-95c4-5eed384f2e94@ai-learning-plan.org
+SUMMARY:[W4] 复习与技术选型
+DESCRIPTION:【第W4周: 高级检索技术】\n\n📚 学习内容:\n📄 [LlamaIndex vs LangChain RAG 框架对比](https://docs.llamaindex.ai/en/stable/getting_started/getting_started.html)\n\n🛠️ 实践任务:\n思考如何将 Hybrid Search 和 Rerank 集成到现有的 `AtlasRAG` 架构中。\n\n📅 日期: 2025-11-14 星期五
+CATEGORIES:W4,AI学习,编程,工作日晚间
+DTSTART:20251114T210000
+DTEND:20251114T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W4] 复习与技术选型
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:59500680-0cdf-4415-9f8a-995d06b7578a@ai-learning-plan.org
+SUMMARY:[W4] 项目冲刺：AtlasRAG v1
+DESCRIPTION:【第W4周: 高级检索技术】\n\n📚 学习内容:\n📺 **实战教程**: [LangChain高级RAG：用Cohere Rerank提升检索质量](https://www.bilibili.com/video/BV1fU421d74V/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 在 RAG 链中集成 Hybrid Search，先召回更多（如 20 个）文档。<br>**下午 (14:00-17:00)**: 引入 BGE-Reranker 模型，对召回的文档进行重排序，取 Top 3-5。\n\n📅 日期: 2025-11-15 星期六
+CATEGORIES:W4,AI学习,编程,周末学习
+DTSTART:20251115T090000
+DTEND:20251115T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W4] 项目冲刺：AtlasRAG v1
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:69602e0a-6441-4727-8086-2b730de2579a@ai-learning-plan.org
+SUMMARY:[W4] 项目冲刺：长文档与评估
+DESCRIPTION:【第W4周: 高级检索技术】\n\n📚 学习内容:\n📺 **实战教程**: [Unstructured：非结构化数据处理神器](https://www.bilibili.com/video/BV15j421X71b/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 集成 `unstructured` 库，支持 PDF/Markdown 等复杂文档的解析。<br>**下午 (14:00-17:00)**: 针对长文档场景设计测试用例，用 RAGAS 评估，与 v0 对比并撰写报告。\n\n📅 日期: 2025-11-16 星期日
+CATEGORIES:W4,AI学习,编程,周末学习
+DTSTART:20251116T090000
+DTEND:20251116T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W4] 项目冲刺：长文档与评估
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4eb90684-1a77-4737-9fd2-d9caffb19353@ai-learning-plan.org
+SUMMARY:[W5] 学习 Langfuse 基础
+DESCRIPTION:【第W5周: RAG 评估自动化】\n\n📚 学习内容:\n📺 [Langfuse 观测与成本跟踪](https://www.bilibili.com/video/BV1jZ42167Qp/)\n\n🛠️ 实践任务:\n了解 Tracing, Observation, Score 等核心概念。使用 Docker 部署 Langfuse。\n\n📅 日期: 2025-11-17 星期一
+CATEGORIES:W5,AI学习,编程,工作日晚间
+DTSTART:20251117T210000
+DTEND:20251117T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W5] 学习 Langfuse 基础
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:12cf3897-9688-4b33-aa3d-10ac244301f7@ai-learning-plan.org
+SUMMARY:[W5] Langfuse SDK 集成
+DESCRIPTION:【第W5周: RAG 评估自动化】\n\n📚 学习内容:\n📄 [Langfuse Python SDK 文档](https://langfuse.com/docs/sdk/python)\n\n🛠️ 实践任务:\n将 Langfuse SDK 集成到 `AtlasRAG` 的 API 中，实现对每次请求的追踪。\n\n📅 日期: 2025-11-18 星期二
+CATEGORIES:W5,AI学习,编程,工作日晚间
+DTSTART:20251118T210000
+DTEND:20251118T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W5] Langfuse SDK 集成
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:3dd93b3d-4f95-495e-bf14-2bfcfc374e4b@ai-learning-plan.org
+SUMMARY:[W5] 构建评估测试集
+DESCRIPTION:【第W5周: RAG 评估自动化】\n\n📚 学习内容:\n📺 [如何构建评估测试集](https://www.bilibili.com/video/BV17N4y1u7Jf/)\n\n🛠️ 实践任务:\n学习如何从文档中自动生成高质量的问答对（Question-Answer pairs）。\n\n📅 日期: 2025-11-19 星期三
+CATEGORIES:W5,AI学习,编程,工作日晚间
+DTSTART:20251119T210000
+DTEND:20251119T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W5] 构建评估测试集
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a50a3a2a-8596-4904-95bb-199c040e9d7c@ai-learning-plan.org
+SUMMARY:[W5] RAGAS 自动化评估
+DESCRIPTION:【第W5周: RAG 评估自动化】\n\n📚 学习内容:\n📺 [构建 RAG 评估管道](https://www.bilibili.com/video/BV1zN4y1k7pA/)\n\n🛠️ 实践任务:\n学习如何使用 RAGAS SDK，针对测试集批量运行评估并生成报告。\n\n📅 日期: 2025-11-20 星期四
+CATEGORIES:W5,AI学习,编程,工作日晚间
+DTSTART:20251120T210000
+DTEND:20251120T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W5] RAGAS 自动化评估
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:3ee66dd7-633e-41a1-a438-6731b2949d8b@ai-learning-plan.org
+SUMMARY:[W5] 学习 Prompt 版本管理
+DESCRIPTION:【第W5周: RAG 评估自动化】\n\n📚 学习内容:\n📺 [Prompt 工程化管理](https://www.bilibili.com/video/BV1hN4y1g7mK/)\n\n🛠️ 实践任务:\n了解使用 Langfuse 或类似工具进行 Prompt 版本控制和 A/B 测试的方法。\n\n📅 日期: 2025-11-21 星期五
+CATEGORIES:W5,AI学习,编程,工作日晚间
+DTSTART:20251121T210000
+DTEND:20251121T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W5] 学习 Prompt 版本管理
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1870a2be-98e5-4d8a-846a-4345dde4dfd8@ai-learning-plan.org
+SUMMARY:[W5] 项目冲刺：AtlasRAG v2
+DESCRIPTION:【第W5周: RAG 评估自动化】\n\n📚 学习内容:\n📺 **实战教程**: [RAGAS + Langfuse 集成指南](https://langfuse.com/docs/scores/ragas)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 编写脚本，自动从文档生成至少 200 条的评估测试集。<br>**下午 (14:00-17:00)**: 编写自动化评测脚本，将 RAGAS 评估结果自动回传到 Langfuse。\n\n📅 日期: 2025-11-22 星期六
+CATEGORIES:W5,AI学习,编程,周末学习
+DTSTART:20251122T090000
+DTEND:20251122T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W5] 项目冲刺：AtlasRAG v2
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dfd20ab7-8061-4edb-9cc1-a2c955cea4f9@ai-learning-plan.org
+SUMMARY:[W5] 项目冲刺：看板与分析
+DESCRIPTION:【第W5周: RAG 评估自动化】\n\n📚 学习内容:\n📺 **实战教程**: [Langfuse Dashboard 功能介绍](https://langfuse.com/docs/features)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 在 Langfuse 中创建 Dashboard，监控关键 RAG 指标的变化。<br>**下午 (14:00-17:00)**: 分析评估结果，找出失败 Top 5 的原因并记录，更新项目文档。\n\n📅 日期: 2025-11-23 星期日
+CATEGORIES:W5,AI学习,编程,周末学习
+DTSTART:20251123T090000
+DTEND:20251123T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W5] 项目冲刺：看板与分析
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cb4c063d-3f98-45cd-b7b7-ce0bb7674d46@ai-learning-plan.org
+SUMMARY:[W6] 数据工程与 ETL 基础
+DESCRIPTION:【第W6周: 数据流水线工程化】\n\n📚 学习内容:\n📺 [数据工程入门到实战（中文）(P1-P3)](https://www.bilibili.com/video/BV1s14y1x77y/)\n\n🛠️ 实践任务:\n理解 ETL (Extract, Transform, Load) 流程在 RAG 知识库更新中的应用。\n\n📅 日期: 2025-11-24 星期一
+CATEGORIES:W6,AI学习,编程,工作日晚间
+DTSTART:20251124T210000
+DTEND:20251124T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W6] 数据工程与 ETL 基础
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:146740ad-62fb-4a65-9d3b-7fecba2b27c0@ai-learning-plan.org
+SUMMARY:[W6] 学习任务调度工具
+DESCRIPTION:【第W6周: 数据流水线工程化】\n\n📚 学习内容:\n📺 [APScheduler 异步任务调度](https://www.bilibili.com/video/BV12M411u7VB/)\n\n🛠️ 实践任务:\n学习如何使用 `APScheduler` 或系统 `cron` 来定时执行 Python 脚本。\n\n📅 日期: 2025-11-25 星期二
+CATEGORIES:W6,AI学习,编程,工作日晚间
+DTSTART:20251125T210000
+DTEND:20251125T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W6] 学习任务调度工具
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:180c2826-d0c7-4ddf-a01c-25a163fdd304@ai-learning-plan.org
+SUMMARY:[W6] 增量索引与去重策略
+DESCRIPTION:【第W6周: 数据流水线工程化】\n\n📚 学习内容:\n📺 [增量数据处理策略](https://www.bilibili.com/video/BV1pj421B7xZ/)\n\n🛠️ 实践任务:\n设计方案：如何只处理新增或变更的文档，避免全量重建索引。\n\n📅 日期: 2025-11-26 星期三
+CATEGORIES:W6,AI学习,编程,工作日晚间
+DTSTART:20251126T210000
+DTEND:20251126T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W6] 增量索引与去重策略
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:bc2f8b4e-3359-4f79-be30-1bc25064356d@ai-learning-plan.org
+SUMMARY:[W6] 数据清洗与脱敏
+DESCRIPTION:【第W6周: 数据流水线工程化】\n\n📚 学习内容:\n📺 [数据清洗最佳实践](https://www.bilibili.com/video/BV1Nj421x7yZ/)\n\n🛠️ 实践任务:\n学习使用正则表达式等工具清洗文本中的噪声（如 HTML 标签）。\n\n📅 日期: 2025-11-27 星期四
+CATEGORIES:W6,AI学习,编程,工作日晚间
+DTSTART:20251127T210000
+DTEND:20251127T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W6] 数据清洗与脱敏
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:54edbed8-0299-4223-b028-b66587b82fb0@ai-learning-plan.org
+SUMMARY:[W6] 学习队列与后台任务
+DESCRIPTION:【第W6周: 数据流水线工程化】\n\n📚 学习内容:\n📺 [FastAPI Background Tasks](https://fastapi.tiangolo.com/zh/tutorial/background-tasks/)\n\n🛠️ 实践任务:\n了解如何将耗时的数据处理任务（如文档入库）放入后台执行。\n\n📅 日期: 2025-11-28 星期五
+CATEGORIES:W6,AI学习,编程,工作日晚间
+DTSTART:20251128T210000
+DTEND:20251128T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W6] 学习队列与后台任务
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a56a903f-4a44-4d1b-bc96-5e16c71e4bb1@ai-learning-plan.org
+SUMMARY:[W6] 项目冲刺：AtlasRAG v3
+DESCRIPTION:【第W6周: 数据流水线工程化】\n\n📚 学习内容:\n📺 **实战教程**: [FastAPI + Celery + Redis 构建异步任务队列](https://www.bilibili.com/video/BV17P411w7VC/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 设计并实现一个数据源监控脚本（如监控某个文件夹或数据库）。<br>**下午 (14:00-17:00)**: 引入 Celery/Redis 队列，改造文档处理流程为异步后台任务。\n\n📅 日期: 2025-11-29 星期六
+CATEGORIES:W6,AI学习,编程,周末学习
+DTSTART:20251129T090000
+DTEND:20251129T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W6] 项目冲刺：AtlasRAG v3
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f9d8c55a-5e48-4bb6-b000-b4f7e27b6286@ai-learning-plan.org
+SUMMARY:[W6] 项目冲刺：部署与治理
+DESCRIPTION:【第W6周: 数据流水线工程化】\n\n📚 学习内容:\n📄 **实战教程**: [Python 实现数据脱敏的几种方案](https://zhuanlan.zhihu.com/p/626500858)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 编写 `APScheduler` 定时任务，实现知识库每日自动更新。<br>**下午 (14:00-17:00)**: 实现敏感信息（如身份证、手机号）的自动脱敏，并撰写数据治理文档。\n\n📅 日期: 2025-11-30 星期日
+CATEGORIES:W6,AI学习,编程,周末学习
+DTSTART:20251130T090000
+DTEND:20251130T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W6] 项目冲刺：部署与治理
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6c893c97-8493-492e-afee-ff5994043617@ai-learning-plan.org
+SUMMARY:[W7] Agent 理论与 LangGraph 基础
+DESCRIPTION:【第W7周: LangGraph 有状态 Agent】\n\n📚 学习内容:\n🎓 [吴恩达 LangGraph Agent 课程](https://www.bilibili.com/video/BV17csbeAEDZ/)\n\n🛠️ 实践任务:\n理解“状态图” (State Graph) 是如何构建 Agent 的。\n\n📅 日期: 2025-12-01 星期一
+CATEGORIES:W7,AI学习,编程,工作日晚间
+DTSTART:20251201T210000
+DTEND:20251201T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W7] Agent 理论与 LangGraph 基础
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:0e63155b-53ba-4c24-8641-dd18064330a5@ai-learning-plan.org
+SUMMARY:[W7] LangGraph 核心组件
+DESCRIPTION:【第W7周: LangGraph 有状态 Agent】\n\n📚 学习内容:\n📺 [LangGraph 从入门到精通 (P1-P3)](https://www.bilibili.com/video/BV1fBQaYZESC/)\n\n🛠️ 实践任务:\n学习 `StatefulGraph`, `add_node`, `add_edge`, `set_entry_point` 等核心 API。\n\n📅 日期: 2025-12-02 星期二
+CATEGORIES:W7,AI学习,编程,工作日晚间
+DTSTART:20251202T210000
+DTEND:20251202T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W7] LangGraph 核心组件
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:891bb1de-5811-4ec7-a3cd-f28f875f1d6f@ai-learning-plan.org
+SUMMARY:[W7] 构建第一个 LangGraph Agent
+DESCRIPTION:【第W7周: LangGraph 有状态 Agent】\n\n📚 学习内容:\n📺 [LangGraph 快速入门](https://www.bilibili.com/video/BV14rhHeVEiC/)\n\n🛠️ 实践任务:\n动手实现一个简单的、带工具的 Agent。\n\n📅 日期: 2025-12-03 星期三
+CATEGORIES:W7,AI学习,编程,工作日晚间
+DTSTART:20251203T210000
+DTEND:20251203T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W7] 构建第一个 LangGraph Agent
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:036d2d08-798c-4b7a-a0a0-f73cf39c5c12@ai-learning-plan.org
+SUMMARY:[W7] 多 Agent 协作模式
+DESCRIPTION:【第W7周: LangGraph 有状态 Agent】\n\n📚 学习内容:\n📺 [多 Agent 协作实战](https://www.bilibili.com/video/BV1yU421o792/)\n\n🛠️ 实践任务:\n了解 Agent 如何进行分工与协作，例如 Supervisor-Worker 模式。\n\n📅 日期: 2025-12-04 星期四
+CATEGORIES:W7,AI学习,编程,工作日晚间
+DTSTART:20251204T210000
+DTEND:20251204T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W7] 多 Agent 协作模式
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d6c64f1b-7e3a-4990-a48b-bb0c8e7ecc3c@ai-learning-plan.org
+SUMMARY:[W7] 人机协同 (HIL) 概念
+DESCRIPTION:【第W7周: LangGraph 有状态 Agent】\n\n📚 学习内容:\n📺 [人机协同设计模式](https://www.bilibili.com/video/BV1Aj421N7kR/)\n\n🛠️ 实践任务:\n理解在 Agent 流程中加入人工审批节点的重要性。\n\n📅 日期: 2025-12-05 星期五
+CATEGORIES:W7,AI学习,编程,工作日晚间
+DTSTART:20251205T210000
+DTEND:20251205T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W7] 人机协同 (HIL) 概念
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:8c37885f-173b-4837-ac9a-b4411e955dc1@ai-learning-plan.org
+SUMMARY:[W7] 项目冲刺：ROSS v0
+DESCRIPTION:【第W7周: LangGraph 有状态 Agent】\n\n📚 学习内容:\n📺 **实战教程**: [LangGraph 条件路由实战 (Conditional Edges)](https://www.bilibili.com/video/BV1Ez421R7mn/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 设计 ROSS Agent 的状态图，包含路由节点、各模型调用节点。<br>**下午 (14:00-17:00)**: 实现路由逻辑：根据用户输入（如“用最便宜的模型”、“要最快的”）决定调用哪个模型。\n\n📅 日期: 2025-12-06 星期六
+CATEGORIES:W7,AI学习,编程,周末学习
+DTSTART:20251206T090000
+DTEND:20251206T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W7] 项目冲刺：ROSS v0
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:24d76f0a-bc10-4d2f-8523-2c75dd8e1968@ai-learning-plan.org
+SUMMARY:[W7] 项目冲刺：CLI 与测试
+DESCRIPTION:【第W7周: LangGraph 有状态 Agent】\n\n📚 学习内容:\n📺 **实战教程**: [Python Click 库保姆级教程](https://www.bilibili.com/video/BV1aM4y1g7xG/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 使用 `click` 库将 Agent 封装成一个命令行工具。<br>**下午 (14:00-17:00)**: 编写规则配置文件（YAML/JSON），并测试不同规则下的路由表现，输出对比表。\n\n📅 日期: 2025-12-07 星期日
+CATEGORIES:W7,AI学习,编程,周末学习
+DTSTART:20251207T090000
+DTEND:20251207T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W7] 项目冲刺：CLI 与测试
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:5856c16e-6660-4b57-a275-2c6ff0b33edd@ai-learning-plan.org
+SUMMARY:[W8] 跨厂商结构化输出统一
+DESCRIPTION:【第W8周: 跨厂商统一与安全护栏】\n\n📚 学习内容:\n📺 [多模型统一接口设计 (适配器模式)](https://www.bilibili.com/video/BV1Nj421M7vK/)\n\n🛠️ 实践任务:\n设计一个统一的输入输出 schema，无论底层调用哪个模型，都返回同样的数据结构。\n\n📅 日期: 2025-12-08 星期一
+CATEGORIES:W8,AI学习,编程,工作日晚间
+DTSTART:20251208T210000
+DTEND:20251208T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W8] 跨厂商结构化输出统一
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:0359d998-707e-4d96-a7d0-6cbe6a9ad723@ai-learning-plan.org
+SUMMARY:[W8] 学习 NeMo Guardrails 基础
+DESCRIPTION:【第W8周: 跨厂商统一与安全护栏】\n\n📚 学习内容:\n📺 [NeMo Guardrails 介绍](https://www.bilibili.com/video/BV1rP411e7j3/)\n\n🛠️ 实践任务:\n了解 Guardrails 的基本原理和 Colang 语言。\n\n📅 日期: 2025-12-09 星期二
+CATEGORIES:W8,AI学习,编程,工作日晚间
+DTSTART:20251209T210000
+DTEND:20251209T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W8] 学习 NeMo Guardrails 基础
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:97d644af-9e2b-44d6-a3da-f339bf769244@ai-learning-plan.org
+SUMMARY:[W8] 红队与越狱防护
+DESCRIPTION:【第W8周: 跨厂商统一与安全护栏】\n\n📚 学习内容:\n📺 [红队与越狱防护](https://www.bilibili.com/video/BV1sZ421B7pD/)\n\n🛠️ 实践任务:\n了解常见的 LLM 攻击方式，如提示注入、越狱等。\n\n📅 日期: 2025-12-10 星期三
+CATEGORIES:W8,AI学习,编程,工作日晚间
+DTSTART:20251210T210000
+DTEND:20251210T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W8] 红队与越狱防护
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f8c63907-6131-40ba-a6c4-f4748972387f@ai-learning-plan.org
+SUMMARY:[W8] 输出修复与降级策略
+DESCRIPTION:【第W8周: 跨厂商统一与安全护栏】\n\n📚 学习内容:\n📺 [LLM 输出内容校验与修复实战](https://www.bilibili.com/video/BV1mj421S7hK/)\n\n🛠️ 实践任务:\n设计策略：当模型输出的 JSON 格式错误时，如何尝试自动修复或调用备用模型。\n\n📅 日期: 2025-12-11 星期四
+CATEGORIES:W8,AI学习,编程,工作日晚间
+DTSTART:20251211T210000
+DTEND:20251211T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W8] 输出修复与降级策略
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cd9f47e1-6868-4c22-bbcd-9780c2f92969@ai-learning-plan.org
+SUMMARY:[W8] AI 安全与对齐
+DESCRIPTION:【第W8周: 跨厂商统一与安全护栏】\n\n📚 学习内容:\n📺 [AI 安全与对齐](https://www.bilibili.com/video/BV1Qj421k7nP/)\n\n🛠️ 实践任务:\n宏观理解 AI 安全的重要性。\n\n📅 日期: 2025-12-12 星期五
+CATEGORIES:W8,AI学习,编程,工作日晚间
+DTSTART:20251212T210000
+DTEND:20251212T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W8] AI 安全与对齐
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:3d4e9022-101d-44fd-8925-922074a4ca6d@ai-learning-plan.org
+SUMMARY:[W8] 项目冲刺：ROSS v1
+DESCRIPTION:【第W8周: 跨厂商统一与安全护栏】\n\n📚 学习内容:\n📺 **实战教程**: [Instructor: Pydantic + Function Calling 的最佳实践](https://www.bilibili.com/video/BV1sN4y1g7YG/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 结合 `Instructor` 库，强制所有模型都遵循统一的 Pydantic Schema。<br>**下午 (14:00-17:00)**: 实现输出修复逻辑：当主模型输出失败时，调用小模型进行降级处理。\n\n📅 日期: 2025-12-13 星期六
+CATEGORIES:W8,AI学习,编程,周末学习
+DTSTART:20251213T090000
+DTEND:20251213T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W8] 项目冲刺：ROSS v1
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9b6704d6-2174-4808-8f44-dc26f9dc56d0@ai-learning-plan.org
+SUMMARY:[W8] 项目冲刺：安全护栏
+DESCRIPTION:【第W8周: 跨厂商统一与安全护栏】\n\n📚 学习内容:\n📄 **实战教程**: [NeMo Guardrails 配置与使用](https://github.com/NVIDIA/NeMo-Guardrails)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 实现一个敏感词过滤护栏。<br>**下午 (14:00-17:00)**: 编写测试用例，模拟越狱攻击和敏感问题，验证护栏的拦截效果并输出报告。\n\n📅 日期: 2025-12-14 星期日
+CATEGORIES:W8,AI学习,编程,周末学习
+DTSTART:20251214T090000
+DTEND:20251214T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W8] 项目冲刺：安全护栏
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:27048e49-9d59-410a-b6f4-99845091cd9d@ai-learning-plan.org
+SUMMARY:[W9] 性能压测与 SLO
+DESCRIPTION:【第W9周: 性能压测与成本优化】\n\n📚 学习内容:\n📺 [Locust 性能测试入门](https://www.bilibili.com/video/BV1Yx4y1C77t/)\n\n🛠️ 实践任务:\n学习性能测试核心指标：RPS, P95/P99延迟, 错误率。\n\n📅 日期: 2025-12-15 星期一
+CATEGORIES:W9,AI学习,编程,工作日晚间
+DTSTART:20251215T210000
+DTEND:20251215T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W9] 性能压测与 SLO
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:bf93555e-9e35-4ba2-8d0c-a0d14ca979c4@ai-learning-plan.org
+SUMMARY:[W9] LLM 成本监控
+DESCRIPTION:【第W9周: 性能压测与成本优化】\n\n📚 学习内容:\n📺 [LLM 成本优化策略](https://www.bilibili.com/video/BV1pj421X7hK/)\n\n🛠️ 实践任务:\n学习如何精确计算每次 LLM 调用的成本（输入/输出 tokens）。\n\n📅 日期: 2025-12-16 星期二
+CATEGORIES:W9,AI学习,编程,工作日晚间
+DTSTART:20251216T210000
+DTEND:20251216T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W9] LLM 成本监控
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:47457b67-35f0-41d8-8c0e-3294044f274a@ai-learning-plan.org
+SUMMARY:[W9] 学习 Grafana 可视化
+DESCRIPTION:【第W9周: 性能压测与成本优化】\n\n📚 学习内容:\n📺 [Grafana 可视化教程](https://www.bilibili.com/video/BV13L411y7N4/)\n\n🛠️ 实践任务:\n学习如何使用 Grafana 创建 Dashboard。\n\n📅 日期: 2025-12-17 星期三
+CATEGORIES:W9,AI学习,编程,工作日晚间
+DTSTART:20251217T210000
+DTEND:20251217T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W9] 学习 Grafana 可视化
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ba6dd75d-9cfb-403f-bee5-0dae957edec1@ai-learning-plan.org
+SUMMARY:[W9] 学习 Prometheus 监控
+DESCRIPTION:【第W9周: 性能压测与成本优化】\n\n📚 学习内容:\n📺 [Prometheus 入门到精通](https://www.bilibili.com/video/BV1Hi4y1A7l1/)\n\n🛠️ 实践任务:\n了解 Prometheus 的工作原理，以及如何暴露自定义指标。\n\n📅 日期: 2025-12-18 星期四
+CATEGORIES:W9,AI学习,编程,工作日晚间
+DTSTART:20251218T210000
+DTEND:20251218T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W9] 学习 Prometheus 监控
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ef622c2a-dadb-464d-9538-cc745afc71ed@ai-learning-plan.org
+SUMMARY:[W9] 智能路由算法设计
+DESCRIPTION:【第W9周: 性能压测与成本优化】\n\n📚 学习内容:\n📺 [智能路由算法设计](https://www.bilibili.com/video/BV1zN4y1g7mP/)\n\n🛠️ 实践任务:\n思考如何动态选择模型以平衡成本和性能。\n\n📅 日期: 2025-12-19 星期五
+CATEGORIES:W9,AI学习,编程,工作日晚间
+DTSTART:20251219T210000
+DTEND:20251219T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W9] 智能路由算法设计
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9332a217-76e7-4888-ad2e-8a19959739cc@ai-learning-plan.org
+SUMMARY:[W9] 项目冲刺：ROSS v2
+DESCRIPTION:【第W9周: 性能压测与成本优化】\n\n📚 学习内容:\n📺 **实战教程**: [FastAPI 应用接入 Prometheus 和 Grafana](https://www.bilibili.com/video/BV1gT411a72N/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 使用 Langfuse API 或自定义逻辑，将每次请求的成本、延迟指标暴露给 Prometheus。<br>**下午 (14:00-17:00)**: 配置 Grafana 看板，可视化总成本、P95延迟等关键指标。\n\n📅 日期: 2025-12-20 星期六
+CATEGORIES:W9,AI学习,编程,周末学习
+DTSTART:20251220T090000
+DTEND:20251220T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W9] 项目冲刺：ROSS v2
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:55a795dd-b465-4e99-84a8-554658579692@ai-learning-plan.org
+SUMMARY:[W9] 项目冲刺：自动路由与压测
+DESCRIPTION:【第W9周: 性能压测与成本优化】\n\n📚 学习内容:\n📄 **实战教程**: [Locust 测试 FastAPI 接口](https://www.freecodecamp.org/news/fastapi-locust-for-load-testing/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 实现自动性价比路由：优先选择能满足任务且成本最低的模型。<br>**下午 (14:00-17:00)**: 编写 Locust 压测脚本，对服务进行并发测试，确保性能达标，并更新文档。\n\n📅 日期: 2025-12-21 星期日
+CATEGORIES:W9,AI学习,编程,周末学习
+DTSTART:20251221T090000
+DTEND:20251221T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W9] 项目冲刺：自动路由与压测
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fcd6bd3b-aa17-496d-b357-2f6372cff09c@ai-learning-plan.org
+SUMMARY:[W10] 多模态与 VLM 基础
+DESCRIPTION:【第W10周: 多模态理解】\n\n📚 学习内容:\n📺 [多模态大模型原理](https://www.bilibili.com/video/BV1sj421D7mK/)\n\n🛠️ 实践任务:\n理解 VLM 的工作原理，以及它与纯文本 LLM 的区别。\n\n📅 日期: 2025-12-22 星期一
+CATEGORIES:W10,AI学习,编程,工作日晚间
+DTSTART:20251222T210000
+DTEND:20251222T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W10] 多模态与 VLM 基础
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:90727d95-09ad-4dc7-9c02-b3b8fdb475e6@ai-learning-plan.org
+SUMMARY:[W10] 学习 Qwen-VL 模型
+DESCRIPTION:【第W10周: 多模态理解】\n\n📚 学习内容:\n📺 [Qwen-VL-Plus 上手教程](https://www.bilibili.com/video/BV1e24y1A7Y4/)\n\n🛠️ 实践任务:\n学习如何调用通义千问 VL API，实现图文问答。\n\n📅 日期: 2025-12-23 星期二
+CATEGORIES:W10,AI学习,编程,工作日晚间
+DTSTART:20251223T210000
+DTEND:20251223T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W10] 学习 Qwen-VL 模型
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f09f39ed-e782-4394-be3d-2080e6d2a12c@ai-learning-plan.org
+SUMMARY:[W10] 学习 PaddleOCR
+DESCRIPTION:【第W10周: 多模态理解】\n\n📚 学习内容:\n📺 [PaddleOCR 实战应用](https://www.bilibili.com/video/BV1Cj421c7wK/)\n\n🛠️ 实践任务:\n安装并运行 PaddleOCR，对本地图片进行文字识别。\n\n📅 日期: 2025-12-24 星期三
+CATEGORIES:W10,AI学习,编程,工作日晚间
+DTSTART:20251224T210000
+DTEND:20251224T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W10] 学习 PaddleOCR
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:81cd8ade-bd66-4bba-b30f-60bf33778eae@ai-learning-plan.org
+SUMMARY:[W10] 文档版面分析
+DESCRIPTION:【第W10周: 多模态理解】\n\n📚 学习内容:\n📺 [文档版面分析技术 (Layout Analysis)](https://www.bilibili.com/video/BV1Nj421B7xP/)\n\n🛠️ 实践任务:\n了解版面分析在表格、表单识别中的重要性。\n\n📅 日期: 2025-12-25 星期四
+CATEGORIES:W10,AI学习,编程,工作日晚间
+DTSTART:20251225T210000
+DTEND:20251225T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W10] 文档版面分析
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:04f2bd3c-f69c-4ecc-9f42-c7c750175966@ai-learning-plan.org
+SUMMARY:[W10] Unstructured 库进阶
+DESCRIPTION:【第W10周: 多模态理解】\n\n📚 学习内容:\n📺 [Unstructured 处理复杂 PDF 和图像](https://www.bilibili.com/video/BV15j421X71b/)\n\n🛠️ 实践任务:\n学习 Unstructured 如何结合 OCR 和版面分析来解析复杂文档。\n\n📅 日期: 2025-12-26 星期五
+CATEGORIES:W10,AI学习,编程,工作日晚间
+DTSTART:20251226T210000
+DTEND:20251226T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W10] Unstructured 库进阶
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a320e664-a81c-4471-9edf-25fb9ebc948b@ai-learning-plan.org
+SUMMARY:[W10] 项目冲刺：LiveLens v0
+DESCRIPTION:【第W10周: 多模态理解】\n\n📚 学习内容:\n📺 **实战教程**: [使用 GPT-4V 实现票据识别](https://www.bilibili.com/video/BV1pj421N7xK/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 搭建 FastAPI 服务，提供一个图片上传接口。<br>**下午 (14:00-17:00)**: 调用 Qwen-VL 或 GPT-4V，通过精心设计的 Prompt，让模型从图片中提取关键字段（如金额、日期、抬头）。\n\n📅 日期: 2025-12-27 星期六
+CATEGORIES:W10,AI学习,编程,周末学习
+DTSTART:20251227T090000
+DTEND:20251227T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W10] 项目冲刺：LiveLens v0
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2b922502-0407-4151-86be-673dede8038f@ai-learning-plan.org
+SUMMARY:[W10] 项目冲刺：评估与优化
+DESCRIPTION:【第W10周: 多模态理解】\n\n📚 学习内容:\n📄 **实战教程**: [OCR 评测指标：准确率、召回率、F1 分数](https://zhuanlan.zhihu.com/p/158880633)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 准备至少 200 张不同类型的票据/截图作为测试集。<br>**下午 (14:00-17:00)**: 编写评估脚本，计算字段级别的 F1 分数，分析错误案例，迭代优化 Prompt，确保指标达标。\n\n📅 日期: 2025-12-28 星期日
+CATEGORIES:W10,AI学习,编程,周末学习
+DTSTART:20251228T090000
+DTEND:20251228T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W10] 项目冲刺：评估与优化
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f9ae0f30-2ea8-4834-bdcd-f670f84c4a46@ai-learning-plan.org
+SUMMARY:[W11] WebRTC 基础入门
+DESCRIPTION:【第W11周: 实时语音对话】\n\n📚 学习内容:\n📺 [WebRTC 基础入门（中文）](https://www.bilibili.com/video/BV13S4y1P72T/)\n\n🛠️ 实践任务:\n理解 WebRTC 的核心概念：`getUserMedia`, `RTCPeerConnection`。\n\n📅 日期: 2025-12-29 星期一
+CATEGORIES:W11,AI学习,编程,工作日晚间
+DTSTART:20251229T210000
+DTEND:20251229T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W11] WebRTC 基础入门
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d446d54b-e888-415f-94cb-9d1ab4d90a9b@ai-learning-plan.org
+SUMMARY:[W11] ASR/TTS API 学习
+DESCRIPTION:【第W11周: 实时语音对话】\n\n📚 学习内容:\n📺 [OpenAI TTS (Text-to-Speech) API 教程](https://www.bilibili.com/video/BV1ie411v79s/)\n\n🛠️ 实践任务:\n学习如何调用语音转文本（ASR）和文本转语音（TTS）服务。\n\n📅 日期: 2025-12-30 星期二
+CATEGORIES:W11,AI学习,编程,工作日晚间
+DTSTART:20251230T210000
+DTEND:20251230T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W11] ASR/TTS API 学习
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:07ed27cc-9312-44ab-b654-ad8d4db8562a@ai-learning-plan.org
+SUMMARY:[W11] 端到端语音对话链路设计
+DESCRIPTION:【第W11周: 实时语音对话】\n\n📚 学习内容:\n📺 [端到端语音对话设计](https://www.bilibili.com/video/BV1pj421X7mK/)\n\n🛠️ 实践任务:\n设计一个完整的语音对话流程：录音 -> ASR -> LLM -> TTS -> 播放。\n\n📅 日期: 2025-12-31 星期三
+CATEGORIES:W11,AI学习,编程,工作日晚间
+DTSTART:20251231T210000
+DTEND:20251231T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W11] 端到端语音对话链路设计
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e8808cf2-949c-472d-badc-bd7a657777ff@ai-learning-plan.org
+SUMMARY:[W11] 新年休息/复习
+DESCRIPTION:【第W11周: 实时语音对话】\n\n📚 学习内容:\n-\n\n🛠️ 实践任务:\n回顾本周学习内容，为项目冲刺做准备。\n\n📅 日期: 2026-01-01 星期四
+CATEGORIES:W11,AI学习,编程,工作日晚间
+DTSTART:20260101T210000
+DTEND:20260101T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W11] 新年休息/复习
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:7e7d072d-8934-4047-b64c-a478a299dc36@ai-learning-plan.org
+SUMMARY:[W11] FastAPI WebSocket 进阶
+DESCRIPTION:【第W11周: 实时语音对话】\n\n📚 学习内容:\n📺 [FastAPI 处理实时音视频流](https://www.bilibili.com/video/BV1L54y1V7zB/)\n\n🛠️ 实践任务:\n学习如何通过 WebSocket 传输二进制音频数据。\n\n📅 日期: 2026-01-02 星期五
+CATEGORIES:W11,AI学习,编程,工作日晚间
+DTSTART:20260102T210000
+DTEND:20260102T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W11] FastAPI WebSocket 进阶
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e7ff9263-9d9b-418c-8a1d-ba02cae0a0f5@ai-learning-plan.org
+SUMMARY:[W11] 项目冲刺：LiveLens v1
+DESCRIPTION:【第W11周: 实时语音对话】\n\n📚 学习内容:\n📺 **实战教程**: [Python WebRTC + FastAPI 实现浏览器语音传输](https://www.bilibili.com/video/BV1DF411g7wK/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 在前端使用 WebRTC 获取麦克风音频流，并通过 WebSocket 发送到后端。<br>**下午 (14:00-17:00)**: 后端接收音频流，调用 ASR 服务转为文本，再交由 LLM 处理。\n\n📅 日期: 2026-01-03 星期六
+CATEGORIES:W11,AI学习,编程,周末学习
+DTSTART:20260103T090000
+DTEND:20260103T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W11] 项目冲刺：LiveLens v1
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a80f39e6-0d88-4c81-8b08-7214c6e28cb1@ai-learning-plan.org
+SUMMARY:[W11] 项目冲刺：TTS 与联调
+DESCRIPTION:【第W11周: 实时语音对话】\n\n📚 学习内容:\n📄 **实战教程**: [OpenAI Realtime API (Whisper + TTS)](https://platform.openai.com/docs/guides/speech-to-text)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 将 LLM 的文本回复传给 TTS 服务，生成音频流，再通过 WebSocket 发回前端播放。<br>**下午 (14:00-17:00)**: 完成端到端联调，测试延迟，实现断线自动重连。\n\n📅 日期: 2026-01-04 星期日
+CATEGORIES:W11,AI学习,编程,周末学习
+DTSTART:20260104T090000
+DTEND:20260104T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W11] 项目冲刺：TTS 与联调
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:353b74fd-a82a-4440-bb15-503aadb891bd@ai-learning-plan.org
+SUMMARY:[W12] VAD (语音活动检测)
+DESCRIPTION:【第W12周: 实时系统鲁棒性】\n\n📚 学习内容:\n📺 [VAD 技术讲解](https://www.bilibili.com/video/BV1eP411y7HQ/)\n\n🛠️ 实践任务:\n理解 VAD 的作用：自动检测用户什么开始说话、什么时候结束。\n\n📅 日期: 2026-01-05 星期一
+CATEGORIES:W12,AI学习,编程,工作日晚间
+DTSTART:20260105T210000
+DTEND:20260105T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W12] VAD (语音活动检测)
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b5c35fdf-427c-4ae9-ab9e-8495e30bf10d@ai-learning-plan.org
+SUMMARY:[W12] 学习 Silero VAD
+DESCRIPTION:【第W12周: 实时系统鲁棒性】\n\n📚 学习内容:\n📺 [Silero-VAD 开源工具使用教程](https://www.bilibili.com/video/BV1o84y1T7vG/)\n\n🛠️ 实践任务:\n学习如何在 Python 中使用 Silero VAD 对音频流进行实时端点检测。\n\n📅 日期: 2026-01-06 星期二
+CATEGORIES:W12,AI学习,编程,工作日晚间
+DTSTART:20260106T210000
+DTEND:20260106T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W12] 学习 Silero VAD
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:0b50b23d-f6c0-4751-a84a-798c9d4a6f73@ai-learning-plan.org
+SUMMARY:[W12] 分布式系统容错设计
+DESCRIPTION:【第W12周: 实时系统鲁棒性】\n\n📚 学习内容:\n📺 [分布式系统容错设计](https://www.bilibili.com/video/BV1zN4y1M7vP/)\n\n🛠️ 实践任务:\n学习断路器、超时、重试等模式，思考如何应用于语音对话链路。\n\n📅 日期: 2026-01-07 星期三
+CATEGORIES:W12,AI学习,编程,工作日晚间
+DTSTART:20260107T210000
+DTEND:20260107T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W12] 分布式系统容错设计
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:0427d3ca-3f30-4a8c-9088-f3d96e6cc408@ai-learning-plan.org
+SUMMARY:[W12] AB 测试与灰度发布
+DESCRIPTION:【第W12周: 实时系统鲁棒性】\n\n📚 学习内容:\n📺 [AB 测试核心概念](https://www.bilibili.com/video/BV1oe4y1Q7w5/)\n\n🛠️ 实践任务:\n了解如何对不同模型或 Prompt 进行 AB 测试，以数据驱动决策。\n\n📅 日期: 2026-01-08 星期四
+CATEGORIES:W12,AI学习,编程,工作日晚间
+DTSTART:20260108T210000
+DTEND:20260108T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W12] AB 测试与灰度发布
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2c756859-cb22-4916-8164-1375950dad53@ai-learning-plan.org
+SUMMARY:[W12] 语音注入攻击防护
+DESCRIPTION:【第W12周: 实时系统鲁棒性】\n\n📚 学习内容:\n📄 [语音助手安全研究：听不见的指令](https://www.freebuf.com/articles/terminal/245801.html)\n\n🛠️ 实践任务:\n了解针对语音系统的攻击方式。\n\n📅 日期: 2026-01-09 星期五
+CATEGORIES:W12,AI学习,编程,工作日晚间
+DTSTART:20260109T210000
+DTEND:20260109T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W12] 语音注入攻击防护
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:63d5d868-1ea6-40e0-8f61-284914881188@ai-learning-plan.org
+SUMMARY:[W12] 项目冲刺：LiveLens v2
+DESCRIPTION:【第W12周: 实时系统鲁棒性】\n\n📚 学习内容:\n📺 **实战教程**: [Python实时音频处理与VAD集成](https://www.bilibili.com/video/BV1Nj421D7hP/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 在后端的音频接收逻辑中集成 Silero VAD，实现智能断句，降低 ASR 成本。<br>**下午 (14:00-17:00)**: 为 ASR/LLM/TTS 每个环节增加超时和重试机制，实现链路自愈。\n\n📅 日期: 2026-01-10 星期六
+CATEGORIES:W12,AI学习,编程,周末学习
+DTSTART:20260110T090000
+DTEND:20260110T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W12] 项目冲刺：LiveLens v2
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b91e6a2c-c4dc-463b-9473-a4bf7bb76602@ai-learning-plan.org
+SUMMARY:[W12] 项目冲刺：安全与评估
+DESCRIPTION:【第W12周: 实时系统鲁棒性】\n\n📚 学习内容:\n📄 **实战教程**: [为LLM应用构建安全护栏](https://aws.amazon.com/cn/blogs/machine-learning/building-llm-powered-bots-and-applications-with-guardrails/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 增加安全护栏，对 ASR 识别后的文本和 LLM 生成的文本进行安全扫描。<br>**下午 (14:00-17:00)**: 设计异常测试用例（如网络中断、API超时），编写归因报告，量化鲁棒性提升。\n\n📅 日期: 2026-01-11 星期日
+CATEGORIES:W12,AI学习,编程,周末学习
+DTSTART:20260111T090000
+DTEND:20260111T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W12] 项目冲刺：安全与评估
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d4a940cf-19bd-4e0c-b984-844f07291967@ai-learning-plan.org
+SUMMARY:[W13] LoRA/QLoRA 微调原理
+DESCRIPTION:【第W13周: 轻量微调】\n\n📚 学习内容:\n📺 [LoRA 原理与实践](https://www.bilibili.com/video/BV1Nj421B7mK/)\n\n🛠️ 实践任务:\n理解为什么 LoRA 能够实现高效微调。\n\n📅 日期: 2026-01-12 星期一
+CATEGORIES:W13,AI学习,编程,工作日晚间
+DTSTART:20260112T210000
+DTEND:20260112T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W13] LoRA/QLoRA 微调原理
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:916496f9-58a7-4b29-8992-cb4c8c7440b9@ai-learning-plan.org
+SUMMARY:[W13] LLaMA Factory 入门
+DESCRIPTION:【第W13周: 轻量微调】\n\n📚 学习内容:\n📺 [LLaMA Factory 一站式微调 (快速上手)](https://www.bilibili.com/video/BV1Bw4m1f7s1/)\n\n🛠️ 实践任务:\n安装 LLaMA Factory，并熟悉其 Web UI 和命令行用法。\n\n📅 日期: 2026-01-13 星期二
+CATEGORIES:W13,AI学习,编程,工作日晚间
+DTSTART:20260113T210000
+DTEND:20260113T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W13] LLaMA Factory 入门
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d7f4f8ea-3d51-441f-973c-5f13088b487c@ai-learning-plan.org
+SUMMARY:[W13] 指令数据格式
+DESCRIPTION:【第W13周: 轻量微调】\n\n📚 学习内容:\n📄 [Alpaca 数据集格式详解](https://github.com/tatsu-lab/stanford_alpaca)\n\n🛠️ 实践任务:\n学习指令微调所需要的数据格式（instruction, input, output）。\n\n📅 日期: 2026-01-14 星期三
+CATEGORIES:W13,AI学习,编程,工作日晚间
+DTSTART:20260114T210000
+DTEND:20260114T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W13] 指令数据格式
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:5c17a38e-470e-4996-8b35-40d1f375eeb9@ai-learning-plan.org
+SUMMARY:[W13] 指令数据合成
+DESCRIPTION:【第W13周: 轻量微调】\n\n📚 学习内容:\n📺 [Self-Instruct 方法解读](https://www.bilibili.com/video/BV1uM411a72A/)\n\n🛠️ 实践任务:\n了解如何使用大模型为特定任务生成微调数据。\n\n📅 日期: 2026-01-15 星期四
+CATEGORIES:W13,AI学习,编程,工作日晚间
+DTSTART:20260115T210000
+DTEND:20260115T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W13] 指令数据合成
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:0bce07bd-938e-4db0-9e07-8a8d1df2be17@ai-learning-plan.org
+SUMMARY:[W13] 微调模型评估
+DESCRIPTION:【第W13周: 轻量微调】\n\n📚 学习内容:\n📄 [OpenCompass 大模型评测实践](https://zhuanlan.zhihu.com/p/642147395)\n\n🛠️ 实践任务:\n了解如何客观评估微调后的模型性能。\n\n📅 日期: 2026-01-16 星期五
+CATEGORIES:W13,AI学习,编程,工作日晚间
+DTSTART:20260116T210000
+DTEND:20260116T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W13] 微调模型评估
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:04d346a1-2018-4220-bd7f-06c8db44280e@ai-learning-plan.org
+SUMMARY:[W13] 项目冲刺：AtlasRAG v4
+DESCRIPTION:【第W13周: 轻量微调】\n\n📚 学习内容:\n📺 **实战教程**: [LLaMA-Factory 保姆级指令微调实战](https://www.bilibili.com/video/BV1464y1373a/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 基于 `AtlasRAG` 的历史问答日志，构造 100-200 条高质量的指令微调数据。<br>**下午 (14:00-17:00)**: 使用 LLaMA Factory 在一个小型号（如 Qwen-7B）上进行 LoRA 微调。\n\n📅 日期: 2026-01-17 星期六
+CATEGORIES:W13,AI学习,编程,周末学习
+DTSTART:20260117T090000
+DTEND:20260117T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W13] 项目冲刺：AtlasRAG v4
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:5c19b446-94c7-4293-a209-fdc8d5619810@ai-learning-plan.org
+SUMMARY:[W13] 项目冲刺：评估与对比
+DESCRIPTION:【第W13周: 轻量微调】\n\n📚 学习内容:\n📄 **实战教程**: [LoRA权重合并与模型部署](https://zhuanlan.zhihu.com/p/633182440)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 将训练好的 LoRA 权重与基础模型合并。<br>**下午 (14:00-17:00)**: 使用 RAGAS 评估微调后的模型，与微调前进行对比，撰写报告，验证 `Groundedness` 指标的提升。\n\n📅 日期: 2026-01-18 星期日
+CATEGORIES:W13,AI学习,编程,周末学习
+DTSTART:20260118T090000
+DTEND:20260118T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W13] 项目冲刺：评估与对比
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:66415a97-6974-4da1-b922-e0000ed9c5b9@ai-learning-plan.org
+SUMMARY:[W14] vLLM 推理加速原理
+DESCRIPTION:【第W14周: 推理服务部署】\n\n📚 学习内容:\n📺 [vLLM 部署与推理加速 (PagedAttention 讲解)](https://www.bilibili.com/video/BV1QZ421z7jL/)\n\n🛠️ 实践任务:\n理解 vLLM 为何能大幅提升吞吐量。\n\n📅 日期: 2026-01-19 星期一
+CATEGORIES:W14,AI学习,编程,工作日晚间
+DTSTART:20260119T210000
+DTEND:20260119T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W14] vLLM 推理加速原理
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:47de4d6b-883b-46b3-8a9d-a8cb7fa2e5c7@ai-learning-plan.org
+SUMMARY:[W14] vLLM 快速上手
+DESCRIPTION:【第W14周: 推理服务部署】\n\n📚 学习内容:\n📄 [vLLM 官方文档 - Quickstart](https://docs.vllm.ai/en/latest/getting_started/quickstart.html)\n\n🛠️ 实践任务:\n安装 vLLM，并以 OpenAI-Compatible 模式启动一个本地模型服务。\n\n📅 日期: 2026-01-20 星期二
+CATEGORIES:W14,AI学习,编程,工作日晚间
+DTSTART:20260120T210000
+DTEND:20260120T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W14] vLLM 快速上手
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:0a6d3178-3dd3-4815-a876-368909b8e557@ai-learning-plan.org
+SUMMARY:[W14] 模型量化技术
+DESCRIPTION:【第W14周: 推理服务部署】\n\n📚 学习内容:\n📺 [模型量化技术详解 (GPTQ, AWQ)](https://www.bilibili.com/video/BV1pj421D7gK/)\n\n🛠️ 实践任务:\n了解量化的基本原理，以及它如何在牺牲少量精度的情况下，大幅降低显存占用。\n\n📅 日期: 2026-01-21 星期三
+CATEGORIES:W14,AI学习,编程,工作日晚间
+DTSTART:20260121T210000
+DTEND:20260121T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W14] 模型量化技术
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:121c91fe-aceb-4f0b-b8b2-9cb9ff09840f@ai-learning-plan.org
+SUMMARY:[W14] 学习 LMDeploy
+DESCRIPTION:【第W14周: 推理服务部署】\n\n📚 学习内容:\n📺 [LMDeploy 量化部署实战](https://www.bilibili.com/video/BV1CH4y1q7P3/)\n\n🛠️ 实践任务:\n了解 LMDeploy 的特点，特别是对 TurboMind 推理引擎和 W4A16 量化的支持。\n\n📅 日期: 2026-01-22 星期四
+CATEGORIES:W14,AI学习,编程,工作日晚间
+DTSTART:20260122T210000
+DTEND:20260122T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W14] 学习 LMDeploy
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:71197465-6e09-4234-8bc7-ec2ed689d0d2@ai-learning-plan.org
+SUMMARY:[W14] Docker 与容器化基础
+DESCRIPTION:【第W14周: 推理服务部署】\n\n📚 学习内容:\n📺 [Docker 核心技术入门](https://www.bilibili.com/video/BV1gr4y1U7CY/)\n\n🛠️ 实践任务:\n学习如何编写 Dockerfile，将应用打包成镜像。\n\n📅 日期: 2026-01-23 星期五
+CATEGORIES:W14,AI学习,编程,工作日晚间
+DTSTART:20260123T210000
+DTEND:20260123T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W14] Docker 与容器化基础
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:7653929a-7d1b-48d7-98e1-60e3f2d974b6@ai-learning-plan.org
+SUMMARY:[W14] 项目冲刺：模型服务部署
+DESCRIPTION:【第W14周: 推理服务部署】\n\n📚 学习内容:\n📺 **实战教程**: [使用 vLLM 部署自己的大模型 API](https://www.bilibili.com/video/BV1jc411373L/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 编写 Dockerfile，将 W13 微调好的模型和 vLLM 环境打包。<br>**下午 (14:00-17:00)**: 构建镜像，并在本地 GPU 环境中运行容器，启动模型推理服务。\n\n📅 日期: 2026-01-24 星期六
+CATEGORIES:W14,AI学习,编程,周末学习
+DTSTART:20260124T090000
+DTEND:20260124T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W14] 项目冲刺：模型服务部署
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6b1dba8d-9e65-48b5-b781-6080c9e31fb8@ai-learning-plan.org
+SUMMARY:[W14] 项目冲刺：压测与集成
+DESCRIPTION:【第W14周: 推理服务部署】\n\n📚 学习内容:\n📄 **实战教程**: [使用 Locust 对 vLLM OpenAI API 进行压力测试](https://github.com/vllm-project/vllm/tree/main/benchmarks/locust)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 使用 Locust 对部署好的服务进行性能压测，绘制显存/吞吐量曲线。<br>**下午 (14:00-17:00)**: 将自托管模型的 API 地址加入到 `ROSS` 的路由配置中，实现混合云+私有化部署。\n\n📅 日期: 2026-01-25 星期日
+CATEGORIES:W14,AI学习,编程,周末学习
+DTSTART:20260125T090000
+DTEND:20260125T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W14] 项目冲刺：压测与集成
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9eebab9d-4d0c-4c6a-98c6-75d647b9052f@ai-learning-plan.org
+SUMMARY:[W15] 回归测试策略
+DESCRIPTION:【第W15周: 观测与回归测试】\n\n📚 学习内容:\n📺 [回归测试策略](https://www.bilibili.com/video/BV1zN4y1h7gP/)\n\n🛠️ 实践任务:\n理解回归测试在 LLM 应用迭代中的重要性：确保新的改动没有破坏原有功能。\n\n📅 日期: 2026-01-26 星期一
+CATEGORIES:W15,AI学习,编程,工作日晚间
+DTSTART:20260126T210000
+DTEND:20260126T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W15] 回归测试策略
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:74dee5bb-9167-4f95-9a06-6d1c17c45821@ai-learning-plan.org
+SUMMARY:[W15] 数据闭环与数据飞轮
+DESCRIPTION:【第W15周: 观测与回归测试】\n\n📚 学习内容:\n📺 [AI 数据飞轮理论 (特斯拉案例)](https://www.bilibili.com/video/BV1Am411Q7kH/)\n\n🛠️ 实践任务:\n学习如何从真实用户数据中挖掘有价值的样本，用于持续改进模型和系统。\n\n📅 日期: 2026-01-27 星期二
+CATEGORIES:W15,AI学习,编程,工作日晚间
+DTSTART:20260127T210000
+DTEND:20260127T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W15] 数据闭环与数据飞轮
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:bf3fae1d-afba-494e-93c3-10a24b80ba5d@ai-learning-plan.org
+SUMMARY:[W15] GitHub Actions 入门
+DESCRIPTION:【第W15周: 观测与回归测试】\n\n📚 学习内容:\n📺 [GitHub Actions 快速入门教程](https://www.bilibili.com/video/BV15V411p7t3/)\n\n🛠️ 实践任务:\n学习如何编写 workflow 文件，实现 CI/CD。\n\n📅 日期: 2026-01-28 星期三
+CATEGORIES:W15,AI学习,编程,工作日晚间
+DTSTART:20260128T210000
+DTEND:20260128T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W15] GitHub Actions 入门
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:df81ef1d-df47-48d3-b085-67edd0c9e7c2@ai-learning-plan.org
+SUMMARY:[W15] Python 邮件发送
+DESCRIPTION:【第W15周: 观测与回归测试】\n\n📚 学习内容:\n📺 [Python smtplib 模块发送邮件](https://www.bilibili.com/video/BV1J5411T7x3/)\n\n🛠️ 实践任务:\n学习如何使用 Python 自动发送包含报告的邮件。\n\n📅 日期: 2026-01-29 星期四
+CATEGORIES:W15,AI学习,编程,工作日晚间
+DTSTART:20260129T210000
+DTEND:20260129T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W15] Python 邮件发送
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b1a4baf8-3596-43dc-b5a4-14aba9946398@ai-learning-plan.org
+SUMMARY:[W15] 整合测试集
+DESCRIPTION:【第W15周: 观测与回归测试】\n\n📚 学习内容:\n📄 [LangSmith 评估与测试集教程](https://docs.smith.langchain.com/evaluation/quickstart)\n\n🛠️ 实践任务:\n规划如何将 RAG, Agent, 多模态的评估测试集整合到一个统一的框架中。\n\n📅 日期: 2026-01-30 星期五
+CATEGORIES:W15,AI学习,编程,工作日晚间
+DTSTART:20260130T210000
+DTEND:20260130T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W15] 整合测试集
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:bdf5a0a2-d854-4231-9a2f-8d276d3f6d6d@ai-learning-plan.org
+SUMMARY:[W15] 项目冲刺：回归测试套件
+DESCRIPTION:【第W15周: 观测与回归测试】\n\n📚 学习内容:\n📺 **实战教程**: [使用 Pytest 和 Langfuse 构建 LLM 应用的 CI/CD](https://langfuse.com/docs/integrations/pytest)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 编写一个统一的测试运行器 (runner)，可以分别触发 RAG, Agent, 多模态的评估流程。<br>**下午 (14:00-17:00)**: 将评估结果（如 RAGAS 分数，Agent 成功率）进行汇总和格式化。\n\n📅 日期: 2026-01-31 星期六
+CATEGORIES:W15,AI学习,编程,周末学习
+DTSTART:20260131T090000
+DTEND:20260131T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W15] 项目冲刺：回归测试套件
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a61e97e3-58b0-4964-82d0-3b60a27c50aa@ai-learning-plan.org
+SUMMARY:[W15] 项目冲刺：自动化周报
+DESCRIPTION:【第W15周: 观测与回归测试】\n\n📚 学习内容:\n📄 **实战教程**: [GitHub Actions 定时任务 (Scheduled events)](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 编写 GitHub Actions workflow，配置为每周日自动运行回归测试套件。<br>**下午 (14:00-17:00)**: 脚本运行结束后，自动生成一份包含核心指标对比的 Markdown 周报，并通过邮件发送。\n\n📅 日期: 2026-02-01 星期日
+CATEGORIES:W15,AI学习,编程,周末学习
+DTSTART:20260201T090000
+DTEND:20260201T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W15] 项目冲刺：自动化周报
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6e1399c9-8a93-4176-8431-08c473f20eba@ai-learning-plan.org
+SUMMARY:[W16] MCP (Model Context Protocol) 概念
+DESCRIPTION:【第W16周: MCP 工具生态】\n\n📚 学习内容:\n📺 [MCP 协议详解 (官方)](https://www.youtube.com/watch?v=Z335dC65-hE)\n\n🛠️ 实践任务:\n理解 MCP 的核心思想：将工具的上下文信息（如文件内容、日历事件）注入到 Prompt 中。\n\n📅 日期: 2026-02-02 星期一
+CATEGORIES:W16,AI学习,编程,工作日晚间
+DTSTART:20260202T210000
+DTEND:20260202T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W16] MCP (Model Context Protocol) 概念
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:bff4cff5-4476-49d7-98f5-9f24036dab10@ai-learning-plan.org
+SUMMARY:[W16] Anthropic Tools & MCP
+DESCRIPTION:【第W16周: MCP 工具生态】\n\n📚 学习内容:\n📄 [Anthropic's vision for an open, interoperable tool use ecosystem](https://www.anthropic.com/news/a-vision-for-tool-use)\n\n🛠️ 实践任务:\n了解 Claude 3 在工具使用方面的设计哲学，以及与 MCP 的关系。\n\n📅 日期: 2026-02-03 星期二
+CATEGORIES:W16,AI学习,编程,工作日晚间
+DTSTART:20260203T210000
+DTEND:20260203T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W16] Anthropic Tools & MCP
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:093d37b6-06ac-4bb0-a831-0819e4d51d87@ai-learning-plan.org
+SUMMARY:[W16] MCP 工具开发指南
+DESCRIPTION:【第W16周: MCP 工具生态】\n\n📚 学习内容:\n📺 [MCP 工具开发指南](https://www.bilibili.com/video/BV1zN4y1h7mK/)\n\n🛠️ 实践任务:\n学习如何将一个普通 API 封装成符合 MCP 规范的工具。\n\n📅 日期: 2026-02-04 星期三
+CATEGORIES:W16,AI学习,编程,工作日晚间
+DTSTART:20260204T210000
+DTEND:20260204T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W16] MCP 工具开发指南
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:5f67aa9e-e349-42ff-9e41-1b99389ba287@ai-learning-plan.org
+SUMMARY:[W16] 工具权限与安全
+DESCRIPTION:【第W16周: MCP 工具生态】\n\n📚 学习内容:\n📄 [OpenAPI 3.0 安全方案](https://swagger.io/docs/specification/authentication/)\n\n🛠️ 实践任务:\n思考在开放的工具生态中，如何进行权限管理和安全控制。\n\n📅 日期: 2026-02-05 星期四
+CATEGORIES:W16,AI学习,编程,工作日晚间
+DTSTART:20260205T210000
+DTEND:20260205T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W16] 工具权限与安全
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2c58343e-7528-4669-b47f-63321082360d@ai-learning-plan.org
+SUMMARY:[W16] 复习与设计
+DESCRIPTION:【第W16周: MCP 工具生态】\n\n📚 学习内容:\n📄 [LangChain 工具 (Tools) 文档](https://python.langchain.com/docs/modules/tools/)\n\n🛠️ 实践任务:\n设计如何改造 `ROSS` Agent，使其能够动态发现和使用 MCP 工具。\n\n📅 日期: 2026-02-06 星期五
+CATEGORIES:W16,AI学习,编程,工作日晚间
+DTSTART:20260206T210000
+DTEND:20260206T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W16] 复习与设计
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:61ee15a2-5d97-4d1e-9b93-4bcdff5b7446@ai-learning-plan.org
+SUMMARY:[W16] 项目冲刺：ROSS v3
+DESCRIPTION:【第W16周: MCP 工具生态】\n\n📚 学习内容:\n📺 **实战教程**: [使用 Claude 3 Function Calling 接入外部工具](https://www.bilibili.com/video/BV1pj421X7hP/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 实现一个 MCP 适配器，将标准的 MCP 工具定义转换为 LangChain Tool 格式。<br>**下午 (14:00-17:00)**: 接入一个公共的 MCP 工具，例如读取网页内容的浏览器工具。\n\n📅 日期: 2026-02-07 星期六
+CATEGORIES:W16,AI学习,编程,周末学习
+DTSTART:20260207T090000
+DTEND:20260207T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W16] 项目冲刺：ROSS v3
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b385e24e-7bf3-47c9-9b5b-6ff21666fda6@ai-learning-plan.org
+SUMMARY:[W16] 项目冲刺：权限与测试
+DESCRIPTION:【第W16周: MCP 工具生态】\n\n📚 学习内容:\n📄 **实战教程**: [FastAPI 依赖注入实现权限控制](https://fastapi.tiangolo.com/tutorial/dependencies/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 为工具接入设计一个简单的权限模型，例如基于 API Key 的访问控制。<br>**下午 (14:00-17:00)**: 编写测试用例，验证 Agent 能够成功调用 MCP 工具并获得正确结果，确保新工具接入耗时小于30分钟。\n\n📅 日期: 2026-02-08 星期日
+CATEGORIES:W16,AI学习,编程,周末学习
+DTSTART:20260208T090000
+DTEND:20260208T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W16] 项目冲刺：权限与测试
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2c9b9c84-bda0-4faf-b786-9fb60b01cbdc@ai-learning-plan.org
+SUMMARY:[W17] WebLLM/WebGPU 基础
+DESCRIPTION:【第W17周: 端侧推理】\n\n📚 学习内容:\n📺 [WebLLM 浏览器端推理](https://www.bilibili.com/video/BV1au4m1N7qM/)\n\n🛠️ 实践任务:\n理解 WebGPU 如何让浏览器利用 GPU 进行高性能计算，以及 WebLLM 的工作原理。\n\n📅 日期: 2026-02-09 星期一
+CATEGORIES:W17,AI学习,编程,工作日晚间
+DTSTART:20260209T210000
+DTEND:20260209T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W17] WebLLM/WebGPU 基础
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:485fefb5-032d-402c-be0f-6b528ffc77c5@ai-learning-plan.org
+SUMMARY:[W17] MLC-LLM 编译模型
+DESCRIPTION:【第W17周: 端侧推理】\n\n📚 学习内容:\n📄 [MLC-LLM: Compile Models](https://mlc.ai/mlc-llm/docs/compilation/compile_models.html)\n\n🛠️ 实践任务:\n学习如何使用 MLC 工具链将 Hugging Face 上的模型编译成 WebLLM 可用的格式。\n\n📅 日期: 2026-02-10 星期二
+CATEGORIES:W17,AI学习,编程,工作日晚间
+DTSTART:20260210T210000
+DTEND:20260210T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W17] MLC-LLM 编译模型
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2267a4ba-c464-4c3c-9025-225ef9534248@ai-learning-plan.org
+SUMMARY:[W17] WebLLM JS API
+DESCRIPTION:【第W17周: 端侧推理】\n\n📚 学习内容:\n📄 [WebLLM Javascript API 文档](https://webllm.mlc.ai/docs/get_started/mlc_chat_cli.html#javascript-api)\n\n🛠️ 实践任务:\n学习如何在 JavaScript 中加载模型、创建聊天实例、进行推理。\n\n📅 日期: 2026-02-11 星期三
+CATEGORIES:W17,AI学习,编程,工作日晚间
+DTSTART:20260211T210000
+DTEND:20260211T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W17] WebLLM JS API
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:943dab3f-6e5e-4e91-9e01-3750dda5d358@ai-learning-plan.org
+SUMMARY:[W17] 边缘计算与回退策略
+DESCRIPTION:【第W17周: 端侧推理】\n\n📚 学习内容:\n📺 [边缘 AI 部署实战](https://www.bilibili.com/video/BV1pj421D7mP/)\n\n🛠️ 实践任务:\n设计策略：当端侧模型能力不足或用户设备不支持时，如何无缝切换到云端 API。\n\n📅 日期: 2026-02-12 星期四
+CATEGORIES:W17,AI学习,编程,工作日晚间
+DTSTART:20260212T210000
+DTEND:20260212T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W17] 边缘计算与回退策略
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b42f2f53-9e43-4eb0-85df-f686ac9d283c@ai-learning-plan.org
+SUMMARY:[W17] 模型量化与压缩
+DESCRIPTION:【第W17周: 端侧推理】\n\n📚 学习内容:\n📄 [MLC-LLM: Quantization](https://mlc.ai/mlc-llm/docs/compilation/quantization.html)\n\n🛠️ 实践任务:\n学习如何对模型进行量化，以减小体积，使其适合在浏览器中加载。\n\n📅 日期: 2026-02-13 星期五
+CATEGORIES:W17,AI学习,编程,工作日晚间
+DTSTART:20260213T210000
+DTEND:20260213T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W17] 模型量化与压缩
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:8a0691d0-47f8-4869-92eb-3868f7f4546e@ai-learning-plan.org
+SUMMARY:[W17] 项目冲刺：EdgeSLM v0
+DESCRIPTION:【第W17周: 端侧推理】\n\n📚 学习内容:\n📺 **实战教程**: [WebLLM 官方 Demo 和上手指南](https://www.bilibili.com/video/BV1Nj421B7hK/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 选择一个小型号（如 TinyLlama），使用 MLC-LLM 将其编译并量化。<br>**下午 (14:00-17:00)**: 构建一个简单的 HTML 页面，使用 WebLLM JS API 在浏览器中加载并运行该模型。\n\n📅 日期: 2026-02-14 星期六
+CATEGORIES:W17,AI学习,编程,周末学习
+DTSTART:20260214T090000
+DTEND:20260214T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W17] 项目冲刺：EdgeSLM v0
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dc4e6184-1454-47fa-981c-e8f68f3ae5ef@ai-learning-plan.org
+SUMMARY:[W17] 项目冲刺：云端回退
+DESCRIPTION:【第W17周: 端侧推理】\n\n📚 学习内容:\n📄 **实战教程**: [JavaScript Error Handling and Fallbacks](https://www.w3schools.com/js/js_errors.asp)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 实现检测逻辑，判断用户的浏览器是否支持 WebGPU 和 WebLLM。<br>**下午 (14:00-17:00)**: 如果不支持或模型加载失败，则自动调用 `ROSS` 的云端 API 作为回退，确保服务可用性。\n\n📅 日期: 2026-02-15 星期日
+CATEGORIES:W17,AI学习,编程,周末学习
+DTSTART:20260215T090000
+DTEND:20260215T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W17] 项目冲刺：云端回退
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f6f44743-055e-4bfb-8b7b-53debc407c54@ai-learning-plan.org
+SUMMARY:[W18] React + TypeScript 入门
+DESCRIPTION:【第W18周: 前端工程化】\n\n📚 学习内容:\n📺 [React + TypeScript 实战](https://www.bilibili.com/video/BV1Nj421M7hP/)\n\n🛠️ 实践任务:\n搭建一个基于 Vite + React + TS 的前端项目。\n\n📅 日期: 2026-02-16 星期一
+CATEGORIES:W18,AI学习,编程,工作日晚间
+DTSTART:20260216T210000
+DTEND:20260216T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W18] React + TypeScript 入门
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a2bda881-1279-4663-aafc-c94d2a58ab9b@ai-learning-plan.org
+SUMMARY:[W18] Tailwind CSS 快速上手
+DESCRIPTION:【第W18周: 前端工程化】\n\n📚 学习内容:\n📺 [Tailwind CSS 快速上手](https://www.bilibili.com/video/BV1pj421D7gK/)\n\n🛠️ 实践任务:\n学习原子化 CSS 的思想，并使用 Tailwind 构建一个简单的 UI 界面。\n\n📅 日期: 2026-02-17 星期二
+CATEGORIES:W18,AI学习,编程,工作日晚间
+DTSTART:20260217T210000
+DTEND:20260217T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W18] Tailwind CSS 快速上手
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:43428d2e-868e-419b-9107-4a52440da832@ai-learning-plan.org
+SUMMARY:[W18] 可视化工作流库
+DESCRIPTION:【第W18周: 前端工程化】\n\n📚 学习内容:\n📺 [React Flow 入门教程](https://www.bilibili.com/video/BV14T411G7B4/)\n\n🛠️ 实践任务:\n学习如何使用 React Flow 创建可拖拽、可连接的节点式 UI。\n\n📅 日期: 2026-02-18 星期三
+CATEGORIES:W18,AI学习,编程,工作日晚间
+DTSTART:20260218T210000
+DTEND:20260218T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W18] 可视化工作流库
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ae5e4945-ded7-445a-a2fc-63ec4c0640a7@ai-learning-plan.org
+SUMMARY:[W18] 低代码平台设计
+DESCRIPTION:【第W18周: 前端工程化】\n\n📚 学习内容:\n📺 [低代码平台设计](https://www.bilibili.com/video/BV1zN4y1g7hP/)\n\n🛠️ 实践任务:\n思考如何将可视化编排的流程图，解析成可执行的代码或配置。\n\n📅 日期: 2026-02-19 星期四
+CATEGORIES:W18,AI学习,编程,工作日晚间
+DTSTART:20260219T210000
+DTEND:20260219T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W18] 低代码平台设计
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a4f599ad-fa5e-415b-a00d-ff9ea7a2013a@ai-learning-plan.org
+SUMMARY:[W18] 状态管理 (Zustand)
+DESCRIPTION:【第W18周: 前端工程化】\n\n📚 学习内容:\n📺 [Zustand - 轻量级 React 状态管理库](https://www.bilibili.com/video/BV1y34y1Z78k/)\n\n🛠️ 实践任务:\n学习如何使用 Zustand 管理 React Flow 中的节点和边的状态。\n\n📅 日期: 2026-02-20 星期五
+CATEGORIES:W18,AI学习,编程,工作日晚间
+DTSTART:20260220T210000
+DTEND:20260220T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W18] 状态管理 (Zustand)
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1c1ac2a0-e604-4b94-8d90-51cea0b961f3@ai-learning-plan.org
+SUMMARY:[W18] 项目冲刺：PromptCanvas
+DESCRIPTION:【第W18周: 前端工程化】\n\n📚 学习内容:\n📺 **实战教程**: [从零搭建一个流程图可视化编辑器](https://www.bilibili.com/video/BV1yM411S7GH/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 使用 React Flow 搭建可视化编辑器的主体界面，实现节点的拖拽和添加。<br>**下午 (14:00-17:00)**: 设计不同的节点类型（如 LLM, Prompt, Tool），并实现节点之间的连接。\n\n📅 日期: 2026-02-21 星期六
+CATEGORIES:W18,AI学习,编程,周末学习
+DTSTART:20260221T090000
+DTEND:20260221T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W18] 项目冲刺：PromptCanvas
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a8fff9b1-38dc-496a-b438-20ed9f6ab55a@ai-learning-plan.org
+SUMMARY:[W18] 项目冲刺：部署与模板
+DESCRIPTION:【第W18周: 前端工程化】\n\n📚 学习内容:\n📄 **实战教程**: [React Flow - Saving and Restoring Flows](https://reactflow.dev/learn/concepts/saving-and-restoring-flows)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 实现将画布上的流程图导出为 JSON 配置的功能，并能从 JSON 恢复。<br>**下午 (14:00-17:00)**: 创建至少 10 个常用的模板（如 RAG, Agent），实现一键加载和运行。\n\n📅 日期: 2026-02-22 星期日
+CATEGORIES:W18,AI学习,编程,周末学习
+DTSTART:20260222T090000
+DTEND:20260222T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W18] 项目冲刺：部署与模板
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:bd9b7689-fac5-476e-a99d-e15e5b834e12@ai-learning-plan.org
+SUMMARY:[W19] 技术文档编写 (README)
+DESCRIPTION:【第W19周: 作品集封装】\n\n📚 学习内容:\n📺 [README 模板与技巧](https://www.bilibili.com/video/BV15T4y1v7Fz/)\n\n🛠️ 实践任务:\n学习如何编写一个结构清晰、内容丰富的 README 文件。\n\n📅 日期: 2026-02-23 星期一
+CATEGORIES:W19,AI学习,编程,工作日晚间
+DTSTART:20260223T210000
+DTEND:20260223T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W19] 技术文档编写 (README)
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:04be8cc8-0a6c-41be-a041-8e9bc0e3cd20@ai-learning-plan.org
+SUMMARY:[W19] 架构图绘制 (Excalidraw)
+DESCRIPTION:【第W19周: 作品集封装】\n\n📚 学习内容:\n📺 [Excalidraw 架构图绘制](https://www.bilibili.com/video/BV15P4y1d7bX/)\n\n🛠️ 实践任务:\n学习使用 Excalidraw 绘制简洁、专业的手绘风格架构图。\n\n📅 日期: 2026-02-24 星期二
+CATEGORIES:W19,AI学习,编程,工作日晚间
+DTSTART:20260224T210000
+DTEND:20260224T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W19] 架构图绘制 (Excalidraw)
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f1223ede-d89a-4ec2-8be0-7c1f698277aa@ai-learning-plan.org
+SUMMARY:[W19] Docker Compose 入门
+DESCRIPTION:【第W19周: 作品集封装】\n\n📚 学习内容:\n📺 [Docker Compose 快速入门](https://www.bilibili.com/video/BV1FT4y1E74V/)\n\n🛠️ 实践任务:\n学习如何使用 `docker-compose.yml` 文件来编排多个容器（如应用服务、数据库、缓存）。\n\n📅 日期: 2026-02-25 星期三
+CATEGORIES:W19,AI学习,编程,工作日晚间
+DTSTART:20260225T210000
+DTEND:20260225T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W19] Docker Compose 入门
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:46f9807b-874a-40a3-abc2-ac094d5e6b20@ai-learning-plan.org
+SUMMARY:[W19] 编写部署脚本 (Shell)
+DESCRIPTION:【第W19周: 作品集封装】\n\n📚 学习内容:\n📺 [Shell 脚本入门教程](https://www.bilibili.com/video/BV1E4411B7q2/)\n\n🛠️ 实践任务:\n学习编写简单的 Shell 脚本，自动化环境配置和服务启动。\n\n📅 日期: 2026-02-26 星期四
+CATEGORIES:W19,AI学习,编程,工作日晚间
+DTSTART:20260226T210000
+DTEND:20260226T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W19] 编写部署脚本 (Shell)
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:621171fa-8269-4b54-aa75-0d808cb54345@ai-learning-plan.org
+SUMMARY:[W19] 开源项目文档规范
+DESCRIPTION:【第W19周: 作品集封装】\n\n📚 学习内容:\n📄 [Docusaurus - 构建优秀的开源文档网站](https://docusaurus.io/)\n\n🛠️ 实践任务:\n了解如何为项目创建更完整的文档网站（选做）。\n\n📅 日期: 2026-02-27 星期五
+CATEGORIES:W19,AI学习,编程,工作日晚间
+DTSTART:20260227T210000
+DTEND:20260227T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W19] 开源项目文档规范
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:95bcb659-27da-42c7-9b37-08a6abeebca2@ai-learning-plan.org
+SUMMARY:[W19] 项目冲刺：文档与部署
+DESCRIPTION:【第W19周: 作品集封装】\n\n📚 学习内容:\n📄 **实战教程**: [一个优秀的 GitHub 项目 README 应该怎么写](https://github.com/matiassingers/awesome-readme)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00) (AtlasRAG & ROSS)**: 为这两个项目绘制架构图，编写详细的 README，并创建 `docker-compose.yml` 实现一键部署。<br>**下午 (14:00-17:00) (LiveLens & EdgeSLM)**: 完成另外两个项目的文档和部署脚本。\n\n📅 日期: 2026-02-28 星期六
+CATEGORIES:W19,AI学习,编程,周末学习
+DTSTART:20260228T090000
+DTEND:20260228T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W19] 项目冲刺：文档与部署
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f639da4d-52bf-40ed-a95e-87e6f51e69fa@ai-learning-plan.org
+SUMMARY:[W19] 项目冲刺：验证与演练
+DESCRIPTION:【第W19周: 作品集封装】\n\n📚 学习内容:\n-\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 清理环境，严格按照每个项目的 README 指引进行部署，确保能在 20 分钟内跑通。<br>**下午 (14:00-17:00)**: 录制每个项目的演示视频（Gif 或短视频），为后续求职做准备。\n\n📅 日期: 2026-03-01 星期日
+CATEGORIES:W19,AI学习,编程,周末学习
+DTSTART:20260301T090000
+DTEND:20260301T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W19] 项目冲刺：验证与演练
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:0243a2f0-98cd-4f49-917f-e66dbb99e9e1@ai-learning-plan.org
+SUMMARY:[W20] 技术文章写作技巧
+DESCRIPTION:【第W20周: 技术写作与传播】\n\n📚 学习内容:\n📺 [技术文章写作分享](https://www.bilibili.com/video/BV11K411L7QB/)\n\n🛠️ 实践任务:\n学习如何确定文章主题、搭建结构、吸引读者。\n\n📅 日期: 2026-03-02 星期一
+CATEGORIES:W20,AI学习,编程,工作日晚间
+DTSTART:20260302T210000
+DTEND:20260302T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W20] 技术文章写作技巧
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:59bf1ba4-399e-4af1-af8a-589678e3f60a@ai-learning-plan.org
+SUMMARY:[W20] 选择写作平台
+DESCRIPTION:【第W20周: 技术写作与传播】\n\n📚 学习内容:\n📄 [知乎、掘金、CSDN、博客园平台对比](https://www.zhihu.com/question/20490041)\n\n🛠️ 实践任务:\n了解不同平台的特点，选择适合自己的 1-2 个平台进行深耕。\n\n📅 日期: 2026-03-03 星期二
+CATEGORIES:W20,AI学习,编程,工作日晚间
+DTSTART:20260303T210000
+DTEND:20260303T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W20] 选择写作平台
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ca992979-83b5-42e2-bbde-d96407981086@ai-learning-plan.org
+SUMMARY:[W20] 录屏与演示工具
+DESCRIPTION:【第W20周: 技术写作与传播】\n\n📚 学习内容:\n📺 [技术演示视频制作 (OBS Studio 教程)](https://www.bilibili.com/video/BV1Zf4y1L75e/)\n\n🛠️ 实践任务:\n学习使用 OBS Studio 或其他工具录制高质量的桌面演示。\n\n📅 日期: 2026-03-04 星期三
+CATEGORIES:W20,AI学习,编程,工作日晚间
+DTSTART:20260304T210000
+DTEND:20260304T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W20] 录屏与演示工具
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ae379218-07a6-40d0-bf45-68d2f647b966@ai-learning-plan.org
+SUMMARY:[W20] 视频剪辑入门
+DESCRIPTION:【第W20周: 技术写作与传播】\n\n📚 学习内容:\n📺 [剪映快速入门教程](https://www.bilibili.com/video/BV1F34y1v7t1/)\n\n🛠️ 实践任务:\n学习对录制的视频进行简单的剪辑、添加字幕和配音。\n\n📅 日期: 2026-03-05 星期四
+CATEGORIES:W20,AI学习,编程,工作日晚间
+DTSTART:20260305T210000
+DTEND:20260305T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W20] 视频剪辑入门
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:12c6fa52-116a-4d9a-b23a-3dab3e758a78@ai-learning-plan.org
+SUMMARY:[W20] 技术博客运营
+DESCRIPTION:【第W20周: 技术写作与传播】\n\n📚 学习内容:\n📺 [技术博客运营技巧](https://www.bilibili.com/video/BV1Nj421M7hK/)\n\n🛠️ 实践任务:\n了解如何通过 SEO、社区互动等方式提高文章的曝光度。\n\n📅 日期: 2026-03-06 星期五
+CATEGORIES:W20,AI学习,编程,工作日晚间
+DTSTART:20260306T210000
+DTEND:20260306T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W20] 技术博客运营
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:00e4955b-78c1-4ec8-a436-e6914ae625f0@ai-learning-plan.org
+SUMMARY:[W20] 项目冲刺：写作与发布
+DESCRIPTION:【第W20周: 技术写作与传播】\n\n📚 学习内容:\n📄 **实战教程**: [如何写一篇有深度的技术文章](https://coolshell.cn/articles/3723.html)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 完成第一篇长文《从0到1构建企业级RAG系统：AtlasRAG实战总结》。<br>**下午 (14:00-17:00)**: 完成第二篇长文《构建多模型智能路由Agent：ROSS的设计与实现》。\n\n📅 日期: 2026-03-07 星期六
+CATEGORIES:W20,AI学习,编程,周末学习
+DTSTART:20260307T090000
+DTEND:20260307T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W20] 项目冲刺：写作与发布
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:278812e8-8550-4402-9e21-fe77edbde99c@ai-learning-plan.org
+SUMMARY:[W20] 项目冲刺：视频制作
+DESCRIPTION:【第W20周: 技术写作与传播】\n\n📚 学习内容:\n📄 **实战教程**: [如何为你的开源项目制作一个惊艳的Demo视频](https://zhuanlan.zhihu.com/p/478631580)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 完成第三篇长文，并发布三篇文章。<br>**下午 (14:00-17:00)**: 为 `PromptCanvas` 和 `LiveLens` 两个项目制作 1-2 分钟的演示视频，并上传到 Bilibili 或 YouTube。\n\n📅 日期: 2026-03-08 星期日
+CATEGORIES:W20,AI学习,编程,周末学习
+DTSTART:20260308T090000
+DTEND:20260308T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W20] 项目冲刺：视频制作
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6f326678-05bb-4b63-b6f7-a28b9eae1bde@ai-learning-plan.org
+SUMMARY:[W21] 程序员简历指南
+DESCRIPTION:【第W21周: 简历与开源贡献】\n\n📚 学习内容:\n📺 [程序员简历指南](https://www.bilibili.com/video/BV1hh4y1s7vE/)\n\n🛠️ 实践任务:\n学习 STAR 法则（Situation, Task, Action, Result），学习如何量化项目成果。\n\n📅 日期: 2026-03-09 星期一
+CATEGORIES:W21,AI学习,编程,工作日晚间
+DTSTART:20260309T210000
+DTEND:20260309T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W21] 程序员简历指南
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d902c72b-a798-4817-a148-ff5f7bda41c3@ai-learning-plan.org
+SUMMARY:[W21] 英文简历撰写
+DESCRIPTION:【第W21周: 简历与开源贡献】\n\n📚 学习内容:\n📄 [哈佛大学简历写作指南](https://hwpi.harvard.edu/files/ocs/files/hes-resume-cover-letter-guide.pdf)\n\n🛠️ 实践任务:\n学习英文技术简历的常用词汇和表达方式。\n\n📅 日期: 2026-03-10 星期二
+CATEGORIES:W21,AI学习,编程,工作日晚间
+DTSTART:20260310T210000
+DTEND:20260310T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W21] 英文简历撰写
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ee86eabb-bf8f-4f82-863d-ed339440521f@ai-learning-plan.org
+SUMMARY:[W21] 如何参与开源项目
+DESCRIPTION:【第W21周: 简历与开源贡献】\n\n📚 学习内容:\n📺 [如何参与开源项目](https://www.bilibili.com/video/BV1iT41197c3/)\n\n🛠️ 实践任务:\n学习如何找到适合新手的开源项目，如何提第一个 Issue 或 Pull Request。\n\n📅 日期: 2026-03-11 星期三
+CATEGORIES:W21,AI学习,编程,工作日晚间
+DTSTART:20260311T210000
+DTEND:20260311T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W21] 如何参与开源项目
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:21c01c00-d588-4a42-ab89-2db6384e63ae@ai-learning-plan.org
+SUMMARY:[W21] Pull Request 最佳实践
+DESCRIPTION:【第W21周: 简历与开源贡献】\n\n📚 学习内容:\n📺 [Pull Request 最佳实践](https://www.bilibili.com/video/BV1pj421X7gK/)\n\n🛠️ 实践任务:\n学习如何编写清晰的 PR 描述，如何与社区成员进行有效沟通。\n\n📅 日期: 2026-03-12 星期四
+CATEGORIES:W21,AI学习,编程,工作日晚间
+DTSTART:20260312T210000
+DTEND:20260312T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W21] Pull Request 最佳实践
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a05e659c-ebeb-4050-b165-e231f04c8645@ai-learning-plan.org
+SUMMARY:[W21] Project Brief 设计
+DESCRIPTION:【第W21周: 简历与开源贡献】\n\n📚 学习内容:\n📄 [一页纸项目简介模板](https://www.template.net/business/briefs/one-page-project-brief/)\n\n🛠️ 实践任务:\n学习如何将一个复杂的项目浓缩到一页纸的精华介绍中。\n\n📅 日期: 2026-03-13 星期五
+CATEGORIES:W21,AI学习,编程,工作日晚间
+DTSTART:20260313T210000
+DTEND:20260313T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W21] Project Brief 设计
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4c5982e9-9f41-4bb6-8052-aed91f64bd2c@ai-learning-plan.org
+SUMMARY:[W21] 项目冲刺：简历撰写
+DESCRIPTION:【第W21周: 简历与开源贡献】\n\n📚 学习内容:\n📄 **实战教程**: [冷熊简历 (在线 Markdown 简历工具)](https://cv.ftqq.com/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 使用 Markdown 撰写中文简历初稿，将四大项目经历用 STAR 法则进行描述。<br>**下午 (14:00-17:00)**: 完成英文简历的撰写，并请英语好的朋友或使用工具进行校对。\n\n📅 日期: 2026-03-14 星期六
+CATEGORIES:W21,AI学习,编程,周末学习
+DTSTART:20260314T090000
+DTEND:20260314T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W21] 项目冲刺：简历撰写
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:181efebe-41bd-474d-b9b9-3aa5cda560f7@ai-learning-plan.org
+SUMMARY:[W21] 项目冲刺：开源与 Brief
+DESCRIPTION:【第W21周: 简历与开源贡献】\n\n📚 学习内容:\n📄 **实战教程**: [寻找 'good first issue'](https://goodfirstissue.dev/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 为 LangChain, LLaMA Factory 等你熟悉的开源项目，尝试修复一个拼写错误、改进一段文档或回答一个 Issue。<br>**下午 (14:00-17:00)**: 为 `AtlasRAG` 和 `ROSS` 两个核心项目制作一页纸的 Project Brief。\n\n📅 日期: 2026-03-15 星期日
+CATEGORIES:W21,AI学习,编程,周末学习
+DTSTART:20260315T090000
+DTEND:20260315T170000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W21] 项目冲刺：开源与 Brief
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ea178385-b226-4048-95d0-d401e6ef3f0a@ai-learning-plan.org
+SUMMARY:[W22] 系统设计面试方法论
+DESCRIPTION:【第W22周: 系统设计准备】\n\n📚 学习内容:\n📺 [大厂面试系统设计](https://www.bilibili.com/video/BV19v4y1A7n4/)\n\n🛠️ 实践任务:\n学习面试官考察的要点：需求分析、方案设计、技术选型、优劣权衡 (Trade-off)。\n\n📅 日期: 2026-03-16 星期一
+CATEGORIES:W22,AI学习,编程,工作日晚间
+DTSTART:20260316T210000
+DTEND:20260316T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W22] 系统设计面试方法论
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ab2ffb94-1438-41bd-9336-8491868920eb@ai-learning-plan.org
+SUMMARY:[W22] 设计一个 RAG 系统
+DESCRIPTION:【第W22周: 系统设计准备】\n\n📚 学习内容:\n📺 [AI 系统设计面试题：设计一个智能客服](https://www.bilibili.com/video/BV1Nj421M7gP/)\n\n🛠️ 实践任务:\n结合自己的 `AtlasRAG` 项目经验，系统性地梳理一遍设计思路和关键决策点。\n\n📅 日期: 2026-03-17 星期二
+CATEGORIES:W22,AI学习,编程,工作日晚间
+DTSTART:20260317T210000
+DTEND:20260317T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W22] 设计一个 RAG 系统
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:3665e977-a938-4050-b723-1cda8a71964f@ai-learning-plan.org
+SUMMARY:[W22] 设计一个 Agent 系统
+DESCRIPTION:【第W22周: 系统设计准备】\n\n📚 学习内容:\n📄 [LLM-Powered-Agents 系统设计](https://www.e2b.dev/blog/llm-powered-agents-a-system-design-overview)\n\n🛠️ 实践任务:\n结合 `ROSS` 项目经验，思考如何设计一个可扩展、可观测的 Agent 平台。\n\n📅 日期: 2026-03-18 星期三
+CATEGORIES:W22,AI学习,编程,工作日晚间
+DTSTART:20260318T210000
+DTEND:20260318T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W22] 设计一个 Agent 系统
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ae9a0c04-5515-4845-84dc-bb33266fcdd8@ai-learning-plan.org
+SUMMARY:[W22] 设计一个推荐系统
+DESCRIPTION:【第W22周: 系统设计准备】\n\n📚 学习内容:\n📺 [推荐系统设计入门](https://www.bilibili.com/video/BV1bK4y1A7gA/)\n\n🛠️ 实践任务:\n学习推荐系统的基本架构：召回、排序、重排。\n\n📅 日期: 2026-03-19 星期四
+CATEGORIES:W22,AI学习,编程,工作日晚间
+DTSTART:20260319T210000
+DTEND:20260319T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W22] 设计一个推荐系统
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b945591b-fdb3-4387-b232-d4aaade42a8b@ai-learning-plan.org
+SUMMARY:[W22] 设计一个短链服务
+DESCRIPTION:【第W22周: 系统设计准备】\n\n📚 学习内容:\n📺 [系统设计经典题：设计 TinyURL](https://www.bilibili.com/video/BV1jV411u7e7/)\n\n🛠️ 实践任务:\n学习通用的系统设计问题，巩固基础。\n\n📅 日期: 2026-03-20 星期五
+CATEGORIES:W22,AI学习,编程,工作日晚间
+DTSTART:20260320T210000
+DTEND:20260320T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W22] 设计一个短链服务
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d22af0ca-8916-4609-a9c6-3ed4eb09e19b@ai-learning-plan.org
+SUMMARY:[W22] 项目冲刺：题库整理
+DESCRIPTION:【第W22周: 系统设计准备】\n\n📚 学习内容:\n📄 **实战教程**: [Grokking the System Design Interview](https://www.educative.io/courses/grokking-the-system-design-interview)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00) & 下午 (14:00-17:00)**: 整理 5 套经典的 AI 系统设计题（如智能客服、代码 Copilot、新闻摘要、多模态搜索），为每个题目绘制详细的架构图。\n\n📅 日期: 2026-03-21 星期六
+CATEGORIES:W22,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260321
+DTEND;VALUE=DATE:20260322
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W22] 项目冲刺：题库整理
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1ff15541-ee40-434e-a231-c5569968e863@ai-learning-plan.org
+SUMMARY:[W22] 项目冲刺：模拟讲解
+DESCRIPTION:【第W22周: 系统设计准备】\n\n📚 学习内容:\n📄 **实战教程**: [如何白板讲解系统设计](https://igotanoffer.com/blogs/tech/system-design-interview-whiteboard)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00) & 下午 (14:00-17:00)**: 找一个朋友或对着镜子，模拟面试场景，要求在 30 分钟内讲清楚每个题目的端到端方案，并说明其中的权衡。\n\n📅 日期: 2026-03-22 星期日
+CATEGORIES:W22,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260322
+DTEND;VALUE=DATE:20260323
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W22] 项目冲刺：模拟讲解
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:8faa67b7-1133-4ff3-904d-e84dbad44366@ai-learning-plan.org
+SUMMARY:[W23] LeetCode 刷题技巧
+DESCRIPTION:【第W23周: 代码能力维持】\n\n📚 学习内容:\n📺 [LeetCode 刷题技巧](https://www.bilibili.com/video/BV1fA411b7jM/)\n\n🛠️ 实践任务:\n复习常见数据结构和算法，重点关注字符串、树、图、动态规划。\n\n📅 日期: 2026-03-23 星期一
+CATEGORIES:W23,AI学习,编程,工作日晚间
+DTSTART:20260323T210000
+DTEND:20260323T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W23] LeetCode 刷题技巧
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b314b230-965f-4bb5-8577-6138321bd828@ai-learning-plan.org
+SUMMARY:[W23] Python 异步编程复习
+DESCRIPTION:【第W23周: 代码能力维持】\n\n📚 学习内容:\n📺 [Python Asyncio 核心概念与实战](https://www.bilibili.com/video/BV16z4y1r7E2/)\n\n🛠️ 实践任务:\n复习 `async/await`, `asyncio.gather` 等异步编程关键知识点。\n\n📅 日期: 2026-03-24 星期二
+CATEGORIES:W23,AI学习,编程,工作日晚间
+DTSTART:20260324T210000
+DTEND:20260324T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W23] Python 异步编程复习
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cddaef63-045b-4282-9276-7ffbf7af2c48@ai-learning-plan.org
+SUMMARY:[W23] Take-home 作业分析
+DESCRIPTION:【第W23周: 代码能力维持】\n\n📚 学习内容:\n📄 [AI Startup Take-Home Challenges](https://github.com/a-take-home-test/a-take-home-test)\n\n🛠️ 实践任务:\n浏览常见的 AI 岗位 take-home 作业，了解企业考察的重点。\n\n📅 日期: 2026-03-25 星期三
+CATEGORIES:W23,AI学习,编程,工作日晚间
+DTSTART:20260325T210000
+DTEND:20260325T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W23] Take-home 作业分析
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9d4cf179-59fa-4641-adc7-1cfa93acbe17@ai-learning-plan.org
+SUMMARY:[W23] 单元测试与代码覆盖率
+DESCRIPTION:【第W23周: 代码能力维持】\n\n📚 学习内容:\n📺 [Pytest 框架快速上手](https://www.bilibili.com/video/BV17a411a72N/)\n\n🛠️ 实践任务:\n学习如何使用 Pytest 编写单元测试，并计算代码覆盖率。\n\n📅 日期: 2026-03-26 星期四
+CATEGORIES:W23,AI学习,编程,工作日晚间
+DTSTART:20260326T210000
+DTEND:20260326T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W23] 单元测试与代码覆盖率
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:3d6b0f00-c970-4f5d-9adc-a4dabea95e3c@ai-learning-plan.org
+SUMMARY:[W23] API 设计最佳实践
+DESCRIPTION:【第W23周: 代码能力维持】\n\n📚 学习内容:\n📄 [RESTful API 设计指南](https://www.ruanyifeng.com/blog/2014/05/restful_api.html)\n\n🛠️ 实践任务:\n复习 RESTful API 的设计原则。\n\n📅 日期: 2026-03-27 星期五
+CATEGORIES:W23,AI学习,编程,工作日晚间
+DTSTART:20260327T210000
+DTEND:20260327T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W23] API 设计最佳实践
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fe93a1f9-0c4f-4dda-ae9f-c9318a65de42@ai-learning-plan.org
+SUMMARY:[W23] 项目冲刺：Take-home 作业1
+DESCRIPTION:【第W23周: 代码能力维持】\n\n📚 学习内容:\n📄 **作业要求**: 实现一个简化版的 RAG API，支持上传 txt 文件并进行问答。\n\n🛠️ 实践任务:\n**上午 (9:00-12:00) & 下午 (14:00-17:00)**: 使用 FastAPI 和 LangChain 快速实现作业要求，编写清晰的 README 和部署说明。\n\n📅 日期: 2026-03-28 星期六
+CATEGORIES:W23,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260328
+DTEND;VALUE=DATE:20260329
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W23] 项目冲刺：Take-home 作业1
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f947d832-dbe3-4056-b89a-952d49215d1b@ai-learning-plan.org
+SUMMARY:[W23] 项目冲刺：Take-home 作业2
+DESCRIPTION:【第W23周: 代码能力维持】\n\n📚 学习内容:\n📄 **作业要求**: 实现一个多工具调用的 Agent API，根据用户问题调用计算器或天气查询工具。\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 实现 Agent API。<br>**下午 (14:00-17:00)**: 为两个作业编写充分的单元测试，确保核心路径覆盖率 >80%，并录制简短的演示视频。\n\n📅 日期: 2026-03-29 星期日
+CATEGORIES:W23,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260329
+DTEND;VALUE=DATE:20260330
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W23] 项目冲刺：Take-home 作业2
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9e1e3d2c-f002-4196-8637-5099d1080df9@ai-learning-plan.org
+SUMMARY:[W24] 准备自我介绍
+DESCRIPTION:【第W24周: 模拟面试】\n\n📚 学习内容:\n📺 [如何做一个惊艳的自我介绍](https://www.bilibili.com/video/BV1xL411P7SX/)\n\n🛠️ 实践任务:\n准备一个 1 分钟和一个 3 分钟版本的自我介绍，突出亮点。\n\n📅 日期: 2026-03-30 星期一
+CATEGORIES:W24,AI学习,编程,工作日晚间
+DTSTART:20260330T210000
+DTEND:20260330T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W24] 准备自我介绍
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:49cc1fe2-b1f1-4c83-8d0d-bf1183d1ae61@ai-learning-plan.org
+SUMMARY:[W24] 行为面试技巧 (BQ)
+DESCRIPTION:【第W24周: 模拟面试】\n\n📚 学习内容:\n📺 [行为面试技巧 (STAR法则应用)](https://www.bilibili.com/video/BV1Nj421M7hP/)\n\n🛠️ 实践任务:\n准备常见的 BQ 问题答案，如“最大的挑战”、“团队合作经历”等。\n\n📅 日期: 2026-03-31 星期二
+CATEGORIES:W24,AI学习,编程,工作日晚间
+DTSTART:20260331T210000
+DTEND:20260331T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W24] 行为面试技巧 (BQ)
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d8c2d253-b0b1-4a9d-b8a8-2163106aa3cc@ai-learning-plan.org
+SUMMARY:[W24] AI 岗位面试经验
+DESCRIPTION:【第W24周: 模拟面试】\n\n📚 学习内容:\n📺 [AI 岗位面试经验](https://www.bilibili.com/video/BV1wN4y1375B/)\n\n🛠️ 实践任务:\n了解 AI 工程师面试的常见流程和问题类型。\n\n📅 日期: 2026-04-01 星期三
+CATEGORIES:W24,AI学习,编程,工作日晚间
+DTSTART:20260401T210000
+DTEND:20260401T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W24] AI 岗位面试经验
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6cdcda43-ab16-4f3d-8d5c-3b0e6d4aa32d@ai-learning-plan.org
+SUMMARY:[W24] 准备反问环节
+DESCRIPTION:【第W24周: 模拟面试】\n\n📚 学习内容:\n📄 [面试时如何向面试官提问？](https://www.zhihu.com/question/19732043)\n\n🛠️ 实践任务:\n准备 5-10 个有深度的问题，用于反问面试官，体现自己的思考。\n\n📅 日期: 2026-04-02 星期四
+CATEGORIES:W24,AI学习,编程,工作日晚间
+DTSTART:20260402T210000
+DTEND:20260402T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W24] 准备反问环节
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4f3d4aa0-03c2-477c-b6b7-be33aefe646b@ai-learning-plan.org
+SUMMARY:[W24] 整理项目亮点与难点
+DESCRIPTION:【第W24周: 模拟面试】\n\n📚 学习内容:\n-\n\n🛠️ 实践任务:\n为四大核心项目的每个项目，总结 3 个最大的亮点和 3 个最有挑战的难点。\n\n📅 日期: 2026-04-03 星期五
+CATEGORIES:W24,AI学习,编程,工作日晚间
+DTSTART:20260403T210000
+DTEND:20260403T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W24] 整理项目亮点与难点
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:aef166ed-b6f8-4d73-8cf1-acba7589f883@ai-learning-plan.org
+SUMMARY:[W24] 项目冲刺：知识库与模拟
+DESCRIPTION:【第W24周: 模拟面试】\n\n📚 学习内容:\n📄 **工具**: [Notion/飞书文档](https://www.notion.so)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 建立面试 Q&A 知识库，将所有准备的内容系统整理。<br>**下午 (14:00-17:00)**: 找同学或朋友进行第一次模拟面试，重点考察自我介绍和项目讲解。\n\n📅 日期: 2026-04-04 星期六
+CATEGORIES:W24,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260404
+DTEND;VALUE=DATE:20260405
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W24] 项目冲刺：知识库与模拟
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a34efc3e-1be2-458a-914f-4447e4dd765d@ai-learning-plan.org
+SUMMARY:[W24] 项目冲刺：复盘与迭代
+DESCRIPTION:【第W24周: 模拟面试】\n\n📚 学习内容:\n📄 **工具**: 使用录音或录像进行复盘\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 进行第二次模拟面试，重点考察系统设计和 BQ。<br>**下午 (14:00-17:00)**: 回听录音/回看录像，复盘自己的表现，找出语言、逻辑、细节上的不足，更新 Q&A 知识库。\n\n📅 日期: 2026-04-05 星期日
+CATEGORIES:W24,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260405
+DTEND;VALUE=DATE:20260406
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W24] 项目冲刺：复盘与迭代
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f63e7839-5e9e-4575-a43a-486eb4093ba1@ai-learning-plan.org
+SUMMARY:[W25] 求职渠道与策略
+DESCRIPTION:【第W25周: 定向投递】\n\n📚 学习内容:\n📺 [求职渠道与策略](https://www.bilibili.com/video/BV1qM4y1L76j/)\n\n🛠️ 实践任务:\n确定主要求职渠道：BOSS 直聘、脉脉、LinkedIn、牛客网、内推。\n\n📅 日期: 2026-04-06 星期一
+CATEGORIES:W25,AI学习,编程,工作日晚间
+DTSTART:20260406T210000
+DTEND:20260406T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W25] 求职渠道与策略
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:955d7c07-254c-47ab-b350-817dd4e5d8d2@ai-learning-plan.org
+SUMMARY:[W25] 寻找目标公司
+DESCRIPTION:【第W25周: 定向投递】\n\n📚 学习内容:\n📄 **资源**: [36Kr, InfoQ, 各大厂招聘官网](https://www.36kr.com/)\n\n🛠️ 实践任务:\n列出 20-30 家心仪的目标公司，分为 Tier1, Tier2, Tier3。\n\n📅 日期: 2026-04-07 星期二
+CATEGORIES:W25,AI学习,编程,工作日晚间
+DTSTART:20260407T210000
+DTEND:20260407T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W25] 寻找目标公司
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:bdf918e1-0db5-4f44-955f-efb325b39db8@ai-learning-plan.org
+SUMMARY:[W25] 内推技巧与礼仪
+DESCRIPTION:【第W25周: 定向投递】\n\n📚 学习内容:\n📺 [内推技巧与礼仪](https://www.bilibili.com/video/BV1Nj421B7hK/)\n\n🛠️ 实践任务:\n学习如何通过 LinkedIn 或脉脉联系校友或目标公司的员工，寻求内推。\n\n📅 日期: 2026-04-08 星期三
+CATEGORIES:W25,AI学习,编程,工作日晚间
+DTSTART:20260408T210000
+DTEND:20260408T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W25] 内推技巧与礼仪
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ae1d3810-4210-44e1-acac-bdadcaaab7ea@ai-learning-plan.org
+SUMMARY:[W25] 简历针对性修改
+DESCRIPTION:【第W25周: 定向投递】\n\n📚 学习内容:\n📄 [如何根据 JD 修改简历](https://www.zhihu.com/question/21759247)\n\n🛠️ 实践任务:\n针对 3-5 个最想去的岗位，根据其职位描述 (JD) 微调简历中的项目描述和技能点。\n\n📅 日期: 2026-04-09 星期四
+CATEGORIES:W25,AI学习,编程,工作日晚间
+DTSTART:20260409T210000
+DTEND:20260409T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W25] 简历针对性修改
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9f4ca867-9011-41ea-8a4a-842adbf0d1ad@ai-learning-plan.org
+SUMMARY:[W25] 建立投递看板
+DESCRIPTION:【第W25周: 定向投递】\n\n📚 学习内容:\n📄 **工具**: [Notion Job Tracker Template](https://www.notion.so/job-applications-tracker-template)\n\n🛠️ 实践任务:\n使用 Notion 或飞书，建立投递看板，追踪每家公司的状态（已投递、笔试、面试、Offer）。\n\n📅 日期: 2026-04-10 星期五
+CATEGORIES:W25,AI学习,编程,工作日晚间
+DTSTART:20260410T210000
+DTEND:20260410T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W25] 建立投递看板
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e2c8a804-6de3-4a59-baf5-bbc1a3bcb9f9@ai-learning-plan.org
+SUMMARY:[W25] 项目冲刺：海投与内推
+DESCRIPTION:【第W25周: 定向投递】\n\n📚 学习内容:\n-\n\n🛠️ 实践任务:\n**上午 (9:00-12:00)**: 完成 Tier2, Tier3 公司的海投，目标 10-15 家。<br>**下午 (14:00-17:00)**: 针对 Tier1 公司，尝试通过各种渠道寻求内推，目标 3-5 家。\n\n📅 日期: 2026-04-11 星期六
+CATEGORIES:W25,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260411
+DTEND;VALUE=DATE:20260412
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W25] 项目冲刺：海投与内推
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:81f33fd2-c026-4f99-a758-1c60406e3fb7@ai-learning-plan.org
+SUMMARY:[W25] 项目冲刺：笔试准备
+DESCRIPTION:【第W25周: 定向投递】\n\n📚 学习内容:\n📄 **平台**: [牛客网在线编程题](https://www.nowcoder.com/)\n\n🛠️ 实践任务:\n**全天**: 整理收到的在线笔试链接，集中时间完成。同时，在投递看板上更新状态，并对本周的投递情况进行复盘。\n\n📅 日期: 2026-04-12 星期日
+CATEGORIES:W25,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260412
+DTEND;VALUE=DATE:20260413
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W25] 项目冲刺：笔试准备
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f83cf4ec-5e48-43ce-92b7-5d286cae0f45@ai-learning-plan.org
+SUMMARY:[W26] 面试前准备 (公司)
+DESCRIPTION:【第W26周: 深度面试准备】\n\n📚 学习内容:\n📄 **资源**: 公司官网、财报、技术博客\n\n🛠️ 实践任务:\n针对第二天要面试的公司，深入研究其核心业务、产品和技术栈。\n\n📅 日期: 2026-04-13 星期一
+CATEGORIES:W26,AI学习,编程,工作日晚间
+DTSTART:20260413T210000
+DTEND:20260413T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W26] 面试前准备 (公司)
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6a6fdafd-2e82-450c-aca7-ab43590fd610@ai-learning-plan.org
+SUMMARY:[W26] 面试前准备 (面试官)
+DESCRIPTION:【第W26周: 深度面试准备】\n\n📚 学习内容:\n📄 **资源**: LinkedIn, 技术社区\n\n🛠️ 实践任务:\n查看面试官的背景，了解其技术领域和关注点。\n\n📅 日期: 2026-04-14 星期二
+CATEGORIES:W26,AI学习,编程,工作日晚间
+DTSTART:20260414T210000
+DTEND:20260414T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W26] 面试前准备 (面试官)
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:df95bad5-4f9f-4bf1-b6cf-fd954d418cf2@ai-learning-plan.org
+SUMMARY:[W26] 面试后复盘
+DESCRIPTION:【第W26周: 深度面试准备】\n\n📚 学习内容:\n-\n\n🛠️ 实践任务:\n每次面试结束后，花 30 分钟复盘：哪些问题答得好，哪些不好，更新 Q&A 知识库。\n\n📅 日期: 2026-04-15 星期三
+CATEGORIES:W26,AI学习,编程,工作日晚间
+DTSTART:20260415T210000
+DTEND:20260415T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W26] 面试后复盘
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:bd545a8d-b897-40a3-b7a9-5dad3e944360@ai-learning-plan.org
+SUMMARY:[W26] 谈薪技巧
+DESCRIPTION:【第W26周: 深度面试准备】\n\n📚 学习内容:\n📺 [谈薪技巧](https://www.bilibili.com/video/BV14g4y1G7Am/)\n\n🛠️ 实践任务:\n学习如何确定自己的期望薪资范围，如何与 HR 沟通。\n\n📅 日期: 2026-04-16 星期四
+CATEGORIES:W26,AI学习,编程,工作日晚间
+DTSTART:20260416T210000
+DTEND:20260416T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W26] 谈薪技巧
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a76f2585-54f1-4005-936b-2c7247b8a2ef@ai-learning-plan.org
+SUMMARY:[W26] 期权与股票
+DESCRIPTION:【第W26周: 深度面试准备】\n\n📚 学习内容:\n📺 [互联网公司期权/股票 (RSU) 详解](https://www.bilibili.com/video/BV1a54y1m7V8/)\n\n🛠️ 实践任务:\n了解期权和 RSU 的区别，以及如何计算其价值。\n\n📅 日期: 2026-04-17 星期五
+CATEGORIES:W26,AI学习,编程,工作日晚间
+DTSTART:20260417T210000
+DTEND:20260417T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W26] 期权与股票
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:5423e61a-d54f-4b43-90c3-82d512134237@ai-learning-plan.org
+SUMMARY:[W26] 项目冲刺：深度准备
+DESCRIPTION:【第W26周: 深度面试准备】\n\n📚 学习内容:\n-\n\n🛠️ 实践任务:\n**上午 (9:00-12:00) & 下午 (14:00-17:00)**: 假设下周有 2-3 场二/三面，进行针对性的深度准备。研究竞品，思考如果你入职，会如何改进现有产品。\n\n📅 日期: 2026-04-18 星期六
+CATEGORIES:W26,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260418
+DTEND;VALUE=DATE:20260419
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W26] 项目冲刺：深度准备
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:8722ea3b-0356-4fcf-8a61-947f99199b73@ai-learning-plan.org
+SUMMARY:[W26] 项目冲刺：薪酬测算
+DESCRIPTION:【第W26周: 深度面试准备】\n\n📚 学习内容:\n📄 **工具**: [Levels.fyi, 脉脉薪资爆料](https://www.levels.fyi/)\n\n🛠️ 实践任务:\n**上午 (9:00-12:00) & 下午 (14:00-17:00)**: 根据市场行情和面试反馈，为自己设定一个合理的、有理有据的薪酬区间，并准备好谈判要点清单。\n\n📅 日期: 2026-04-19 星期日
+CATEGORIES:W26,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260419
+DTEND;VALUE=DATE:20260420
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W26] 项目冲刺：薪酬测算
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f37adbe9-040d-4a78-859d-26ca97be7c25@ai-learning-plan.org
+SUMMARY:[W27] 跟进面试进度
+DESCRIPTION:【第W27周: 收尾与决策】\n\n📚 学习内容:\n📄 **模板**: 准备好礼貌的询问邮件\n\n🛠️ 实践任务:\n主动、礼貌地向 HR 询问面试结果和后续流程。\n\n📅 日期: 2026-04-20 星期一
+CATEGORIES:W27,AI学习,编程,工作日晚间
+DTSTART:20260420T210000
+DTEND:20260420T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W27] 跟进面试进度
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a03a0766-0b8b-4f93-a26b-9ef846b7d71f@ai-learning-plan.org
+SUMMARY:[W27] 评估 Offer (技术与业务)
+DESCRIPTION:【第W27周: 收尾与决策】\n\n📚 学习内容:\n📺 [如何选择 Offer](https://www.bilibili.com/video/BV1gM4m1V7p2/)\n\n🛠️ 实践任务:\n分析公司、团队、技术栈、业务前景是否符合自己的职业规划。\n\n📅 日期: 2026-04-21 星期二
+CATEGORIES:W27,AI学习,编程,工作日晚间
+DTSTART:20260421T210000
+DTEND:20260421T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W27] 评估 Offer (技术与业务)
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1e9a1dba-6168-4fcb-927e-d1d9a20ed7dd@ai-learning-plan.org
+SUMMARY:[W27] 评估 Offer (文化与薪酬)
+DESCRIPTION:【第W27周: 收尾与决策】\n\n📚 学习内容:\n📄 **资源**: Glassdoor, 脉脉职言\n\n🛠️ 实践任务:\n横向对比薪酬包的竞争力，了解公司文化、工作生活平衡等情况。\n\n📅 日期: 2026-04-22 星期三
+CATEGORIES:W27,AI学习,编程,工作日晚间
+DTSTART:20260422T210000
+DTEND:20260422T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W27] 评估 Offer (文化与薪酬)
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:bef24169-ed98-4c92-831e-f7cb0d12f38d@ai-learning-plan.org
+SUMMARY:[W27] 做出最终决策
+DESCRIPTION:【第W27周: 收尾与决策】\n\n📚 学习内容:\n📄 **工具**: 制作个人决策矩阵\n\n🛠️ 实践任务:\n综合所有因素（薪酬、发展、业务、文化、通勤），为每个 Offer 打分，做出最适合自己的选择。\n\n📅 日期: 2026-04-23 星期四
+CATEGORIES:W27,AI学习,编程,工作日晚间
+DTSTART:20260423T210000
+DTEND:20260423T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W27] 做出最终决策
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:5843fb30-3508-4ceb-b74b-410bc4b9fa42@ai-learning-plan.org
+SUMMARY:[W27] 接受 Offer 与拒绝其他
+DESCRIPTION:【第W27周: 收尾与决策】\n\n📚 学习内容:\n📄 **模板**: 准备好感谢信\n\n🛠️ 实践任务:\n专业、礼貌地接受心仪的 Offer，并感谢其他公司给予的机会。\n\n📅 日期: 2026-04-24 星期五
+CATEGORIES:W27,AI学习,编程,工作日晚间
+DTSTART:20260424T210000
+DTEND:20260424T233000
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W27] 接受 Offer 与拒绝其他
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:7ac6343f-f208-4e99-bd45-f5797563188f@ai-learning-plan.org
+SUMMARY:[W27] 放松与庆祝
+DESCRIPTION:【第W27周: 收尾与决策】\n\n📚 学习内容:\n-\n\n🛠️ 实践任务:\n经过 27 周的努力，是时候好好放松一下，庆祝自己的成就！\n\n📅 日期: 2026-04-25 星期六
+CATEGORIES:W27,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260425
+DTEND;VALUE=DATE:20260426
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W27] 放松与庆祝
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f52c47c1-f23d-41d9-b46c-c70ebad1ed55@ai-learning-plan.org
+SUMMARY:[W27] 准备入职
+DESCRIPTION:【第W27周: 收尾与决策】\n\n📚 学习内容:\n📄 **清单**: 准备好所有入职材料\n\n🛠️ 实践任务:\n整理心情，满怀信心地迎接新的挑战！ **🎯 目标达成！**\n\n📅 日期: 2026-04-26 星期日
+CATEGORIES:W27,AI学习,编程,全天学习
+DTSTART;VALUE=DATE:20260426
+DTEND;VALUE=DATE:20260427
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:提醒: [W27] 准备入职
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
