@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支付大数据智能风控系统架构图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 3px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(180deg, #B8776E 0%, #9D6860 100%);
+            padding: 8px 15px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 6px;
+        }
+
+        .header-btn {
+            background: white;
+            color: #333;
+            padding: 3px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .header-btn:nth-child(1) { background: #E8E8E8; }
+        .header-btn:nth-child(2) { background: #B8E6B8; }
+        .header-btn:nth-child(3) { background: #FFE4A0; }
+
+        .main-wrapper {
+            display: flex;
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, #7BA5C9 0%, #6090B8 100%);
+            width: 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-tab {
+            color: white;
+            writing-mode: vertical-lr;
+            text-orientation: upright;
+            padding: 12px 6px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .sidebar-tab:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-exist { background: #B8E6B8; }
+        .status-new { background: #AED6E6; }
+        .status-optimize { background: #FFE4A0; }
+
+        .layer {
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .layer-header {
+            background: linear-gradient(180deg, #7BA5C9 0%, #6090B8 100%);
+            color: white;
+            padding: 3px 8px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid #5080A8;
+        }
+
+        .layer-content {
+            padding: 3px;
+            background: #fafafa;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 2px;
+        }
+
+        .module {
+            padding: 4px 2px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+            cursor: pointer;
+            line-height: 1.2;
+            min-height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .module:hover {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            transform: translateY(-1px);
+        }
+
+        .app-grid {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 3px;
+        }
+
+        .app-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .management-wrapper {
+            margin-bottom: 3px;
+        }
+
+        .security-wrapper {
+            margin-top: 3px;
+        }
+
+        .section {
+            border: 1px solid #d5d5d5;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .section-title {
+            background: linear-gradient(180deg, #8FB8D9 0%, #7AA5C9 100%);
+            color: white;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid #6A95B9;
+        }
+
+        .section-content {
+            padding: 3px;
+            background: #fcfcfc;
+        }
+
+        .section-modules {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+        }
+
+        .section-modules-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+        }
+
+        .management-grid-5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3px;
+        }
+
+        .subsection {
+            border: 1px solid #d5d5d5;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .subsection-title {
+            background: linear-gradient(180deg, #A5C8E6 0%, #90B8D9 100%);
+            color: white;
+            padding: 2px 5px;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .subsection-content {
+            padding: 2px;
+            background: #fefefe;
+        }
+
+        .subsection-modules {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+        }
+
+        .service-section {
+            border: 1px solid #d5d5d5;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .service-modules {
+            padding: 3px;
+            background: #fcfcfc;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+        }
+
+        .security-modules {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2px;
+        }
+
+        .dots {
+            background: #e8e8e8;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 标题栏 -->
+        <div class="header">
+            <h1>支付大数据智能风控系统</h1>
+            <div class="header-right">
+                <button class="header-btn">已存</button>
+                <button class="header-btn">解锁</button>
+                <button class="header-btn">优化</button>
+            </div>
+        </div>
+
+        <!-- 主体区域 -->
+        <div class="main-wrapper">
+            <!-- 左侧侧边栏 -->
+            <div class="sidebar">
+                <div class="sidebar-tab">统计</div>
+                <div class="sidebar-tab">应用层</div>
+                <div class="sidebar-tab">服务层</div>
+                <div class="sidebar-tab">数据层</div>
+            </div>
+
+            <!-- 内容区域 -->
+            <div class="content-wrapper">
+
+        <!-- 接口层 -->
+        <div class="layer">
+            <div class="layer-header">接口层</div>
+            <div class="layer-content">
+                <div class="modules-grid">
+                    <div class="module status-optimize">风险检查接口</div>
+                    <div class="module status-optimize">消息订阅接口</div>
+                    <div class="module status-optimize">授权认证接口</div>
+                    <div class="module status-exist">黑名单检查接口</div>
+                    <div class="module status-optimize">额度查询接口</div>
+                    <div class="module status-optimize">联防联控接口</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 应用层 -->
+        <div class="layer">
+            <div class="layer-header">应用层</div>
+            <div class="layer-content">
+                <!-- 上半部分：三列布局 -->
+                <div class="app-grid">
+                    <!-- 左列：事前鉴权 -->
+                    <div class="app-column">
+                        <div class="section">
+                            <div class="section-title">事前鉴权</div>
+                            <div class="section-content">
+                                <div class="section-modules">
+                                    <div class="module status-exist">合规系统接入</div>
+                                    <div class="module status-exist">支付业务接入</div>
+                                    <div class="module status-new">AI模型API接入</div>
+                                    <div class="module status-optimize">数据采集治理</div>
+                                    <div class="module status-new">AI特征库</div>
+                                    <div class="module status-exist">用户多模态身份核验</div>
+                                    <div class="module status-optimize">交易环境异常核验</div>
+                                    <div class="module status-exist">行业核验</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 中列：事中熔断 -->
+                    <div class="app-column">
+                        <div class="section">
+                            <div class="section-title">事中熔断</div>
+                            <div class="section-content">
+                                <div class="section-modules">
+                                    <div class="module status-optimize">规则检查</div>
+                                    <div class="module status-exist">名单检查</div>
+                                    <div class="module status-optimize">额度检查</div>
+                                    <div class="module status-optimize">风险决策</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右列：事后智策 -->
+                    <div class="app-column">
+                        <div class="section">
+                            <div class="section-title">事后智策</div>
+                            <div class="section-content">
+                                <div class="section-modules">
+                                    <div class="module status-optimize">实时指标计算</div>
+                                    <div class="module status-optimize">准实时指标计算</div>
+                                    <div class="module status-optimize">离线指标计算</div>
+                                    <div class="module status-optimize">欺诈团伙分析</div>
+                                    <div class="module status-optimize">资金链路追踪</div>
+                                    <div class="module status-optimize">用户风险分析</div>
+                                    <div class="module status-optimize">商户风险分析</div>
+                                    <div class="module status-optimize">规则调优</div>
+                                    <div class="module status-optimize">额度优化</div>
+                                    <div class="module status-optimize">处罚调整</div>
+                                    <div class="module status-new">AI提示词工程</div>
+                                    <div class="module status-new">AI模型构建</div>
+                                    <div class="module status-new">风险报告整合</div>
+                                    <div class="module status-new">AI风险特征分析</div>
+                                    <div class="module status-new">AI模型调优</div>
+                                    <div class="module status-new dots">...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 下半部分：运营管理 -->
+                <div class="management-wrapper">
+                    <div class="section">
+                        <div class="section-title">运营管理</div>
+                        <div class="section-content">
+                            <div class="management-grid-5">
+                                <!-- 风险驾驶舱 -->
+                                <div class="subsection">
+                                    <div class="subsection-title">风险驾驶舱</div>
+                                    <div class="subsection-content">
+                                        <div class="subsection-modules">
+                                            <div class="module status-new">账户实名等级情况</div>
+                                            <div class="module status-new">交易趋势图</div>
+                                            <div class="module status-new">客户年龄分布</div>
+                                            <div class="module status-new">风险阻断情况</div>
+                                            <div class="module status-new">客户超限情况</div>
+                                            <div class="module status-new">分线等级分布</div>
+                                            <div class="module status-new">区域风险热力图</div>
+                                            <div class="module status-new">风控规则Top榜</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 风险决策中心 -->
+                                <div class="subsection">
+                                    <div class="subsection-title">风险决策中心</div>
+                                    <div class="subsection-content">
+                                        <div class="subsection-modules">
+                                            <div class="module status-optimize">规则模型</div>
+                                            <div class="module status-optimize">额度模型</div>
+                                            <div class="module status-optimize">处罚中心</div>
+                                            <div class="module status-exist">规则实验室</div>
+                                            <div class="module status-new">风险报告模型</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 名单管理中心 -->
+                                <div class="subsection">
+                                    <div class="subsection-title">名单管理中心</div>
+                                    <div class="subsection-content">
+                                        <div class="subsection-modules">
+                                            <div class="module status-new">黑名单</div>
+                                            <div class="module status-new">灰名单</div>
+                                            <div class="module status-new">白名单</div>
+                                            <div class="module status-new">风险名单</div>
+                                            <div class="module status-exist">授权名单</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 智能参数中心 -->
+                                <div class="subsection">
+                                    <div class="subsection-title">智能参数中心</div>
+                                    <div class="subsection-content">
+                                        <div class="subsection-modules">
+                                            <div class="module status-exist">公共参数</div>
+                                            <div class="module status-exist">交易参数</div>
+                                            <div class="module status-exist">合规参数</div>
+                                            <div class="module status-exist">审批参数</div>
+                                            <div class="module status-exist">免密参数</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 检测预警中心 -->
+                                <div class="subsection">
+                                    <div class="subsection-title">检测预警中心</div>
+                                    <div class="subsection-content">
+                                        <div class="subsection-modules">
+                                            <div class="module status-optimize">风险检测</div>
+                                            <div class="module status-optimize">交易图谱</div>
+                                            <div class="module status-exist">超限预警</div>
+                                            <div class="module status-optimize">事件协查</div>
+                                            <div class="module status-new">年度风险报告</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 安全管理 -->
+                <div class="security-wrapper">
+                    <div class="section">
+                        <div class="section-title">安全管理</div>
+                        <div class="section-content">
+                            <div class="security-modules">
+                                <div class="module status-exist">展示安全</div>
+                                <div class="module status-exist">存储安全</div>
+                                <div class="module status-optimize">应用安全</div>
+                                <div class="module status-exist">传输安全</div>
+                                <div class="module status-exist dots">...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 服务层 -->
+        <div class="layer">
+            <div class="layer-header">服务层</div>
+            <div class="layer-content">
+                <div class="service-grid">
+                    <!-- 计算引擎 -->
+                    <div class="service-section">
+                        <div class="section-title">计算引擎</div>
+                        <div class="service-modules">
+                            <div class="module status-exist">大数据计算</div>
+                            <div class="module status-exist">图计算</div>
+                            <div class="module status-exist">流式计算</div>
+                            <div class="module status-new">AI推理</div>
+                        </div>
+                    </div>
+
+                    <!-- 规则引擎 -->
+                    <div class="service-section">
+                        <div class="section-title">规则引擎</div>
+                        <div class="service-modules">
+                            <div class="module status-exist">原子库</div>
+                            <div class="module status-exist">规则库</div>
+                            <div class="module status-exist">规则决策树</div>
+                            <div class="module status-exist">规则实验室</div>
+                            <div class="module status-exist">规则开关</div>
+                            <div class="module status-exist">规则动态发布</div>
+                        </div>
+                    </div>
+
+                    <!-- 决策引擎 -->
+                    <div class="service-section">
+                        <div class="section-title">决策引擎</div>
+                        <div class="service-modules">
+                            <div class="module status-exist">放行</div>
+                            <div class="module status-exist">阻断</div>
+                            <div class="module status-exist">认证</div>
+                            <div class="module status-new">客服外呼</div>
+                            <div class="module status-exist">加黑</div>
+                            <div class="module status-exist">冻结</div>
+                            <div class="module status-exist">限制交易</div>
+                            <div class="module status-new">短信上行</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 多态数据 -->
+        <div class="layer">
+            <div class="layer-header">多态数据</div>
+            <div class="layer-content">
+                <div class="modules-grid">
+                    <div class="module status-exist">环境信息</div>
+                    <div class="module status-exist">身份影印件</div>
+                    <div class="module status-exist">客户信息</div>
+                    <div class="module status-exist">交易信息</div>
+                    <div class="module status-exist">运营商信息</div>
+                    <div class="module status-exist">行业风险名单</div>
+                    <div class="module status-exist dots">...</div>
+                </div>
+            </div>
+        </div>
+
+            </div><!-- content-wrapper -->
+        </div><!-- main-wrapper -->
+    </div><!-- container -->
+</body>
+</html>
