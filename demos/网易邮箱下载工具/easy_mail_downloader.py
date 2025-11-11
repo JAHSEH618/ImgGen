@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-网易企业邮箱批量下载脚本 - 配置文件版本
-支持使用JSON配置文件来管理账号和下载选项
+网易企业邮箱下载工具 - 简易版
+专为非技术人员设计，通过交互式问答完成配置和下载
 """
 
 import imaplib
@@ -42,10 +42,10 @@ class NeteaseMailDownloader:
         try:
             print(f"正在连接到 {self.imap_server}...")
             self.mail = imaplib.IMAP4_SSL(self.imap_server, self.imap_port)
-            print("连接成功！")
+            print("✓ 连接成功！")
             return True
         except Exception as e:
-            print(f"连接失败: {e}")
+            print(f"✗ 连接失败: {e}")
             return False
 
     def login(self):
@@ -53,10 +53,10 @@ class NeteaseMailDownloader:
         try:
             print(f"正在登录账号 {self.username}...")
             self.mail.login(self.username, self.password)
-            print("登录成功！")
+            print("✓ 登录成功！")
             return True
         except Exception as e:
-            print(f"登录失败: {e}")
+            print(f"✗ 登录失败: {e}")
             print("提示: 请检查账号密码是否正确，或尝试使用授权码")
             return False
 
@@ -386,105 +386,262 @@ class NeteaseMailDownloader:
                 pass
 
 
-def load_config(config_file):
-    """加载配置文件"""
+def print_header():
+    """打印程序头部"""
+    print("\n" + "=" * 70)
+    print(" " * 20 + "网易企业邮箱下载工具")
+    print(" " * 25 + "简易版 v1.0")
+    print("=" * 70)
+
+
+def get_user_input(prompt, default=None, password=False):
+    """获取用户输入"""
+    if default:
+        prompt_text = f"{prompt} [默认: {default}]: "
+    else:
+        prompt_text = f"{prompt}: "
+
+    if password:
+        import getpass
+        value = getpass.getpass(prompt_text)
+    else:
+        value = input(prompt_text).strip()
+
+    return value if value else default
+
+
+def yes_no_question(prompt, default=True):
+    """是/否问题"""
+    default_text = "Y/n" if default else "y/N"
+    answer = input(f"{prompt} [{default_text}]: ").strip().lower()
+
+    if not answer:
+        return default
+
+    return answer in ['y', 'yes', '是']
+
+
+def save_config(config, filename="mail_config_auto.json"):
+    """保存配置到文件"""
     try:
-        with open(config_file, 'r', encoding='utf-8') as f:
-            config = json.load(f)
-        return config
-    except FileNotFoundError:
-        print(f"错误: 配置文件 {config_file} 不存在")
-        print("请复制 mail_config.json.example 为 mail_config.json 并填写正确的配置")
-        return None
-    except json.JSONDecodeError as e:
-        print(f"错误: 配置文件格式错误: {e}")
-        return None
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(config, f, ensure_ascii=False, indent=2)
+        return True
+    except Exception as e:
+        print(f"保存配置失败: {e}")
+        return False
+
+
+def load_saved_config(filename="mail_config_auto.json"):
+    """加载已保存的配置"""
+    try:
+        if os.path.exists(filename):
+            with open(filename, 'r', encoding='utf-8') as f:
+                return json.load(f)
+    except:
+        pass
+    return None
+
+
+def interactive_setup():
+    """交互式配置向导"""
+    print_header()
+
+    print("\n欢迎使用网易企业邮箱下载工具！")
+    print("本工具将帮助您轻松下载邮箱中的所有邮件到电脑。")
+    print("\n接下来，我会问您几个简单的问题，请按照提示操作即可。\n")
+
+    # 检查是否有已保存的配置
+    saved_config = load_saved_config()
+    if saved_config:
+        print("检测到之前保存的配置：")
+        print(f"  邮箱账号: {saved_config.get('email_account')}")
+        print(f"  保存目录: {saved_config.get('save_dir')}")
+        if yes_no_question("\n是否使用之前的配置？", True):
+            return saved_config
+        print()
+
+    # 配置字典
+    config = {}
+
+    # 第1步：邮箱账号
+    print("【步骤 1/5】输入邮箱信息")
+    print("-" * 70)
+    config['email_account'] = get_user_input("请输入您的邮箱账号（如: zhangsan@company.com）")
+
+    while not config['email_account'] or '@' not in config['email_account']:
+        print("✗ 邮箱格式不正确，请重新输入")
+        config['email_account'] = get_user_input("请输入您的邮箱账号（如: zhangsan@company.com）")
+
+    # 第2步：密码
+    print("\n【步骤 2/5】输入密码")
+    print("-" * 70)
+    print("提示：建议使用「授权码」而不是直接使用邮箱密码")
+    print("如何获取授权码：")
+    print("  1. 登录网易企业邮箱网页版")
+    print("  2. 进入「设置」->「安全」->「客户端授权密码」")
+    print("  3. 生成新的授权码\n")
+
+    config['email_password'] = get_user_input("请输入邮箱密码或授权码", password=True)
+
+    while not config['email_password']:
+        print("✗ 密码不能为空，请重新输入")
+        config['email_password'] = get_user_input("请输入邮箱密码或授权码", password=True)
+
+    # 第3步：保存位置
+    print("\n【步骤 3/5】选择保存位置")
+    print("-" * 70)
+    default_dir = os.path.join(os.path.expanduser("~"), "邮件下载")
+    config['save_dir'] = get_user_input(
+        "邮件将保存到哪个文件夹？",
+        default=default_dir
+    )
+
+    # 第4步：选择要下载的文件夹
+    print("\n【步骤 4/5】选择要下载的邮件")
+    print("-" * 70)
+    print("您想下载哪些邮件？")
+    print("  1. 只下载收件箱")
+    print("  2. 只下载已发送")
+    print("  3. 同时下载已发送和收件箱（推荐，先下载已发送）")
+    print("  4. 自定义（连接后手动选择）")
+
+    choice = get_user_input("请选择 [1-4]", default="3")
+
+    if choice == "1":
+        folders = ["INBOX"]
+    elif choice == "2":
+        folders = ["Sent"]
+    elif choice == "3":
+        folders = ["Sent", "INBOX"]  # 先下载已发送，再下载收件箱
+    else:
+        folders = None  # 稍后手动选择
+
+    # 第5步：高级选项
+    print("\n【步骤 5/5】高级选项")
+    print("-" * 70)
+
+    # 是否全部下载
+    download_all = yes_no_question("是否下载所有邮件？（如果选择否，可以限制下载数量）", True)
+
+    max_count = None
+    if not download_all:
+        try:
+            max_count = int(get_user_input("下载最新的多少封邮件", default="100"))
+        except:
+            max_count = 100
+
+    # 是否断点续传
+    skip_existing = yes_no_question("是否启用断点续传？（推荐开启，下载中断后可以继续）", True)
+
+    # 构建配置
+    config['imap_server'] = "imap.qiye.163.com"
+    config['imap_port'] = 993
+    config['download_options'] = {
+        'folders': folders,
+        'max_count': max_count,
+        'start_date': None,
+        'skip_existing': skip_existing,
+        'auto_confirm': True
+    }
+
+    # 显示配置摘要
+    print("\n" + "=" * 70)
+    print("配置摘要")
+    print("=" * 70)
+    print(f"邮箱账号: {config['email_account']}")
+    print(f"保存位置: {config['save_dir']}")
+    print(f"下载文件夹: {', '.join(folders) if folders else '稍后选择'}")
+    print(f"下载数量: {'全部' if max_count is None else f'最新 {max_count} 封'}")
+    print(f"断点续传: {'是' if skip_existing else '否'}")
+    print("=" * 70)
+
+    # 保存配置
+    if yes_no_question("\n是否保存此配置？（下次可直接使用）", True):
+        if save_config(config):
+            print("✓ 配置已保存到 mail_config_auto.json")
+
+    return config
 
 
 def main():
     """主函数"""
-    print("\n" + "=" * 70)
-    print(" " * 15 + "网易企业邮箱批量下载工具")
-    print("=" * 70)
-
-    # 读取配置文件
-    config_file = "mail_config.json"
-    if len(sys.argv) > 1:
-        config_file = sys.argv[1]
-
-    config = load_config(config_file)
-    if not config:
-        return
-
-    # 获取配置
-    email_account = config.get('email_account')
-    email_password = config.get('email_password')
-    save_dir = config.get('save_dir', './mail_downloads')
-    imap_server = config.get('imap_server', 'imap.qiye.163.com')
-    imap_port = config.get('imap_port', 993)
-    download_options = config.get('download_options', {})
-
-    # 验证必要的配置
-    if not email_account or email_account == "your_email@company.com":
-        print("✗ 错误: 请在配置文件中填写正确的邮箱账号")
-        return
-
-    if not email_password or email_password == "your_password_or_auth_code":
-        print("✗ 错误: 请在配置文件中填写正确的邮箱密码或授权码")
-        return
-
-    print(f"\n账号: {email_account}")
-    print(f"保存目录: {save_dir}")
-
-    # 创建下载器实例
-    downloader = NeteaseMailDownloader(
-        email_account,
-        email_password,
-        save_dir,
-        imap_server,
-        imap_port
-    )
-
-    # 连接和登录
-    if not downloader.connect():
-        return
-
-    if not downloader.login():
-        return
-
     try:
+        # 交互式配置
+        config = interactive_setup()
+
+        if not config:
+            print("配置失败，程序退出")
+            return
+
+        # 确认开始下载
+        print("\n" + "=" * 70)
+        if not yes_no_question("准备就绪，是否开始下载？", True):
+            print("已取消下载")
+            return
+
+        # 创建下载器
+        downloader = NeteaseMailDownloader(
+            config['email_account'],
+            config['email_password'],
+            config['save_dir'],
+            config.get('imap_server', 'imap.qiye.163.com'),
+            config.get('imap_port', 993)
+        )
+
+        # 连接和登录
+        print("\n" + "=" * 70)
+        print("正在连接邮箱...")
+        print("=" * 70)
+
+        if not downloader.connect():
+            print("\n连接失败，请检查网络连接")
+            return
+
+        if not downloader.login():
+            print("\n登录失败，请检查账号密码是否正确")
+            print("提示：如果使用密码无法登录，请尝试使用授权码")
+            return
+
         # 获取文件夹列表
         print("\n正在获取邮箱文件夹列表...")
         available_folders = downloader.get_folders()
+
         if available_folders:
-            print("\n可用的文件夹:")
+            print("\n您的邮箱中有以下文件夹：")
             for idx, folder in enumerate(available_folders, 1):
                 print(f"  {idx}. {folder}")
 
-        # 从配置中获取下载选项
-        folders = download_options.get('folders', ['INBOX'])
-        max_count = download_options.get('max_count')
-        start_date = download_options.get('start_date')
-        skip_existing = download_options.get('skip_existing', True)
-        auto_confirm = download_options.get('auto_confirm', False)
+        # 确定要下载的文件夹
+        download_options = config.get('download_options', {})
+        folders = download_options.get('folders')
 
-        # 兼容旧配置格式（folder）
-        if 'folder' in download_options and 'folders' not in download_options:
-            folders = [download_options['folder']]
+        if not folders:
+            # 手动选择文件夹
+            print("\n请选择要下载的文件夹（输入序号，多个用逗号分隔，如: 1,2,3）：")
+            choice = input("您的选择: ").strip()
 
-        # 确保 folders 是列表
-        if not isinstance(folders, list):
-            folders = [folders]
+            try:
+                indices = [int(x.strip()) for x in choice.split(',')]
+                folders = [available_folders[i-1] for i in indices if 0 < i <= len(available_folders)]
+            except:
+                print("选择无效，将下载收件箱")
+                folders = ["INBOX"]
 
-        # 打印下载配置
-        print(f"\n下载配置:")
-        print(f"  文件夹: {', '.join(folders)}")
-        print(f"  数量限制: {'无限制（全部下载）' if max_count is None else f'{max_count} 封'}")
-        print(f"  日期筛选: {start_date if start_date else '无'}")
-        print(f"  断点续传: {'是' if skip_existing else '否'}")
-        print(f"  自动确认: {'是' if auto_confirm else '否'}")
+        # 验证文件夹是否存在
+        valid_folders = [f for f in folders if f in available_folders]
+        if not valid_folders:
+            print(f"\n警告：文件夹 {folders} 不存在，将尝试下载 INBOX")
+            valid_folders = ["INBOX"]
 
-        # 下载所有指定文件夹的邮件
+        # 开始下载
+        print("\n" + "=" * 70)
+        print("开始下载邮件...")
+        print("=" * 70)
+        print(f"将下载以下文件夹: {', '.join(valid_folders)}")
+        print("提示：下载过程中请保持网络连接稳定")
+        print("=" * 70)
+
         total_stats = {
             'success': 0,
             'failed': 0,
@@ -494,46 +651,65 @@ def main():
 
         overall_start_time = time.time()
 
-        for idx, folder in enumerate(folders, 1):
+        for idx, folder in enumerate(valid_folders, 1):
             print(f"\n{'#' * 70}")
-            print(f"正在处理文件夹 [{idx}/{len(folders)}]: {folder}")
+            print(f"正在下载文件夹 [{idx}/{len(valid_folders)}]: {folder}")
             print(f"{'#' * 70}")
 
-            # 下载邮件
             stats = downloader.download_emails(
                 folder=folder,
-                max_count=max_count,
-                start_date=start_date,
-                skip_existing=skip_existing,
-                auto_confirm=auto_confirm
+                max_count=download_options.get('max_count'),
+                start_date=download_options.get('start_date'),
+                skip_existing=download_options.get('skip_existing', True),
+                auto_confirm=download_options.get('auto_confirm', True)
             )
 
-            # 累加统计
             total_stats['success'] += stats['success']
             total_stats['failed'] += stats['failed']
             total_stats['skipped'] += stats['skipped']
             total_stats['total'] += stats['total']
 
-        # 总体统计信息
+        # 总体统计
         overall_elapsed = time.time() - overall_start_time
 
         print(f"\n{'=' * 70}")
-        print(" " * 25 + "总体统计")
+        print(" " * 28 + "下载完成！")
         print(f"{'=' * 70}")
-        print(f"  处理文件夹数: {len(folders)}")
-        print(f"  成功下载: {total_stats['success']} 封")
-        print(f"  下载失败: {total_stats['failed']} 封")
-        print(f"  跳过已下载: {total_stats['skipped']} 封")
-        print(f"  邮件总数: {total_stats['total']} 封")
-        print(f"  总用时: {int(overall_elapsed//60)}分{int(overall_elapsed%60)}秒")
+        print(f"处理文件夹数: {len(valid_folders)}")
+        print(f"成功下载: {total_stats['success']} 封")
+        print(f"下载失败: {total_stats['failed']} 封")
+        print(f"跳过已下载: {total_stats['skipped']} 封")
+        print(f"邮件总数: {total_stats['total']} 封")
+        print(f"总用时: {int(overall_elapsed//60)}分{int(overall_elapsed%60)}秒")
         if total_stats['success'] > 0 and overall_elapsed > 0:
-            print(f"  平均速度: {total_stats['success']/overall_elapsed:.2f} 封/秒")
-        print(f"  保存位置: {save_dir}")
+            print(f"平均速度: {total_stats['success']/overall_elapsed:.2f} 封/秒")
+        print(f"\n邮件保存位置: {config['save_dir']}")
         print(f"{'=' * 70}\n")
 
+        # 是否打开文件夹
+        if yes_no_question("是否打开邮件保存文件夹？", True):
+            import platform
+            system = platform.system()
+            if system == "Darwin":  # macOS
+                os.system(f'open "{config["save_dir"]}"')
+            elif system == "Windows":
+                os.system(f'explorer "{config["save_dir"]}"')
+            else:  # Linux
+                os.system(f'xdg-open "{config["save_dir"]}"')
+
+        print("\n感谢使用！")
+
+    except KeyboardInterrupt:
+        print("\n\n用户取消操作")
+    except Exception as e:
+        print(f"\n程序运行出错: {e}")
+        import traceback
+        traceback.print_exc()
     finally:
-        # 关闭连接
-        downloader.close()
+        if 'downloader' in locals():
+            downloader.close()
+
+        input("\n按回车键退出...")
 
 
 if __name__ == "__main__":
