@@ -1,22 +1,22 @@
 @echo off
 REM ===================================================
-REM  网易企业邮箱下载工具启动脚本
+REM  Netease Enterprise Mail Downloader Launcher
 REM ===================================================
 
 chcp 65001 > nul
-title 网易企业邮箱下载工具
+title Netease Mail Downloader
 
 echo.
 echo ================================================
-echo          网易企业邮箱下载工具
+echo      Netease Enterprise Mail Downloader
 echo ================================================
 echo.
 
-REM 保存当前目录
+REM Save current directory
 set CURRENT_DIR=%~dp0
 set PARENT_DIR=%CURRENT_DIR%..
 
-REM 查找 Python
+REM Find Python
 set PYTHON_CMD=
 where python >nul 2>&1
 if %errorlevel% == 0 set PYTHON_CMD=python
@@ -26,34 +26,34 @@ if not defined PYTHON_CMD where py >nul 2>&1
 if %errorlevel% == 0 set PYTHON_CMD=py
 
 if not defined PYTHON_CMD (
-    echo [错误] 未找到 Python
+    echo [ERROR] Python not found
     echo.
-    echo 请先安装 Python: https://www.python.org/downloads/
-    echo 安装时务必勾选 "Add Python to PATH"
+    echo Please install Python first: https://www.python.org/downloads/
+    echo Make sure to check "Add Python to PATH" during installation
     echo.
-    echo 或运行 "检查环境.bat" 进行诊断
+    echo Or run "check-environment.bat" for diagnosis
     echo.
     pause
     exit /b 1
 )
 
-echo [信息] 找到 Python: %PYTHON_CMD%
+echo [INFO] Found Python: %PYTHON_CMD%
 %PYTHON_CMD% --version
 echo.
 
-REM 检查主程序文件
+REM Check main program file
 if not exist "%PARENT_DIR%\easy_mail_downloader.py" (
-    echo [错误] 未找到主程序文件
-    echo 期望位置: %PARENT_DIR%\easy_mail_downloader.py
+    echo [ERROR] Main program file not found
+    echo Expected location: %PARENT_DIR%\easy_mail_downloader.py
     echo.
     pause
     exit /b 1
 )
 
-echo [信息] 正在启动程序...
+echo [INFO] Starting program...
 echo.
 
-REM 切换到主程序目录并运行
+REM Switch to main program directory and run
 cd /d "%PARENT_DIR%"
 %PYTHON_CMD% easy_mail_downloader.py
 

@@ -32,6 +32,14 @@ class NeteaseMailDownloader:
         self.imap_server = imap_server
         self.imap_port = imap_port
         self.mail = None
+        self.current_folder = None
+        self.last_noop_time = time.time()
+
+        # 重试配置
+        self.max_retries = 3  # 每封邮件最大重试次数
+        self.retry_delay = 2  # 重试延迟（秒）
+        self.download_delay = 0.1  # 下载延迟（秒），避免请求过快
+        self.noop_interval = 60  # NOOP 保活间隔（秒）
 
         # 创建保存目录
         if not os.path.exists(save_dir):
@@ -54,11 +62,60 @@ class NeteaseMailDownloader:
             print(f"正在登录账号 {self.username}...")
             self.mail.login(self.username, self.password)
             print("✓ 登录成功！")
+            self.last_noop_time = time.time()
             return True
         except Exception as e:
             print(f"✗ 登录失败: {e}")
             print("提示: 请检查账号密码是否正确，或尝试使用授权码")
             return False
+
+    def reconnect(self, select_folder=None):
+        """重新连接到服务器"""
+        try:
+            print("\n[连接断开] 正在尝试重新连接...")
+
+            # 关闭旧连接
+            if self.mail:
+                try:
+                    self.mail.logout()
+                except:
+                    pass
+
+            # 重新连接
+            if not self.connect():
+                return False
+
+            # 重新登录
+            if not self.login():
+                return False
+
+            # 重新选择文件夹
+            if select_folder:
+                status, _ = self.mail.select(select_folder, readonly=True)
+                if status == 'OK':
+                    self.current_folder = select_folder
+                    print(f"✓ 已重新选择文件夹: {select_folder}")
+                    return True
+                else:
+                    print(f"✗ 无法重新选择文件夹: {select_folder}")
+                    return False
+
+            print("✓ 重新连接成功！")
+            return True
+
+        except Exception as e:
+            print(f"✗ 重新连接失败: {e}")
+            return False
+
+    def keep_alive(self):
+        """保持连接活跃"""
+        try:
+            current_time = time.time()
+            if current_time - self.last_noop_time > self.noop_interval:
+                self.mail.noop()  # 发送 NOOP 命令保持连接
+                self.last_noop_time = current_time
+        except Exception as e:
+            print(f"[警告] 保活失败: {e}")
 
     def get_folders(self):
         """获取所有邮箱文件夹"""
@@ -141,6 +198,8 @@ class NeteaseMailDownloader:
                 print(f"✗ 无法选择文件夹 {folder}")
                 return {'success': 0, 'failed': 0, 'skipped': 0, 'total': 0}
 
+            self.current_folder = folder  # 保存当前文件夹
+
             # 搜索邮件
             if start_date:
                 # 根据日期搜索
@@ -204,75 +263,133 @@ class NeteaseMailDownloader:
             start_time = time.time()
 
             for i, mail_id in enumerate(mail_ids_to_download, 1):
-                try:
-                    # 计算进度和ETA
-                    progress = (i / len(mail_ids_to_download)) * 100
-                    elapsed = time.time() - start_time
-                    if i > 1:
-                        avg_time = elapsed / (i - 1)
-                        eta_seconds = avg_time * (len(mail_ids_to_download) - i)
-                        eta_str = f"ETA: {int(eta_seconds//60)}分{int(eta_seconds%60)}秒"
-                    else:
-                        eta_str = "ETA: 计算中..."
+                retry_count = 0
+                download_success = False
 
-                    print(f"\n[{i}/{len(mail_ids_to_download)}] ({progress:.1f}%) {eta_str}")
-                    print(f"邮件ID: {mail_id.decode()}")
+                while retry_count <= self.max_retries and not download_success:
+                    try:
+                        # 保持连接活跃
+                        self.keep_alive()
 
-                    # 获取邮件
-                    status, msg_data = self.mail.fetch(mail_id, '(RFC822)')
-                    if status != 'OK':
-                        print(f"  ✗ 获取邮件失败")
-                        failed_count += 1
-                        continue
+                        # 计算进度和ETA
+                        progress = (i / len(mail_ids_to_download)) * 100
+                        elapsed = time.time() - start_time
+                        if i > 1:
+                            avg_time = elapsed / (i - 1)
+                            eta_seconds = avg_time * (len(mail_ids_to_download) - i)
+                            eta_str = f"ETA: {int(eta_seconds//60)}分{int(eta_seconds%60)}秒"
+                        else:
+                            eta_str = "ETA: 计算中..."
 
-                    # 解析邮件
-                    raw_email = msg_data[0][1]
-                    msg = email.message_from_bytes(raw_email)
+                        # 只在第一次尝试时显示进度
+                        if retry_count == 0:
+                            print(f"\n[{i}/{len(mail_ids_to_download)}] ({progress:.1f}%) {eta_str}")
+                            print(f"邮件ID: {mail_id.decode()}")
 
-                    # 获取邮件信息
-                    subject = self.decode_str(msg['Subject'])
-                    from_addr = self.decode_str(msg['From'])
-                    to_addr = self.decode_str(msg['To'])
-                    date = self.decode_str(msg['Date'])
+                        # 获取邮件（带重试）
+                        try:
+                            status, msg_data = self.mail.fetch(mail_id, '(RFC822)')
+                        except (imaplib.IMAP4.abort, ConnectionResetError, BrokenPipeError, OSError) as e:
+                            # 连接错误，尝试重连
+                            print(f"  ⚠ 连接错误: {e}")
+                            if retry_count < self.max_retries:
+                                print(f"  ⏳ 重试 {retry_count + 1}/{self.max_retries}...")
+                                time.sleep(self.retry_delay)
 
-                    print(f"  主题: {subject[:60]}{'...' if len(subject) > 60 else ''}")
-                    print(f"  发件人: {from_addr[:50]}{'...' if len(from_addr) > 50 else ''}")
-                    print(f"  日期: {date}")
+                                # 重新连接
+                                if self.reconnect(select_folder=folder):
+                                    retry_count += 1
+                                    continue
+                                else:
+                                    print(f"  ✗ 重连失败，跳过此邮件")
+                                    failed_count += 1
+                                    break
+                            else:
+                                print(f"  ✗ 已达到最大重试次数")
+                                failed_count += 1
+                                break
 
-                    # 创建邮件保存目录
-                    mail_dir_name = f"{mail_id.decode()}_{self.clean_filename(subject[:50])}"
-                    mail_dir = os.path.join(folder_dir, mail_dir_name)
-                    if not os.path.exists(mail_dir):
-                        os.makedirs(mail_dir)
+                        if status != 'OK':
+                            print(f"  ✗ 获取邮件失败")
+                            failed_count += 1
+                            break
 
-                    # 保存邮件元数据
-                    metadata = {
-                        'id': mail_id.decode(),
-                        'subject': subject,
-                        'from': from_addr,
-                        'to': to_addr,
-                        'date': date,
-                        'folder': folder,
-                        'download_time': datetime.now().isoformat()
-                    }
+                        # 解析邮件
+                        raw_email = msg_data[0][1]
+                        msg = email.message_from_bytes(raw_email)
 
-                    with open(os.path.join(mail_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
-                        json.dump(metadata, f, ensure_ascii=False, indent=2)
+                        # 获取邮件信息
+                        subject = self.decode_str(msg['Subject'])
+                        from_addr = self.decode_str(msg['From'])
+                        to_addr = self.decode_str(msg['To'])
+                        date = self.decode_str(msg['Date'])
 
-                    # 保存原始邮件
-                    with open(os.path.join(mail_dir, 'raw_email.eml'), 'wb') as f:
-                        f.write(raw_email)
+                        if retry_count == 0:  # 只在第一次尝试时显示详情
+                            print(f"  主题: {subject[:60]}{'...' if len(subject) > 60 else ''}")
+                            print(f"  发件人: {from_addr[:50]}{'...' if len(from_addr) > 50 else ''}")
+                            print(f"  日期: {date}")
 
-                    # 提取邮件内容和附件
-                    self.extract_email_content(msg, mail_dir)
+                        # 创建邮件保存目录
+                        mail_dir_name = f"{mail_id.decode()}_{self.clean_filename(subject[:50])}"
+                        mail_dir = os.path.join(folder_dir, mail_dir_name)
+                        if not os.path.exists(mail_dir):
+                            os.makedirs(mail_dir)
 
-                    success_count += 1
-                    print(f"  ✓ 下载成功")
+                        # 保存邮件元数据
+                        metadata = {
+                            'id': mail_id.decode(),
+                            'subject': subject,
+                            'from': from_addr,
+                            'to': to_addr,
+                            'date': date,
+                            'folder': folder,
+                            'download_time': datetime.now().isoformat()
+                        }
 
-                except Exception as e:
-                    print(f"  ✗ 下载失败: {e}")
-                    failed_count += 1
-                    continue
+                        with open(os.path.join(mail_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
+                            json.dump(metadata, f, ensure_ascii=False, indent=2)
+
+                        # 保存原始邮件
+                        with open(os.path.join(mail_dir, 'raw_email.eml'), 'wb') as f:
+                            f.write(raw_email)
+
+                        # 提取邮件内容和附件
+                        self.extract_email_content(msg, mail_dir)
+
+                        success_count += 1
+                        print(f"  ✓ 下载成功")
+                        download_success = True
+
+                        # 下载延迟，避免请求过快
+                        if self.download_delay > 0:
+                            time.sleep(self.download_delay)
+
+                    except Exception as e:
+                        error_msg = str(e)
+                        print(f"  ✗ 下载失败: {error_msg}")
+
+                        # 判断是否是连接相关的错误
+                        if any(keyword in error_msg.lower() for keyword in ['socket', 'broken pipe', 'connection', 'reset', 'abort']):
+                            if retry_count < self.max_retries:
+                                print(f"  ⏳ 重试 {retry_count + 1}/{self.max_retries}...")
+                                time.sleep(self.retry_delay)
+
+                                # 尝试重新连接
+                                if self.reconnect(select_folder=folder):
+                                    retry_count += 1
+                                    continue
+                                else:
+                                    print(f"  ✗ 重连失败，跳过此邮件")
+                                    failed_count += 1
+                                    break
+                            else:
+                                print(f"  ✗ 已达到最大重试次数")
+                                failed_count += 1
+                                break
+                        else:
+                            # 非连接错误，直接失败
+                            failed_count += 1
+                            break
 
             # 统计信息
             elapsed_total = time.time() - start_time
