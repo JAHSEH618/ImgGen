@@ -1480,3 +1480,47 @@
 .strip-thumb.selected .thumb-check {
     display: none;
 }
+
+/* --- MOBILE OPTIMIZATION --- */
+@media (max-width: 768px) {
+    .main-content-grid {
+        display: flex;
+        flex-direction: column;
+        height: auto !important; /* Override fixed height */
+        max-height: none !important;
+        gap: 2rem;
+    }
+
+    .input-section, .output-section {
+        height: auto !important;
+        min-height: 0;
+        overflow: visible;
+    }
+
+    /* Keep modules with a decent height so internal components work */
+    .uploaded-carousel-container,
+    .carousel-container {
+        height: 500px;
+        max-height: 80vh;
+    }
+
+    /* Ensure specific overrides for layout stability */
+    .output-section .carousel-container {
+        margin-top: 0;
+    }
+
+    /* Stack prompt input elements */
+    .prompt-input-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .prompt-input {
+        width: 100%;
+    }
+
+    .generate-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
