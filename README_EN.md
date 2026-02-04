@@ -24,8 +24,9 @@ Next-generation image creation platform powered by Google Gemini AI
 | 🎨 **Text-to-Image** | Generate AI images from natural language descriptions |
 | 🖌️ **Image Editing** | Transform uploaded images with AI-powered prompts |
 | 📂 **Secure Storage** | Session-isolated file management with auto-cleanup |
+| ⚡ **High Performance** | **Multi-concurrency** + **Streaming Upload** (99% less memory) + **Lazy Loading** |
 | 🎠 **Image Carousel** | Interactive slideshow for viewing generated results |
-| ⚡ **Real-time Preview** | Instant display of uploads and generation results |
+| 👁️ **Real-time Preview** | Instant display of uploads and generation results |
 
 ---
 

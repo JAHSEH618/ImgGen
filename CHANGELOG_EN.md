@@ -9,13 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [Unreleased]
+## [1.2.0] - 2026-02-04
 
-### Planned
+### 🚀 Performance Optimizations
 
-- Docker deployment optimization
-- Batch image processing
-- Image history persistence
+- **High Concurrency Backend** — Upgraded Gunicorn config to multi-process + multi-thread mode (`gthread`), boosting concurrency by 8-32x
+- **Drastically Reduced Memory Usage** — Implemented **streaming file uploads**, reducing memory footprint for 30MB uploads from 30MB to just 8KB
+- **Fast Frontend Loading** — Enabled **lazy loading** (`loading="lazy"`) and **async decoding** (`decoding="async"`) for all images
+- **Request Cancellation** — Added support for canceling ongoing AI generation requests to prevent resource waste and memory leaks
+- **Session Heartbeat** — Optimized heartbeat mechanism to reduce unnecessary network traffic and log noise
+
+### ✨ New Features
+
+- **Large File Support** — Increased maximum file upload size to **30MB**
+- **Mobile Optimization** — Optimized file upload and browsing experience for mobile devices
+- **Generation Cancellation** — Added an explicit "Cancel" button during generation
+- **Image Sharing** — Added capability to share generated images
+- **Access Control** — Enhanced session-based access control for image files
+
+### 💅 UI/UX Improvements
+
+- **New Upload Component** — Carousel-style design for upload preview
+- **Interaction Polish** — Improved touch handling for mobile devices
+
+---
 
 ---
 
@@ -96,7 +113,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/your-username/img-gen/compare/v1.1.0...HEAD
 [1.1.0]: https://github.com/your-username/img-gen/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/your-username/img-gen/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/your-username/img-gen/releases/tag/v0.1.0
