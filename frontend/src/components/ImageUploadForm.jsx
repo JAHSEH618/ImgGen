@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Upload, Sparkles, Image, X, Check, CheckSquare, Square } from 'lucide-react'
+import { Upload, Sparkles, Image, X, Check, CheckSquare, Square, Share2 } from 'lucide-react'
 import axios from 'axios'
 import Toast from './Toast'
 import ImageCarousel from './ImageCarousel'
@@ -45,11 +45,12 @@ const ImageUploadForm = () => {
             })
 
             if (response.data.success) {
+                const sessionId = sessionManager.getSessionId()
                 const newImages = response.data.uploaded_files.map(file => ({
                     id: file.saved_name,
                     filename: file.saved_name,
                     originalName: file.original_name,
-                    url: API_URLS.fileImage(file.saved_name),
+                    url: API_URLS.fileImage(file.saved_name, sessionId),
                     size: file.size
                 }))
                 setUploadedImages(prev => [...prev, ...newImages])
@@ -129,10 +130,11 @@ const ImageUploadForm = () => {
             })
 
             if (response.data.success && response.data.generated_images) {
+                const sessionId = sessionManager.getSessionId()
                 const newGenerated = response.data.generated_images.map((img, idx) => ({
                     id: `gen_${Date.now()}_${idx}`,
                     filename: img.filename,
-                    url: API_URLS.aiImage(img.filename)
+                    url: API_URLS.aiImage(img.filename, sessionId)
                 }))
                 setGeneratedImages(prev => [...prev, ...newGenerated])
                 showToast('Image generated successfully!', 'success')
@@ -184,6 +186,29 @@ const ImageUploadForm = () => {
             window.URL.revokeObjectURL(url)
         } catch (error) {
             showToast('Download failed', 'error')
+        }
+    }
+
+    const handleShare = async (image) => {
+        if (!image) return
+
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: 'Generated Image',
+                    text: 'Check out this AI generated image!',
+                    url: image.url
+                })
+            } else {
+                await navigator.clipboard.writeText(image.url)
+                showToast('Link copied to clipboard', 'success')
+            }
+        } catch (error) {
+            console.error('Share failed:', error)
+            // Fallback for user cancellation or other errors
+            if (error.name !== 'AbortError') {
+                showToast('Share failed', 'error')
+            }
         }
     }
 
@@ -301,6 +326,7 @@ const ImageUploadForm = () => {
                             images={generatedImages}
                             onDownload={handleDownload}
                             onPreview={handlePreview}
+                            onShare={handleShare}
                             onClose={() => setGeneratedImages([])}
                         />
                     ) : (
@@ -359,6 +385,9 @@ const ImageUploadForm = () => {
                         <div className="preview-actions">
                             <button onClick={() => handleDownload(previewImage)}>
                                 Download
+                            </button>
+                            <button onClick={() => handleShare(previewImage)} className="secondary">
+                                <Share2 size={16} /> Share
                             </button>
                         </div>
                     </div>

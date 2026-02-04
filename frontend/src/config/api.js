@@ -26,14 +26,20 @@ export const API_URLS = {
   // 文件服务
   fileUpload: getFullServiceURL(`${API_CONFIG.fileService}/upload`),
   fileList: getFullServiceURL(`${API_CONFIG.fileService}/list`),
-  fileImage: (filename) => getFullServiceURL(`${API_CONFIG.fileService}/image/${filename}`),
+  fileImage: (filename, sessionId) => {
+    const url = getFullServiceURL(`${API_CONFIG.fileService}/image/${filename}`)
+    return sessionId ? `${url}?session_id=${sessionId}` : url
+  },
   fileDownload: (filename) => getFullServiceURL(`${API_CONFIG.fileService}/download/${filename}`),
   fileHeartbeat: getFullServiceURL(`${API_CONFIG.fileService}/heartbeat`),
   fileCleanup: (sessionId) => getFullServiceURL(`${API_CONFIG.fileService}/cleanup/${sessionId}`),
 
   // AI服务  
   aiGenerate: getFullServiceURL(`${API_CONFIG.aiService}/generate`),
-  aiImage: (filename) => getFullServiceURL(`${API_CONFIG.aiService}/image/${filename}`),
+  aiImage: (filename, sessionId) => {
+    const url = getFullServiceURL(`${API_CONFIG.aiService}/image/${filename}`)
+    return sessionId ? `${url}?session_id=${sessionId}` : url
+  },
   aiDownload: (filename) => getFullServiceURL(`${API_CONFIG.aiService}/download/${filename}`),
   aiList: getFullServiceURL(`${API_CONFIG.aiService}/list_generated`),
   aiHeartbeat: getFullServiceURL(`${API_CONFIG.aiService}/heartbeat`),

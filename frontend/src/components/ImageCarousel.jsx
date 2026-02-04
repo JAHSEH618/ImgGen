@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Download, ImageIcon, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Download, ImageIcon, X, Share2 } from 'lucide-react';
 import './FileUploader.css'; // Reusing styles and adding specific carousel styles
 
-const ImageCarousel = ({ images, onDownload, onPreview, onClose }) => {
+const ImageCarousel = ({ images, onDownload, onPreview, onShare, onClose }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
@@ -72,6 +72,16 @@ const ImageCarousel = ({ images, onDownload, onPreview, onClose }) => {
                         <ImageIcon size={18} />
                         View
                     </button>
+                    {onShare && (
+                        <button
+                            onClick={() => onShare(currentImage)}
+                            className="action-btn secondary"
+                            title="Share Image"
+                        >
+                            <Share2 size={18} />
+                            Share
+                        </button>
+                    )}
                     <button
                         onClick={() => onDownload(currentImage)}
                         className="action-btn primary"

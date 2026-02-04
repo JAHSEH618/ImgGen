@@ -246,12 +246,22 @@ def _register_routes(target):
     @target.route('/image/<filename>')
     def serve_image(filename):
         try:
+            # Get session ID from query param or header
+            session_id = request.args.get('session_id') or request.headers.get('X-Session-ID')
+            if not session_id:
+                return jsonify({'error': 'Unauthorized: Session ID required for access'}), 403
+
+            # Check if file belongs to session
+            allowed_files = session_manager.get_session_files(session_id)
+            if filename not in allowed_files:
+                return jsonify({'error': 'Forbidden: Access denied to this file'}), 403
+
             filepath = os.path.join(GENERATED_FOLDER, filename)
             if not os.path.exists(filepath):
                 return jsonify({'error': 'File not found'}), 404
 
             response = send_from_directory(GENERATED_FOLDER, filename)
-            response.headers['Cache-Control'] = 'public, max-age=3600'
+            response.headers['Cache-Control'] = 'private, max-age=3600'
             return response
         except Exception as e:
             return jsonify({'error': str(e)}), 500
@@ -259,6 +269,16 @@ def _register_routes(target):
     @target.route('/download/<filename>')
     def download(filename):
         try:
+            # Get session ID from query param or header
+            session_id = request.args.get('session_id') or request.headers.get('X-Session-ID')
+            if not session_id:
+                return jsonify({'error': 'Unauthorized: Session ID required for access'}), 403
+
+            # Check if file belongs to session
+            allowed_files = session_manager.get_session_files(session_id)
+            if filename not in allowed_files:
+                return jsonify({'error': 'Forbidden: Access denied to this file'}), 403
+
             filepath = os.path.join(GENERATED_FOLDER, filename)
             if not os.path.exists(filepath):
                 return jsonify({'error': 'File not found'}), 404

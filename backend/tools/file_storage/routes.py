@@ -462,6 +462,16 @@ def _register_routes(target):
     def download_file(filename):
         """Download a file directly (already decrypted)"""
         try:
+            # Get session ID from query param or header
+            session_id = request.args.get('session_id') or request.headers.get('X-Session-ID')
+            if not session_id:
+                return jsonify({'error': 'Unauthorized: Session ID required for access'}), 403
+
+            # Check if file belongs to session
+            allowed_files = session_manager.get_session_files(session_id)
+            if filename not in allowed_files:
+                return jsonify({'error': 'Forbidden: Access denied to this file'}), 403
+
             # Get file metadata
             file_info = metadata_handler.get_file_info(filename)
             if not file_info:
@@ -499,6 +509,16 @@ def _register_routes(target):
     def serve_image(filename):
         """Serve image files directly for frontend display"""
         try:
+            # Get session ID from query param or header
+            session_id = request.args.get('session_id') or request.headers.get('X-Session-ID')
+            if not session_id:
+                return jsonify({'error': 'Unauthorized: Session ID required for access'}), 403
+
+            # Check if file belongs to session
+            allowed_files = session_manager.get_session_files(session_id)
+            if filename not in allowed_files:
+                return jsonify({'error': 'Forbidden: Access denied to this file'}), 403
+
             # Get file metadata
             file_info = metadata_handler.get_file_info(filename)
             if not file_info:
@@ -511,7 +531,7 @@ def _register_routes(target):
 
             # Serve the image file directly with cache headers
             response = send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-            response.headers['Cache-Control'] = 'public, max-age=3600'
+            response.headers['Cache-Control'] = 'private, max-age=3600' # Changed to private
             return response
 
         except Exception as e:
