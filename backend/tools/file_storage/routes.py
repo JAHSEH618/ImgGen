@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend integration
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
+app.config['MAX_CONTENT_LENGTH'] = 30 * 1024 * 1024  # 30MB max file size
 
 # Blueprint for wsgi.py integration
 bp = Blueprint('file_storage', __name__)
@@ -569,7 +569,7 @@ def _register_routes(target):
 
     @target.errorhandler(413)
     def too_large(e):
-        return jsonify({'error': 'File too large. Maximum size is 16MB'}), 413
+        return jsonify({'error': 'File too large. Maximum size is 30MB'}), 413
 
 
 # Register routes on both the standalone app and the blueprint
