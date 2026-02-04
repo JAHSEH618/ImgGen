@@ -50,6 +50,7 @@ const ImageCarousel = ({ images, onDownload, onPreview, onShare, onClose }) => {
                         alt={currentImage.filename}
                         className="carousel-image"
                         onClick={() => onPreview(currentImage)}
+                        decoding="async"
                     />
                 </div>
 
@@ -102,7 +103,7 @@ const ImageCarousel = ({ images, onDownload, onPreview, onShare, onClose }) => {
                             className={`thumbnail-item ${idx === currentIndex ? 'active' : ''}`}
                             onClick={() => setCurrentIndex(idx)}
                         >
-                            <img src={img.url} alt={`Thumbnail ${idx + 1}`} />
+                            <img src={img.url} alt={`Thumbnail ${idx + 1}`} loading="lazy" decoding="async" />
                         </div>
                     ))}
                 </div>

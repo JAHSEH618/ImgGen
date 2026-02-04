@@ -308,28 +308,31 @@ def _register_routes(target):
 
                 if file and allowed_file(file.filename):
                     try:
-                        # Read file data (this comes encrypted from client if using HTTPS)
-                        file_data = file.read()
-
-                        # Generate file hash for integrity check
-                        file_hash = transport_encryptor.get_file_hash(file_data)
-
                         # Generate unique filename (keeping original extension)
                         unique_filename = generate_unique_filename(file.filename)
                         filepath = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
 
-                        # Save file as plain/decrypted to local storage
-                        with open(filepath, 'wb') as saved_file:
-                            saved_file.write(file_data)
+                        # Stream file to disk in chunks to avoid loading entire file into memory
+                        file_hash = hashlib.sha256()
+                        file_size = 0
+                        CHUNK_SIZE = 8192  # 8KB chunks
 
-                        # Get file info
-                        file_size = len(file_data)
+                        with open(filepath, 'wb') as saved_file:
+                            while True:
+                                chunk = file.stream.read(CHUNK_SIZE)
+                                if not chunk:
+                                    break
+                                saved_file.write(chunk)
+                                file_hash.update(chunk)
+                                file_size += len(chunk)
+
+                        file_hash_hex = file_hash.hexdigest()
 
                         # Store metadata
                         metadata_handler.add_file_info(
                             unique_filename,
                             file.filename,
-                            file_hash,
+                            file_hash_hex,
                             file_size
                         )
 
@@ -340,7 +343,7 @@ def _register_routes(target):
                             'original_name': file.filename,
                             'saved_name': unique_filename,
                             'size': file_size,
-                            'file_hash': file_hash,
+                            'file_hash': file_hash_hex,
                             'storage_encrypted': False,
                             'transport_secure': True
                         })

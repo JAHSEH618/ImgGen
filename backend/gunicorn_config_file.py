@@ -1,13 +1,15 @@
 # Gunicorn configuration file for File Storage Service
 import os
+import multiprocessing
 
 # Server socket
 bind = "0.0.0.0:10086"
 backlog = 2048
 
-# Worker processes - Using single worker to avoid session lock issues
-workers = 1
-worker_class = "sync"
+# Worker processes - Optimized for concurrency
+workers = min(multiprocessing.cpu_count() * 2 + 1, 8)  # Cap at 8
+worker_class = "gthread"  # Thread-based worker for handling blocking I/O
+threads = 4  # 4 threads per worker
 worker_connections = 1000
 timeout = 60  # File upload timeout
 keepalive = 2

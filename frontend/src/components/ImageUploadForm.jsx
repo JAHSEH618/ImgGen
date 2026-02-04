@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Upload, Sparkles, Image, X, Check, CheckSquare, Square, Share2 } from 'lucide-react'
 import axios from 'axios'
@@ -19,9 +19,22 @@ const ImageUploadForm = () => {
     const [toast, setToast] = useState({ isVisible: false, message: '', type: '' })
     const [previewImage, setPreviewImage] = useState(null)
 
+    // Refs for cleanup
+    const toastTimeoutRef = useRef(null)
+    const abortControllerRef = useRef(null)
+
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current)
+            if (abortControllerRef.current) abortControllerRef.current.abort()
+        }
+    }, [])
+
     const showToast = (message, type) => {
+        if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current)
         setToast({ isVisible: true, message, type })
-        setTimeout(() => {
+        toastTimeoutRef.current = setTimeout(() => {
             setToast(prev => ({ ...prev, isVisible: false }))
         }, 4000)
     }
@@ -117,6 +130,9 @@ const ImageUploadForm = () => {
             .filter(img => selectedImages.has(img.id))
             .map(img => img.filename)
 
+        // Create abort controller for this request
+        abortControllerRef.current = new AbortController()
+
         setIsGenerating(true)
         try {
             const requestData = {
@@ -126,7 +142,8 @@ const ImageUploadForm = () => {
 
             const response = await axios.post(API_URLS.aiGenerate, requestData, {
                 headers: sessionManager.getHeaders(),
-                timeout: 300000
+                timeout: 300000,
+                signal: abortControllerRef.current.signal
             })
 
             if (response.data.success && response.data.generated_images) {
@@ -144,10 +161,16 @@ const ImageUploadForm = () => {
                 showToast(errorMsg, 'warning')
             }
         } catch (error) {
+            // Don't show error for aborted requests
+            if (axios.isCancel(error) || error.name === 'CanceledError') {
+                console.log('Request was cancelled')
+                return
+            }
             console.error('Generation error:', error)
             showToast(error.response?.data?.error || 'Generation failed', 'error')
         } finally {
             setIsGenerating(false)
+            abortControllerRef.current = null
         }
     }
 
@@ -240,7 +263,7 @@ const ImageUploadForm = () => {
                                     const activeImg = uploadedImages.find(img => img.id === activeUploadId) || uploadedImages[uploadedImages.length - 1]
                                     return (
                                         <div className="main-preview-wrapper">
-                                            <img src={activeImg.url} alt={activeImg.originalName} className="main-preview-image" />
+                                            <img src={activeImg.url} alt={activeImg.originalName} className="main-preview-image" decoding="async" />
                                             <div className="main-preview-info">
                                                 <button
                                                     className="remove-active-btn"
@@ -293,7 +316,7 @@ const ImageUploadForm = () => {
                                         setActiveUploadId(img.id)
                                     }}
                                 >
-                                    <img src={img.url} alt={img.originalName} />
+                                    <img src={img.url} alt={img.originalName} loading="lazy" decoding="async" />
                                     <div
                                         className={`thumb-checkbox ${selectedImages.has(img.id) ? 'checked' : ''}`}
                                         onClick={(e) => {
@@ -356,13 +379,13 @@ const ImageUploadForm = () => {
                     />
                     <button
                         className="generate-btn"
-                        onClick={handleGenerate}
-                        disabled={isGenerating}
+                        onClick={isGenerating ? () => abortControllerRef.current?.abort() : handleGenerate}
+                        style={isGenerating ? { background: 'var(--text-tertiary)' } : {}}
                     >
                         {isGenerating ? (
                             <>
-                                <div className="btn-spinner" />
-                                Generating...
+                                <X size={20} />
+                                Cancel
                             </>
                         ) : (
                             <>

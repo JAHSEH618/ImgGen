@@ -1,13 +1,16 @@
 # Gunicorn configuration file
 import os
+import multiprocessing
 
 # Server socket
 bind = "0.0.0.0:8088"
 backlog = 2048
 
-# Worker processes - Using single worker to avoid session lock issues
-workers = 1
-worker_class = "sync"
+# Worker processes - Optimized for concurrency
+# Use multiple workers with threads to handle blocking I/O better
+workers = min(multiprocessing.cpu_count() * 2 + 1, 8)  # Cap at 8 to avoid resource exhaustion
+worker_class = "gthread"  # Thread-based worker for handling blocking I/O
+threads = 4  # 4 threads per worker
 worker_connections = 1000
 timeout = 300  # 5 minutes for AI processing
 keepalive = 2
