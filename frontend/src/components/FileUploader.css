@@ -908,6 +908,23 @@
   align-items: center;
 }
 
+.prompt-input-wrapper.art-style-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  box-shadow: var(--shadow-sm);
+  align-items: center;
+}
+
+.prompt-input-wrapper.art-style-wrapper .art-style-selector {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
 .prompt-input {
   flex: 1;
   padding: 0.875rem 1rem;
@@ -1098,12 +1115,14 @@
 .image-thumb:hover .selection-checkbox {
   opacity: 1;
 }
+
 /* Update for Side-by-Side Layout */
 .main-content-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  align-items: stretch; /* Ensure equal height columns */
+  align-items: stretch;
+  /* Ensure equal height columns */
 }
 
 @media (max-width: 768px) {
@@ -1125,7 +1144,8 @@
 }
 
 .output-section .generated-preview {
-  flex: 1; /* Make generated preview stretch to fill height */
+  flex: 1;
+  /* Make generated preview stretch to fill height */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1146,381 +1166,401 @@
 }
 
 .input-section .dropzone {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Adjust Carousel to fit in Right Column */
 .output-section .carousel-container {
-    margin-top: 0; /* Remove top margin when inside output section */
-    height: 100%; /* Make it fill height */
-    box-sizing: border-box; /* Ensure padding doesn't overflow */
-    display: flex;
-    flex-direction: column;
+  margin-top: 0;
+  /* Remove top margin when inside output section */
+  height: 100%;
+  /* Make it fill height */
+  box-sizing: border-box;
+  /* Ensure padding doesn't overflow */
+  display: flex;
+  flex-direction: column;
 }
 
 .output-section .carousel-main {
-    flex: 1; /* Allow content to expand */
-    min-height: 0; /* Important for flex child to shrink properly */
+  flex: 1;
+  /* Allow content to expand */
+  min-height: 0;
+  /* Important for flex child to shrink properly */
 }
 
 .output-section .carousel-image-wrapper {
-    height: 100%; /* Fill wrapper height */
-    max-height: none; /* Override max-height constraint */
+  height: 100%;
+  /* Fill wrapper height */
+  max-height: none;
+  /* Override max-height constraint */
 }
 
 /* Ensure image fits within */
 .output-section .carousel-image {
-    max-height: 100%;
-    width: auto;
-    object-fit: contain;
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
 }
 
 /* Lock the height of the main grid */
 .main-content-grid {
-    height: 600px; /* Fixed height for the entire container */
-    max-height: 80vh; /* Responsive constraint */
+  height: 600px;
+  /* Fixed height for the entire container */
+  max-height: 80vh;
+  /* Responsive constraint */
 }
 
 /* Ensure children fill this fixed height */
-.input-section, .output-section {
-    height: 100%;
-    overflow: hidden; /* Prevent spillover */
+.input-section,
+.output-section {
+  height: 100%;
+  overflow: hidden;
+  /* Prevent spillover */
 }
 
 /* Make dropzone filling the space properly */
 .input-section .dropzone {
-    flex: 1; /* Take simplified remaining space */
-    min-height: 0; /* Allow shrinking */
+  flex: 1;
+  /* Take simplified remaining space */
+  min-height: 0;
+  /* Allow shrinking */
 }
 
 /* Make uploaded preview scrollable if needed */
 .uploaded-preview {
-    flex-shrink: 0; /* Dont shrink too much */
-    max-height: 50%; /* Cap upload list height */
-    overflow-y: auto; /* Scroll if list is long */
+  flex-shrink: 0;
+  /* Dont shrink too much */
+  max-height: 50%;
+  /* Cap upload list height */
+  overflow-y: auto;
+  /* Scroll if list is long */
 }
 
 /* Ensure the generated carousel respects the parent height */
 .output-section .carousel-container {
-    height: 100%;
+  height: 100%;
 }
 
 /* --- NEW UPLOAD CAROUSEL LAYOUT --- */
 
 .input-section {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .uploaded-carousel-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    /* border: 1px solid var(--border-color); */
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  /* border: 1px solid var(--border-color); */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-card);
 }
 
 /* 1. Main Preview Area */
 .uploaded-main-preview {
-    flex: 1;
-    min-height: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-secondary);
-    position: relative;
-    padding: 1rem;
-    overflow: hidden;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  position: relative;
+  padding: 1rem;
+  overflow: hidden;
 }
 
 .main-preview-wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .main-preview-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-sm);
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
 }
 
 .upload-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: 2px dashed var(--border-color);
-    border-radius: var(--radius-md);
-    transition: all 0.2s ease;
-    color: var(--text-tertiary);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  color: var(--text-tertiary);
 }
 
 .upload-placeholder:hover {
-    border-color: var(--accent-color);
-    background: var(--accent-faint);
-    color: var(--accent-color);
+  border-color: var(--accent-color);
+  background: var(--accent-faint);
+  color: var(--accent-color);
 }
 
 .placeholder-content {
-    text-align: center;
+  text-align: center;
 }
 
 .placeholder-content p {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 1rem;
 }
 
 .placeholder-content .sub-text {
-    font-size: 0.9rem;
-    font-weight: 400;
-    opacity: 0.7;
-    margin-top: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.7;
+  margin-top: 0.25rem;
 }
 
 /* Main Preview Overlays/Controls */
 .main-preview-info {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.5rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
 }
 
 .remove-active-btn {
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .remove-active-btn:hover {
-    background: #ff4d4f; /* Red for delete */
+  background: #ff4d4f;
+  /* Red for delete */
 }
 
 .info-badges .select-badge-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
 }
 
 .info-badges .select-badge-btn.selected {
-    background: var(--accent-color);
-    color: white;
-    border-color: var(--accent-color);
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
 }
 
 /* 2. Thumbnail Strip */
 .uploaded-thumbnails-strip {
-    height: 100px;
-    background: var(--bg-card);
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0 1rem;
-    overflow-x: auto;
-    flex-shrink: 0;
+  height: 100px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  overflow-x: auto;
+  flex-shrink: 0;
 }
 
 .strip-thumb {
-    width: 70px;
-    height: 70px;
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid transparent;
-    flex-shrink: 0;
-    position: relative;
-    opacity: 0.6;
-    transition: all 0.2s ease;
+  width: 70px;
+  height: 70px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+  position: relative;
+  opacity: 0.6;
+  transition: all 0.2s ease;
 }
 
 .strip-thumb:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .strip-thumb.active {
-    opacity: 1;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px var(--accent-faint);
+  opacity: 1;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px var(--accent-faint);
 }
 
 .strip-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .strip-thumb.selected .thumb-check {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    background: var(--accent-color);
-    color: white;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: var(--accent-color);
+  color: white;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
 }
 
 /* 3. Mini Dropzone */
 .mini-dropzone {
-    width: 70px;
-    height: 70px;
-    border: 2px dashed var(--border-color);
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
-    background: var(--bg-secondary);
-    color: var(--text-tertiary);
-    transition: all 0.2s ease;
+  width: 70px;
+  height: 70px;
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  color: var(--text-tertiary);
+  transition: all 0.2s ease;
 }
 
 .mini-dropzone:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-    background: var(--accent-faint);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background: var(--accent-faint);
 }
 
 .mini-dropzone.active {
-    border-color: var(--accent-color);
-    background: var(--accent-faint);
+  border-color: var(--accent-color);
+  background: var(--accent-faint);
 }
 
 /* Hide original dropzone/upload-preview styles that interfere */
 .input-section .dropzone {
-    display: none; /* Hide the old dropzone logic applied by class name re-use if any */
+  display: none;
+  /* Hide the old dropzone logic applied by class name re-use if any */
 }
 
 /* Fix for old styles leaking: Reset dropzone display only inside upload-placeholder */
 .upload-placeholder .dropzone {
-    display: flex; /* This selector doesn't exist in my HTML logic but just in case */
+  display: flex;
+  /* This selector doesn't exist in my HTML logic but just in case */
 }
 
 /* Ensure the input section itself doesn't force bad layout */
-.input-section {
-    display: block; /* Reset from potential grid/flex overrides */
-}
+/* .input-section override removed to restore flex layout */
 
 /* Remove pointer cursor since we disabled the click/modal */
 .main-preview-wrapper {
-    cursor: default;
+  cursor: default;
 }
 
 /* Updated Thumbnail Checkbox Styles */
 .strip-thumb .thumb-checkbox {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    width: 18px;
-    height: 18px;
-    border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    background: rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    z-index: 10;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
 }
 
 .strip-thumb .thumb-checkbox:hover {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: white;
+  background: rgba(255, 255, 255, 0.3);
+  border-color: white;
 }
 
 .strip-thumb .thumb-checkbox.checked {
-    background: var(--accent-color);
-    border-color: var(--accent-color);
-    color: white;
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
 }
 
 /* Remove old style if it conflicts */
 .strip-thumb.selected .thumb-check {
-    display: none;
+  display: none;
 }
 
 /* --- MOBILE OPTIMIZATION --- */
 @media (max-width: 768px) {
-    .main-content-grid {
-        display: flex;
-        flex-direction: column;
-        height: auto !important; /* Override fixed height */
-        max-height: none !important;
-        gap: 2rem;
-    }
+  .main-content-grid {
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+    /* Override fixed height */
+    max-height: none !important;
+    gap: 2rem;
+  }
 
-    .input-section, .output-section {
-        height: auto !important;
-        min-height: 0;
-        overflow: visible;
-    }
+  .input-section,
+  .output-section {
+    height: auto !important;
+    min-height: 0;
+    overflow: visible;
+  }
 
-    /* Keep modules with a decent height so internal components work */
-    .uploaded-carousel-container,
-    .carousel-container {
-        height: 500px;
-        max-height: 80vh;
-    }
+  /* Keep modules with a decent height so internal components work */
+  .uploaded-carousel-container,
+  .carousel-container {
+    height: 500px;
+    max-height: 80vh;
+  }
 
-    /* Ensure specific overrides for layout stability */
-    .output-section .carousel-container {
-        margin-top: 0;
-    }
+  /* Ensure specific overrides for layout stability */
+  .output-section .carousel-container {
+    margin-top: 0;
+  }
 
-    /* Stack prompt input elements */
-    .prompt-input-wrapper {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  /* Stack prompt input elements */
+  .prompt-input-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-    .prompt-input {
-        width: 100%;
-    }
+  .prompt-input {
+    width: 100%;
+  }
 
-    .generate-btn {
-        width: 100%;
-        justify-content: center;
-    }
+  .generate-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }

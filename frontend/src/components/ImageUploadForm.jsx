@@ -4,6 +4,8 @@ import { Upload, Sparkles, Image, X, Check, CheckSquare, Square, Share2 } from '
 import axios from 'axios'
 import Toast from './Toast'
 import ImageCarousel from './ImageCarousel'
+import ArtStyleSelector from './ArtStyleSelector'
+import { ART_STYLES } from '../config/artStyles'
 import { API_URLS } from '../config/api'
 import sessionManager from '../utils/sessionManager'
 import './FileUploader.css'
@@ -13,11 +15,12 @@ const ImageUploadForm = () => {
     const [selectedImages, setSelectedImages] = useState(new Set())
     const [activeUploadId, setActiveUploadId] = useState(null)
     const [generatedImages, setGeneratedImages] = useState([])
-    const [prompt, setPrompt] = useState('')
+    // prompt state removed
     const [isUploading, setIsUploading] = useState(false)
     const [isGenerating, setIsGenerating] = useState(false)
     const [toast, setToast] = useState({ isVisible: false, message: '', type: '' })
     const [previewImage, setPreviewImage] = useState(null)
+    const [selectedStyle, setSelectedStyle] = useState(null)
 
     // Refs for cleanup
     const toastTimeoutRef = useRef(null)
@@ -114,14 +117,26 @@ const ImageUploadForm = () => {
         setSelectedImages(new Set())
     }
 
+    const getFinalPrompt = () => {
+        let finalPrompt = ''
+        if (selectedStyle) {
+            // Find the style from ART_STYLES and use its prompt
+            const style = ART_STYLES.find(s => s.id === selectedStyle)
+            if (style) {
+                finalPrompt = `Image ${style.prompt}`
+            }
+        }
+        return finalPrompt
+    }
+
     const handleGenerate = async () => {
         if (selectedImages.size === 0) {
             showToast('Please select at least one image to generate', 'warning')
             return
         }
 
-        if (!prompt.trim()) {
-            showToast('Please enter a prompt', 'warning')
+        if (!selectedStyle) {
+            showToast('Please select an art style', 'warning')
             return
         }
 
@@ -136,7 +151,7 @@ const ImageUploadForm = () => {
         setIsGenerating(true)
         try {
             const requestData = {
-                prompt: prompt.trim(),
+                prompt: getFinalPrompt(),
                 images: imagesToUse
             }
 
@@ -241,6 +256,8 @@ const ImageUploadForm = () => {
 
     const selectedCount = selectedImages.size
     const allSelected = uploadedImages.length > 0 && selectedCount === uploadedImages.length
+
+    // Derived state for the active image in preview
     const activeImg = uploadedImages.find(img => img.id === activeUploadId) || uploadedImages[uploadedImages.length - 1]
 
     return (
@@ -260,10 +277,9 @@ const ImageUploadForm = () => {
                         <div className="uploaded-main-preview">
                             {uploadedImages.length > 0 ? (
                                 (() => {
-                                    const activeImg = uploadedImages.find(img => img.id === activeUploadId) || uploadedImages[uploadedImages.length - 1]
                                     return (
                                         <div className="main-preview-wrapper">
-                                            <img src={activeImg.url} alt={activeImg.originalName} className="main-preview-image" decoding="async" />
+                                            <img src={activeImg?.url} alt={activeImg?.originalName} className="main-preview-image" decoding="async" />
                                             <div className="main-preview-info">
                                                 <button
                                                     className="remove-active-btn"
@@ -277,14 +293,14 @@ const ImageUploadForm = () => {
                                                 </button>
                                                 <div className="info-badges">
                                                     <button
-                                                        className={`select-badge-btn ${selectedImages.has(activeImg.id) ? 'selected' : ''}`}
+                                                        className={`select-badge-btn ${selectedImages.has(activeImg?.id) ? 'selected' : ''}`}
                                                         onClick={(e) => {
                                                             e.stopPropagation()
                                                             toggleImageSelection(activeImg.id)
                                                         }}
                                                     >
-                                                        {selectedImages.has(activeImg.id) ? <CheckSquare size={16} /> : <Square size={16} />}
-                                                        {selectedImages.has(activeImg.id) ? 'Selected' : 'Use'}
+                                                        {selectedImages.has(activeImg?.id) ? <CheckSquare size={16} /> : <Square size={16} />}
+                                                        {selectedImages.has(activeImg?.id) ? 'Selected' : 'Use'}
                                                     </button>
                                                 </div>
                                             </div>
@@ -339,6 +355,8 @@ const ImageUploadForm = () => {
                                 <Upload size={20} />
                             </div>
                         </div>
+
+                        {/* Old ArtStyleSelector location removed */}
                     </div>
                 </div>
 
@@ -363,19 +381,12 @@ const ImageUploadForm = () => {
                 </div>
             </div>
 
-            {/* Prompt Input */}
+            {/* Prompt Section - Replaced with Art Style Selector */}
             <div className="prompt-section">
-                <div className="prompt-input-wrapper">
-                    <input
-                        type="text"
-                        value={prompt}
-                        onChange={(e) => setPrompt(e.target.value)}
-                        placeholder={selectedCount > 0
-                            ? `Describe what you want to generate (${selectedCount} image${selectedCount > 1 ? 's' : ''} selected)...`
-                            : "Describe what you want to generate..."
-                        }
-                        className="prompt-input"
-                        onKeyPress={(e) => e.key === 'Enter' && handleGenerate()}
+                <div className="prompt-input-wrapper art-style-wrapper">
+                    <ArtStyleSelector
+                        selectedStyle={selectedStyle}
+                        onSelectStyle={setSelectedStyle}
                     />
                     <button
                         className="generate-btn"
