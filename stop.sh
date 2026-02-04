@@ -38,8 +38,8 @@ fi
 
 # 查找并停止残留进程
 echo "🔍 检查残留进程..."
-pkill -f "tools/file_storage/routes.py" 2>/dev/null
-pkill -f "tools/img_gen/routes.py" 2>/dev/null
+pkill -f "tools\.file_storage\.routes" 2>/dev/null
+pkill -f "tools\.img_gen\.routes" 2>/dev/null
 pkill -f "vite" 2>/dev/null
 
 echo "================================"

@@ -1,5 +1,4 @@
 # Gunicorn configuration file for File Storage Service
-import multiprocessing
 import os
 
 # Server socket

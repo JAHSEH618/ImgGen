@@ -34,7 +34,7 @@ ENV PYTHONUNBUFFERED=1
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD curl -f http://localhost:10086/list && curl -f http://localhost:8088/list_generated || exit 1
+    CMD curl -f http://localhost:10086/health && curl -f http://localhost:8088/health || exit 1
 
 # Run both services using the service manager
 CMD ["python", "__init__.py"]

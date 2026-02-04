@@ -59,7 +59,7 @@ class SessionManager {
       ]
       
       await Promise.allSettled(promises)
-      console.log(`Session heartbeat sent: ${this.sessionId}`)
+      console.debug(`Session heartbeat sent: ${this.sessionId}`)
       
     } catch (error) {
       console.warn('Heartbeat failed:', error.message)
@@ -69,10 +69,10 @@ class SessionManager {
   handleVisibilityChange() {
     if (document.hidden) {
       this.isActive = false
-      console.log('Page hidden, stopping heartbeat')
+      console.debug('Page hidden, stopping heartbeat')
     } else {
       this.isActive = true
-      console.log('Page visible, resuming heartbeat')
+      console.debug('Page visible, resuming heartbeat')
       this.sendHeartbeat() // Send immediate heartbeat when page becomes visible
     }
   }
@@ -93,7 +93,7 @@ class SessionManager {
       ]
       
       await Promise.allSettled(promises)
-      console.log(`Session cleaned up: ${this.sessionId}`)
+      console.debug(`Session cleaned up: ${this.sessionId}`)
       
     } catch (error) {
       console.warn('Cleanup failed:', error.message)
@@ -114,7 +114,7 @@ class SessionManager {
     this.sessionId = this.generateSessionId()
     this.isActive = true
     this.startHeartbeat()
-    console.log(`Session renewed: ${this.sessionId}`)
+    console.debug(`Session renewed: ${this.sessionId}`)
   }
 }
 

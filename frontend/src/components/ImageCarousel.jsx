@@ -4,11 +4,6 @@ import './FileUploader.css'; // Reusing styles and adding specific carousel styl
 
 const ImageCarousel = ({ images, onDownload, onPreview, onClose }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isAutoPlaying, setIsAutoPlaying] = useState(false);
-
-    useEffect(() => {
-        console.log('[DEBUG] ImageCarousel Mounted with images:', images)
-    }, [])
 
     useEffect(() => {
         // Reset index when images array changes significantly

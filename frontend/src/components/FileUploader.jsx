@@ -3,6 +3,7 @@ import { Upload, Database, Zap } from 'lucide-react'
 import axios from 'axios'
 import Toast from './Toast'
 import { API_URLS } from '../config/api'
+import sessionManager from '../utils/sessionManager'
 import './FileUploader.css'
 
 const FileUploader = () => {
@@ -33,7 +34,8 @@ const FileUploader = () => {
 
       const response = await axios.post(API_URLS.fileUpload, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          ...sessionManager.getHeaders()
         },
         timeout: 30000
       })

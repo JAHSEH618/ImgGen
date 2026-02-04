@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Upload, CheckCircle, XCircle, AlertCircle, Zap } from 'lucide-react'
+import React from 'react'
+import { CheckCircle, XCircle, AlertCircle, Zap } from 'lucide-react'
 import './Toast.css'
 
 const Toast = ({ message, type, isVisible, onClose }) => {

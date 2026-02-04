@@ -1,5 +1,4 @@
 # Gunicorn configuration file
-import multiprocessing
 import os
 
 # Server socket

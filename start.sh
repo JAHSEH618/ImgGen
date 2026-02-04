@@ -18,10 +18,18 @@ elif [ -d "venv" ]; then
     echo "✅ Activated virtual environment (venv)"
 fi
 
+# 加载环境变量
+if [ -f backend/.env ]; then
+    set -a
+    source backend/.env
+    set +a
+    echo "✅ 已加载环境变量 (backend/.env)"
+fi
+
 # 启动文件存储服务 (端口 10086)
 echo "📁 启动文件存储服务 (端口 10086)..."
 cd backend
-python tools/file_storage/routes.py > logs/file_service.log 2>&1 &
+python -m tools.file_storage.routes > logs/file_service.log 2>&1 &
 FILE_PID=$!
 echo "   PID: $FILE_PID"
 cd ..
@@ -31,7 +39,7 @@ sleep 1
 # 启动AI图像生成服务 (端口 8088)
 echo "🤖 启动AI图像生成服务 (端口 8088)..."
 cd backend
-python tools/img_gen/routes.py > logs/ai_service.log 2>&1 &
+python -m tools.img_gen.routes > logs/ai_service.log 2>&1 &
 AI_PID=$!
 echo "   PID: $AI_PID"
 cd ..
