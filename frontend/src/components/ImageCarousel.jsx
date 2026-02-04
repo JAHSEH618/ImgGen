@@ -62,14 +62,7 @@ const ImageCarousel = ({ images, onDownload, onPreview, onClose }) => {
                 </button>
             </div>
 
-            <div className="carousel-actions">
-                <div className="carousel-info">
-                    <span className="carousel-filename" title={currentImage.filename}>
-                        {currentImage.filename.length > 30
-                            ? currentImage.filename.substring(0, 30) + '...'
-                            : currentImage.filename}
-                    </span>
-                </div>
+            <div className="carousel-actions" style={{ justifyContent: 'center' }}>
                 <div className="carousel-buttons">
                     <button
                         onClick={() => onPreview(currentImage)}

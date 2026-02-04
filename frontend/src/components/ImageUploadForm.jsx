@@ -11,6 +11,7 @@ import './FileUploader.css'
 const ImageUploadForm = () => {
     const [uploadedImages, setUploadedImages] = useState([])
     const [selectedImages, setSelectedImages] = useState(new Set())
+    const [activeUploadId, setActiveUploadId] = useState(null)
     const [generatedImages, setGeneratedImages] = useState([])
     const [prompt, setPrompt] = useState('')
     const [isUploading, setIsUploading] = useState(false)
@@ -58,6 +59,10 @@ const ImageUploadForm = () => {
                     newImages.forEach(img => newSet.add(img.id))
                     return newSet
                 })
+                // Set the last uploaded image as active
+                if (newImages.length > 0) {
+                    setActiveUploadId(newImages[newImages.length - 1].id)
+                }
                 showToast(`Uploaded ${acceptedFiles.length} image(s)`, 'success')
             }
         } catch (error) {
@@ -68,10 +73,11 @@ const ImageUploadForm = () => {
         }
     }, [])
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
         onDrop,
         accept: { 'image/*': ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp'] },
-        multiple: true
+        multiple: true,
+        noClick: true // We will handle clicks manually to avoid conflicts
     })
 
     const toggleImageSelection = (id) => {
@@ -95,6 +101,11 @@ const ImageUploadForm = () => {
     }
 
     const handleGenerate = async () => {
+        if (selectedImages.size === 0) {
+            showToast('Please select at least one image to generate', 'warning')
+            return
+        }
+
         if (!prompt.trim()) {
             showToast('Please enter a prompt', 'warning')
             return
@@ -125,8 +136,10 @@ const ImageUploadForm = () => {
                 }))
                 setGeneratedImages(prev => [...prev, ...newGenerated])
                 showToast('Image generated successfully!', 'success')
-            } else if (response.data.text_response) {
-                showToast(response.data.text_response.substring(0, 100), 'warning')
+            } else {
+                // Handle cases where success is false (e.g. safety filters, no images returned)
+                const errorMsg = response.data.message || response.data.text_response || 'Generation produced no images'
+                showToast(errorMsg, 'warning')
             }
         } catch (error) {
             console.error('Generation error:', error)
@@ -137,8 +150,19 @@ const ImageUploadForm = () => {
     }
 
     const removeUploadedImage = (id, e) => {
-        e.stopPropagation()
-        setUploadedImages(prev => prev.filter(img => img.id !== id))
+        if (e) e.stopPropagation()
+        setUploadedImages(prev => {
+            const filtered = prev.filter(img => img.id !== id)
+            // If we removed the active image, set new active
+            if (id === activeUploadId) {
+                if (filtered.length > 0) {
+                    setActiveUploadId(filtered[filtered.length - 1].id)
+                } else {
+                    setActiveUploadId(null)
+                }
+            }
+            return filtered
+        })
         setSelectedImages(prev => {
             const newSet = new Set(prev)
             newSet.delete(id)
@@ -169,6 +193,7 @@ const ImageUploadForm = () => {
 
     const selectedCount = selectedImages.size
     const allSelected = uploadedImages.length > 0 && selectedCount === uploadedImages.length
+    const activeImg = uploadedImages.find(img => img.id === activeUploadId) || uploadedImages[uploadedImages.length - 1]
 
     return (
         <div className="image-upload-form">
@@ -176,90 +201,96 @@ const ImageUploadForm = () => {
             <div className="main-content-grid">
                 {/* Left Column: Upload Input & List */}
                 <div className="input-section">
-                    {/* Upload Area */}
                     <div
                         {...getRootProps()}
-                        className={`dropzone ${isDragActive ? 'active' : ''} ${isUploading ? 'uploading' : ''}`}
+                        className="uploaded-carousel-container"
+                        onClick={(e) => e.stopPropagation()} // Prevent bubble up
                     >
                         <input {...getInputProps()} />
-                        <div className="dropzone-content">
-                            {isUploading ? (
-                                <>
-                                    <div className="upload-spinner" />
-                                    <p>Uploading...</p>
-                                </>
-                            ) : isDragActive ? (
-                                <>
-                                    <Upload size={48} />
-                                    <p>Drop images here</p>
-                                </>
-                            ) : (
-                                <>
-                                    <Image size={48} />
-                                    <p>Drag & drop images or click to browse</p>
-                                    <span className="dropzone-hint">PNG, JPG, GIF, WEBP supported</span>
-                                </>
-                            )}
-                        </div>
-                    </div>
 
-                    {/* Uploaded Images Preview with Selection */}
-                    <div className={`uploaded-preview ${uploadedImages.length === 0 ? 'empty' : ''}`}>
-                        <div className="uploaded-header">
-                            <h3>Uploaded ({uploadedImages.length})</h3>
-                            {uploadedImages.length > 0 && (
-                                <div className="selection-controls">
-                                    <span className="selection-count">
-                                        {selectedCount} selected
-                                    </span>
-                                    <button
-                                        className="select-btn"
-                                        onClick={allSelected ? deselectAllImages : selectAllImages}
-                                    >
-                                        {allSelected ? (
-                                            <>
-                                                <Square size={16} />
-                                                Deselect
-                                            </>
-                                        ) : (
-                                            <>
-                                                <CheckSquare size={16} />
-                                                Select All
-                                            </>
-                                        )}
-                                    </button>
+                        {/* 1. Main Preview Area */}
+                        <div className="uploaded-main-preview">
+                            {uploadedImages.length > 0 ? (
+                                (() => {
+                                    const activeImg = uploadedImages.find(img => img.id === activeUploadId) || uploadedImages[uploadedImages.length - 1]
+                                    return (
+                                        <div className="main-preview-wrapper">
+                                            <img src={activeImg.url} alt={activeImg.originalName} className="main-preview-image" />
+                                            <div className="main-preview-info">
+                                                <button
+                                                    className="remove-active-btn"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation()
+                                                        removeUploadedImage(activeImg.id, e)
+                                                    }}
+                                                    title="Remove image"
+                                                >
+                                                    <X size={16} />
+                                                </button>
+                                                <div className="info-badges">
+                                                    <button
+                                                        className={`select-badge-btn ${selectedImages.has(activeImg.id) ? 'selected' : ''}`}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation()
+                                                            toggleImageSelection(activeImg.id)
+                                                        }}
+                                                    >
+                                                        {selectedImages.has(activeImg.id) ? <CheckSquare size={16} /> : <Square size={16} />}
+                                                        {selectedImages.has(activeImg.id) ? 'Selected' : 'Use'}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })()
+                            ) : (
+                                <div
+                                    className="upload-placeholder"
+                                    onClick={open}
+                                >
+                                    <div className="placeholder-content">
+                                        <Image size={64} />
+                                        <p>Drag & drop images here</p>
+                                        <p className="sub-text">or click to browse</p>
+                                    </div>
                                 </div>
                             )}
                         </div>
-                        {uploadedImages.length > 0 ? (
-                            <div className="image-grid selectable">
-                                {uploadedImages.map(img => (
+
+                        {/* 2. Thumbnail Strip & Mini Dropzone */}
+                        <div className="uploaded-thumbnails-strip">
+                            {uploadedImages.map(img => (
+                                <div
+                                    key={img.id}
+                                    className={`strip-thumb ${activeUploadId === img.id ? 'active' : ''} ${selectedImages.has(img.id) ? 'selected' : ''}`}
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        setActiveUploadId(img.id)
+                                    }}
+                                >
+                                    <img src={img.url} alt={img.originalName} />
                                     <div
-                                        key={img.id}
-                                        className={`image-thumb ${selectedImages.has(img.id) ? 'selected' : ''}`}
-                                        onClick={() => toggleImageSelection(img.id)}
+                                        className={`thumb-checkbox ${selectedImages.has(img.id) ? 'checked' : ''}`}
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            toggleImageSelection(img.id)
+                                        }}
+                                        title={selectedImages.has(img.id) ? "Unselect" : "Select"}
                                     >
-                                        <img src={img.url} alt={img.originalName} />
-                                        <div className="selection-checkbox">
-                                            {selectedImages.has(img.id) ? (
-                                                <Check size={14} />
-                                            ) : null}
-                                        </div>
-                                        <button
-                                            className="remove-btn"
-                                            onClick={(e) => removeUploadedImage(img.id, e)}
-                                        >
-                                            <X size={14} />
-                                        </button>
+                                        {selectedImages.has(img.id) && <Check size={10} />}
                                     </div>
-                                ))}
+                                </div>
+                            ))}
+
+                            {/* Mini Dropzone at the end */}
+                            <div
+                                className={`mini-dropzone ${isDragActive ? 'active' : ''}`}
+                                title="Add more images"
+                                onClick={open}
+                            >
+                                <Upload size={20} />
                             </div>
-                        ) : (
-                            <div className="empty-state">
-                                <Image size={32} />
-                                <p>No images uploaded</p>
-                            </div>
-                        )}
+                        </div>
                     </div>
                 </div>
 
